@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 20:26:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/24 20:47:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:16:20 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		size = len;
 	res = (char *)malloc(sizeof(char) * (size + 1));
 	if (res == NULL)
-		return (0);
+		return (NULL);
 	ft_strlcpy(res, (char *)s + start, size + 1);
 	return (res);
 }

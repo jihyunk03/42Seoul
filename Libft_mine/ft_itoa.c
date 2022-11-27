@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:49:03 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/24 15:28:40 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:34:44 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ char	*ft_itoa(int n)
 	if (ln < 0)
 		ln *= -1;
 	num = (char *)malloc(sizeof(char) * (len + 1));
-	if (num == 0)
-		return (0);
+	if (num == NULL)
+		return (NULL);
 	num[len] = '\0';
 	while (--len >= 0)
 	{

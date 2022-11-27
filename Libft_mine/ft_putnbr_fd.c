@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:01:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/24 15:40:45 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:28:41 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	long	ln;
 
+	if (fd < 0)
+		return ;
 	ln = (long)n;
 	if (ln == 0)
 	{

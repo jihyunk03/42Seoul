@@ -6,15 +6,17 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:29:26 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/22 16:17:11 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:32:50 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*res;
 
-	res = 0;
+	res = NULL;
 	while (*s)
 	{
 		if (*s == (char)c)

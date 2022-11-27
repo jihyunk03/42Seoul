@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:00:24 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/16 18:13:16 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:27:31 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
+	if (fd < 0)
+		return ;
 	write(fd, &c, 1);
 }

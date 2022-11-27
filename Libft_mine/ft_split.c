@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:51:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/24 20:50:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:37:33 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	**ft_free_all(char **arr, int len)
 		i++;
 	}
 	free (arr);
-	return (0);
+	return (NULL);
 }
 
 static int	ft_arrlen(char const *s, char c)
@@ -62,8 +62,8 @@ char	**ft_split(char const *s, char c)
 	char	**arr;
 
 	arr = (char **)malloc(sizeof(char *) * (ft_arrlen(s, c) + 1));
-	if (arr == 0)
-		return (0);
+	if (arr == NULL)
+		return (NULL);
 	idx = 0;
 	while (*s)
 	{
@@ -71,7 +71,7 @@ char	**ft_split(char const *s, char c)
 		{
 			str_len = ft_len(s, c);
 			arr[idx] = (char *)malloc(sizeof(char) * (str_len + 1));
-			if (arr[idx] == 0)
+			if (arr[idx] == NULL)
 				return (ft_free_all(arr, idx));
 			ft_strlcpy(arr[idx], s, str_len + 1);
 			s += str_len;
@@ -80,6 +80,6 @@ char	**ft_split(char const *s, char c)
 		else
 			s++;
 	}
-	arr[idx] = 0;
+	arr[idx] = NULL;
 	return (arr);
 }

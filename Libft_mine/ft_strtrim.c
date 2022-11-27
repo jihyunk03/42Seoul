@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 21:20:34 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/24 20:48:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:15:18 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (start > end)
 		return (ft_strdup(""));
 	res = (char *)malloc(sizeof(char) * (end - start + 2));
-	if (res == 0)
-		return (0);
+	if (res == NULL)
+		return (NULL);
 	i = 0;
 	while (start <= end)
 		res[i++] = s1[start++];

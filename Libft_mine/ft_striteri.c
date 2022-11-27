@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:59:55 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/21 13:41:03 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:39:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	i = 0;
 	while (s[i])
 	{
-		(*f)(i, s + i);
+		f(i, s + i);
 		i++;
 	}
 }

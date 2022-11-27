@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:45:26 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/21 16:52:00 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:20:48 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	(*del)(lst->content);
+	del(lst->content);
 	free(lst);
 }

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:30:28 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/22 19:40:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:21:08 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 			return (str);
 		str++;
 	}
-	return (0);
+	return (NULL);
 }
