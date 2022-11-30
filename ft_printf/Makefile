@@ -1,13 +1,13 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = ft_printf.c ft_printf_utils.c
+SRCS = ft_printf.c ft_printf_utils.c ft_printf_utils_2.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -f
 AR = ar -rcs
 INCD = ft_printf.h
 NAME = libftprintf.a
 
-all: $(OBJS)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $@ $^

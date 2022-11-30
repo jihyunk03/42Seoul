@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_printf_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 12:31:45 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/30 20:54:00 by jihykim2         ###   ########.fr       */
+/*   Created: 2022/11/30 20:43:51 by jihykim2          #+#    #+#             */
+/*   Updated: 2022/11/30 22:20:56 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int		sign;
-	long	res;
+#include "ft_printf.h"
 
-	res = 0;
-	sign = 1;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '+' || *str == '-')
+void	print_ptr(void *ptr, int *len)
+{
+	*len += write(1, "0x", 2);
+	print_base((unsigned long)ptr, "0123456789abcdef", len);
+}
+
+void	print_base(unsigned long num, char *charset, int *len)
+{
+	if (num >= 16)
 	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
+		print_base(num / 16, charset, len);
+		print_base(num % 16, charset, len);
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		res = res * 10 + (*str - '0');
-		str++;
-	}
-	return (sign * res);
+	else
+		*len += write(1, &charset[num % 16], 1);
 }
