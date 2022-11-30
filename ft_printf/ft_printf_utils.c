@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 12:32:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/28 18:54:16 by jihykim2         ###   ########.fr       */
+/*   Created: 2022/11/29 14:24:30 by jihykim2          #+#    #+#             */
+/*   Updated: 2022/11/29 16:14:41 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_putchar(char c)
 {
-	size_t			i;
-	unsigned char	*res;
-
-	if (size != 0 && count > SIZE_MAX / size)
-		return (NULL);
-	i = 0;
-	res = malloc(count * size);
-	if (res == NULL)
-		return (NULL);
-	if (size == 0)
-		return (res);
-	while (i < count * size)
-	{
-		res[i] = 0;
-		i++;
-	}
-	return (res);
+	return (write(1, &c, 1));
 }

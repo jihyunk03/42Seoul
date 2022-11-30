@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 12:32:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/28 18:54:16 by jihykim2         ###   ########.fr       */
+/*   Created: 2022/11/28 19:11:06 by jihykim2          #+#    #+#             */
+/*   Updated: 2022/11/29 15:11:57 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	size_t			i;
-	unsigned char	*res;
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
 
-	if (size != 0 && count > SIZE_MAX / size)
-		return (NULL);
-	i = 0;
-	res = malloc(count * size);
-	if (res == NULL)
-		return (NULL);
-	if (size == 0)
-		return (res);
-	while (i < count * size)
-	{
-		res[i] = 0;
-		i++;
-	}
-	return (res);
-}
+int	ft_printf(const char *s, ...);
+int	check_val(char c, va_list ap);
+
+#endif
