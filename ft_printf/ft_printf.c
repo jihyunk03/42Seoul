@@ -6,28 +6,26 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:15:48 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/01 17:08:15 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/01 22:04:38 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *s, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	int		i;
 	int		len;
 
-	va_start(ap, s);
-	i = 0;
+	va_start(ap, str);
 	len = 0;
-	while (s[i])
+	while (*str)
 	{
-		if (s[i] == '%')
-			len += check_val(s[++i], &ap);
+		if (*str == '%')
+			len += check_val(*(++str), &ap);
 		else
-			len += write(1, &s[i], 1);
-		i++;
+			len += write(1, str, 1);
+		str++;
 	}
 	va_end(ap);
 	return (len);
@@ -39,7 +37,7 @@ int	check_val(char c, va_list *ap)
 
 	len = 0;
 	if (c == '%')
-		len += write(1, "%%", 1);
+		len += write(1, "%", 1);
 	else if (c == 'c')
 		print_chr(va_arg(*ap, int), &len);
 	else if (c == 's')

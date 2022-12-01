@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int	main(void)
+{
+	int		n = -2147483648;
+	char	*c = "abcde";
+
+	int	res1 = printf("%% %c %s %p %d %i %u %x %X", '\0', c, c, n, n, n, n, n);
+	printf("\n");
+	int	res2 = ft_printf("%% %c %s %p %d %i %u %x %X", '\0', c, c, n, n, n, n, n);
+	printf("\n");
+
+	printf("res1(printf): %d\nres2(ft_printf): %d\n", res1, res2);
+	return (0);
+}

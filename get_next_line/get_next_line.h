@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 19:11:06 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/01 22:04:36 by jihykim2         ###   ########.fr       */
+/*   Created: 2022/12/01 19:32:38 by jihykim2          #+#    #+#             */
+/*   Updated: 2022/12/01 21:48:55 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdarg.h>
-
-int		ft_printf(const char *str, ...);
-int		check_val(char c, va_list *ap);
-void	print_chr(int c, int *len);
-void	print_str(char *str, int *len);
-void	print_nbr(unsigned int num, int *len);
-void	put_nbr(int num, int *len);
-void	print_ptr(void *ptr, int *len);
-void	print_base(unsigned long num, char *charset, int *len);
 
 #endif

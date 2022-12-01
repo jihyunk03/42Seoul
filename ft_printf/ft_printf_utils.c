@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:24:30 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/01 17:08:11 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/01 21:51:23 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	print_nbr(unsigned int num, int *len)
 
 void	put_nbr(int num, int *len)
 {
-	long	ln;
+	unsigned int	un;
 
-	ln = (long)num;
-	if (ln < 0)
+	un = (unsigned int)num;
+	if (num < 0)
 	{
-		ln *= -1;
+		un *= -1;
 		*len += write(1, "-", 1);
 	}
-	print_nbr(ln, len);
+	print_nbr(un, len);
 }
