@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 19:11:06 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/30 22:20:55 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:30:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *s, ...);
-int		check_val(char c, va_list ap);
+int		check_val(char c, va_list *ap);
 void	print_chr(int c, int *len);
 void	print_str(char *str, int *len);
 void	print_nbr(unsigned int num, int *len);
