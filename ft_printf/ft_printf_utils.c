@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:24:30 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/01 16:46:21 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:08:11 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_str(char *str, int *len)
 	}
 }
 
-void	print_nbr(long num, int *len)
+void	print_nbr(unsigned int num, int *len)
 {
 	char	c;
 
