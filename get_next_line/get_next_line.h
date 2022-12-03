@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/01 21:48:55 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:46:37 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,12 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+# define OPEN_MAX 10240
+
+char	*get_next_line(int fd);
 
 #endif
