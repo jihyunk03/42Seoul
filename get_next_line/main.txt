@@ -1,0 +1,52 @@
+
+#include <fcntl.h>
+#include <stdio.h>
+#include "get_next_line.h"
+
+int	main (void)
+{
+	int		fd;
+
+	fd = open("text.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+
+	close (fd);
+	return (0);
+}
+
+
+char	*get_next_line(int fd)
+{
+	static char	*backup; // return 값으로 malloc으로 할당 받은 문자열의 주소
+	char		buf[BUFFER_SIZE + 1]; // read 한 내용을 해당 버퍼에 담는 것 (null값까지)
+	char		*gnl; // newline까지 잘라서 다시 넣는 곳(for join to backup)
+	int			readsize; // read의 반환 값
+	int			i; // index for newline or end of line(null)
+
+	if (fd > OPEN_MAX)
+		return (NULL);
+	readsize = read(fd, buf, BUFFER_SIZE);
+	while (readsize > 0)
+	{
+		buf[readsize] = '\0';
+		i = 0;
+		while (buf[i])
+		{
+			if (buf[i] == '\n')
+				break ;
+			i++;
+		}
+		gnl = (char *)malloc(sizeof(char) * (i + 1));
+		if (gnl == NULL)
+			return (NULL);
+		ft_strlcpy(gnl, buf, i + 1);
+		backup = ft_strjoin(backup, gnl);
+		ft_strlcpy(buf, buf + i, BUFFER_SIZE - i);
+		readsize = read(fd, buf, BUFFER_SIZE);
+	}
+}

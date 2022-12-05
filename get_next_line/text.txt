@@ -1,4 +1,4 @@
 Hello!!
 My name is Jihyun Kim.
 This function name is get_next_line.
-한글도 출력이 되나여~~?
+
