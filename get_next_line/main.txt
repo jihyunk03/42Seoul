@@ -1,4 +1,3 @@
-
 #include <fcntl.h>
 #include <stdio.h>
 #include "get_next_line.h"
@@ -6,47 +5,83 @@
 int	main (void)
 {
 	int		fd;
+	int		print_len = 1;
+	char	*str;
 
-	fd = open("text.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	fd = open("main.txt", O_RDONLY);
+	while (print_len)
+	{
+		str = get_next_line(fd);
+		print_len = printf("%s", str);
+	}
 
 	close (fd);
 	return (0);
 }
 
+// 이전 커밋
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*backup; // return 값으로 malloc으로 할당 받은 문자열의 주소
+	static char	*backup; // malloc으로 할당 받아 read한 결과물을 저장해놓는 문자열의 주소
+	char		*gnl; // return
 	char		buf[BUFFER_SIZE + 1]; // read 한 내용을 해당 버퍼에 담는 것 (null값까지)
-	char		*gnl; // newline까지 잘라서 다시 넣는 곳(for join to backup)
-	int			readsize; // read의 반환 값
-	int			i; // index for newline or end of line(null)
+	ssize_t		readsize; // read의 반환 값
+	ssize_t		nl_idx; // index for newline or end of line(null)
+	ssize_t		i; // backup의 index
 
-	if (fd > OPEN_MAX)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	readsize = read(fd, buf, BUFFER_SIZE);
-	while (readsize > 0)
+	nl_idx = -1;
+	i = 0;
+	gnl = NULL;
+	while (nl_idx < 0)
 	{
-		buf[readsize] = '\0';
-		i = 0;
-		while (buf[i])
-		{
-			if (buf[i] == '\n')
-				break ;
-			i++;
-		}
-		gnl = (char *)malloc(sizeof(char) * (i + 1));
-		if (gnl == NULL)
-			return (NULL);
-		ft_strlcpy(gnl, buf, i + 1);
-		backup = ft_strjoin(backup, gnl);
-		ft_strlcpy(buf, buf + i, BUFFER_SIZE - i);
+		if (backup == NULL)
+			backup = ft_strdup("");
+		nl_idx = check_backup(backup);
+		if (nl_idx >= 0)
+			break ;
 		readsize = read(fd, buf, BUFFER_SIZE);
+		if (readsize == 0)
+			break ;
+		else if (readsize < 0)
+			return (free_all(&backup));
+		else
+			buf[readsize] = '\0';
+		backup = ft_strjoin(backup, buf);
+		if (backup == NULL)
+			return (NULL);
 	}
+	if (readsize == 0 && nl_idx == -1)
+		nl_idx = ft_strlen(backup) - 1;
+	gnl = (char *)malloc(sizeof(char) * (nl_idx + 2));
+	if (gnl == NULL)
+		return (free_all(&backup));
+	ft_strlcpy(gnl, backup, nl_idx + 2);
+	ft_strlcpy(backup, backup + nl_idx + 1, ft_strlen(backup) - nl_idx + 1);
+	return (gnl);
+}
+
+ssize_t	check_backup(char *backup)
+{
+	ssize_t	i;
+
+	i = 0;
+	while (backup[i])
+	{
+		if (backup[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+char	*free_all(char **str)
+{
+	if (*str == NULL)
+		return (NULL);
+	free(*str);
+	return (NULL);
 }
