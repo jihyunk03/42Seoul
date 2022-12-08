@@ -6,20 +6,27 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:49 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 05:13:05 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/09 02:39:16 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char *s)
+void	*free_all(t_list **head, t_list *lst)
 {
-	size_t	len;
+	t_list	*tmp;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	if (*head == NULL || lst == NULL)
+		return (NULL);
+	tmp = *head;
+	while (tmp->next && tmp->next != lst)
+		tmp = tmp->next;
+	tmp->next = lst->next;
+	free (lst->backup);
+	lst->backup = NULL;
+	lst->next = NULL;
+	free (lst);
+	return (NULL);
 }
 
 void	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -38,27 +45,56 @@ void	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len;
+	ssize_t	len1;
+	ssize_t	len2;
 	char	*res;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	res = (char *)malloc(sizeof(char) * (len + 1));
+	len1 = 0;
+	len2 = 0;
+	while (s1[len1])
+		len1++;
+	while (s2[len2])
+		len2++;
+	len2 += len1;
+	res = (char *)malloc(sizeof(char) * (len2 + 1));
 	if (res == NULL)
 		return (NULL);
-	ft_strlcpy(res, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(res + ft_strlen(s1), s2, ft_strlen(s2) + 1);
+	ft_strlcpy(res, s1, len1 + 1);
+	ft_strlcpy(res + len1, s2, len2 - len1 + 1);
 	return (res);
 }
 
 char	*ft_strdup(const char *s1)
 {
 	char	*res;
+	size_t	len;
 
-	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	len = 0;
+	while (s1[len])
+		len++;
+	res = (char *)malloc(sizeof(char) * (len + 1));
 	if (res == NULL)
 		return (NULL);
-	ft_strlcpy(res, (char *)s1, ft_strlen(s1) + 1);
+	ft_strlcpy(res, (char *)s1, len + 1);
 	return (res);
+}
+
+t_list	*ft_lstnew(int fd_new)
+{
+	t_list	*t_new;
+
+	t_new = (t_list *)malloc(sizeof(t_list));
+	if (t_new == NULL)
+		return (NULL);
+	t_new->fd = fd_new;
+	t_new->backup = ft_strdup("");
+	if (t_new->backup == NULL)
+	{
+		free (t_new);
+		return (NULL);
+	}
+	t_new->next = NULL;
+	return (t_new);
 }

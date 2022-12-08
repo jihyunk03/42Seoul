@@ -16,16 +16,3 @@ int	main (void)
 	close (fd);
 	return (0);
 }
-
-****
-ft_strdup을 사용하지 않고 구현 가능..
-
-get_next_line에서 다음과 같이 쓰면 ㅇㅇ
-
-	if (backup == NULL)
-	{
-		backup = (char *)malloc(sizeof(char));
-		if (backup == NULL)
-			return (NULL);
-		*backup = '\0';
-	}

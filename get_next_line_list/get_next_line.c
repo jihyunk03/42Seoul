@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 05:15:04 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/09 05:16:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	*restore_backup(char *backup, ssize_t gnl_len)
 	return (backup);
 }
 
-void	*free_all(char **str)
+char	*free_all(char **str)
 {
 	if (*str == NULL)
 		return (NULL);

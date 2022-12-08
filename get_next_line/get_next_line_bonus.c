@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/08 21:46:21 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/09 03:43:25 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*backup[OPEN_MAX + 1];
+	static char	*backup[OPEN_MAX];
 	char		*gnl;
 	ssize_t		gnl_len;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1)
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE < 1)
 		return (NULL);
 	if (backup[fd] == NULL)
 		backup[fd] = ft_strdup("");
@@ -53,7 +53,7 @@ ssize_t	check_newline(char *backup)
 
 ssize_t	read_file(char **backup, int fd, ssize_t gnl_len)
 {
-	int		readsize;
+	ssize_t	readsize;
 	char	*tmp;
 	char	buf[BUFFER_SIZE + 1];
 
@@ -79,7 +79,7 @@ ssize_t	read_file(char **backup, int fd, ssize_t gnl_len)
 
 char	*restore_backup(char *backup, ssize_t gnl_len)
 {
-	int		len;
+	ssize_t	len;
 	char	*tmp;
 
 	len = ft_strlen(backup) - gnl_len;
@@ -92,7 +92,7 @@ char	*restore_backup(char *backup, ssize_t gnl_len)
 	return (backup);
 }
 
-char	*free_all(char **str)
+void	*free_all(char **str)
 {
 	if (*str == NULL)
 		return (NULL);
@@ -100,30 +100,3 @@ char	*free_all(char **str)
 	*str = NULL;
 	return (NULL);
 }
-
-/*
-#include <fcntl.h>
-#include <stdio.h>
-
-int	main (void)
-{
-	int		fd[3];
-
-	fd[0] = open("main.txt", O_RDONLY);
-//	fd[1] = open("no_newline.txt", O_RDONLY);
-//	fd[2] = open("no_empty.txt", O_RDONLY);
-
-	printf("1. %d: %s", fd[0], get_next_line(fd[0]));
-	printf("2. %d: %s", fd[0], get_next_line(fd[0]));
-	close(fd[0]);
-
-	printf("\n");
-	fd[0] = open("main.txt", O_RDONLY);
-	printf("1. %d: %s", fd[0], get_next_line(fd[0]));
-	printf("2. %d: %s", fd[0], get_next_line(fd[0]));
-	printf("3. %d: %s", fd[0], get_next_line(fd[0]));
-
-	close (fd[0]);
-	return (0);
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/07 19:05:20 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/09 05:19:29 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_next_line(int fd);
 ssize_t	check_newline(char *backup);
 ssize_t	read_file(char **backup, int fd, ssize_t gnl_len);
 char	*restore_backup(char *backup, ssize_t gnl_len);
-char	*free_all(char **str);
+void	*free_all(char **str);
 
 size_t	ft_strlen(const char *s);
 void	ft_strlcpy(char *dst, const char *src, size_t dstsize);

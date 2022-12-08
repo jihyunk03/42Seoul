@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 20:49:05 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/27 15:39:53 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/09 01:41:57 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		len;
+	size_t	len;
 	char	*res;
 
 	len = ft_strlen(s1) + ft_strlen(s2);
@@ -22,6 +22,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (res == NULL)
 		return (NULL);
 	ft_strlcpy(res, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(res + ft_strlen(s1), s2, len + 1);
+	ft_strlcpy(res + ft_strlen(s1), s2, ft_strlen(s2) + 1);
 	return (res);
 }
