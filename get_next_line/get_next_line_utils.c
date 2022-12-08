@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:53 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/07 04:45:09 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:06:10 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,4 @@ char	*ft_strdup(const char *s1)
 		return (NULL);
 	ft_strlcpy(res, (char *)s1, ft_strlen(s1) + 1);
 	return (res);
-}
-
-char	*free_all(char **str)
-{
-	if (*str == NULL)
-		return (NULL);
-	free(*str);
-	*str = NULL;
-	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:52:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/07 05:00:23 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:30:39 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 1
 # endif
-# define OPEN_MAX 10240
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 10240
+# endif
 
 char	*get_next_line(int fd);
+ssize_t	check_newline(char *backup);
 ssize_t	read_file(char **backup, int fd, ssize_t gnl_len);
 char	*restore_backup(char *backup, ssize_t gnl_len);
-
-ssize_t	check_newline(char *backup);
 char	*free_all(char **str);
 
 size_t	ft_strlen(const char *s);

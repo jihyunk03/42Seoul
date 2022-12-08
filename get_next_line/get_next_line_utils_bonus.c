@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:49 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/07 04:58:56 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:03:39 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -61,13 +61,4 @@ char	*ft_strdup(const char *s1)
 		return (NULL);
 	ft_strlcpy(res, (char *)s1, ft_strlen(s1) + 1);
 	return (res);
-}
-
-char	*free_all(char **str)
-{
-	if (*str == NULL)
-		return (NULL);
-	free(*str);
-	*str = NULL;
-	return (NULL);
 }
