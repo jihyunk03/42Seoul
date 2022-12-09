@@ -2,3 +2,16 @@ Hello!!
 My name is Jihyun Kim.
 This function name is get_next_line.
 
+	// if (tmp == lst)
+	// {
+	// 	*head = lst->next;
+	// 	free(lst->backup);
+	// 	free(lst);
+	// 	return (NULL);
+	// }
+	// while (tmp->next && tmp->next != lst)
+	// 	tmp = tmp->next;
+	// tmp->next = lst->next;
+	// free (lst->backup);
+	// free (lst);
+	// return (NULL);

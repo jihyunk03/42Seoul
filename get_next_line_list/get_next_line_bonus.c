@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 21:09:41 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/10 03:57:30 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list	*head;// linked list head
-	t_list			*lst;// fd's struct
-	char			*gnl;// result
-	ssize_t			gnl_len;// len for newline
+	static t_list	*head;
+	t_list			*lst;
+	char			*gnl;
+	ssize_t			gnl_len;
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1)
 		return (NULL);
 	lst = find_fd(&head, fd);
 	if (lst == NULL)
-		return (free_all(&head, lst));
+		return (NULL);
 	gnl_len = read_file(&(lst->backup), fd, check_newline(lst->backup));
 	if (gnl_len < 0 || *(lst->backup) == '\0')
 		return (free_all(&head, lst));
@@ -49,13 +49,15 @@ t_list	*find_fd(t_list **head, int fd_new)
 		return (*head);
 	}
 	tmp = *head;
-	while (tmp && tmp->fd != fd_new)
+	while (tmp)
+	{
+		if (tmp->fd == fd_new)
+			return (tmp);
+		if (tmp->next == NULL)
+			tmp->next = ft_lstnew(fd_new);
 		tmp = tmp->next;
-	if (tmp == NULL) // fd를 찾지 못함 >> 즉, 새로운 t_list 생성
-		tmp = ft_lstnew(fd_new);
-	if (tmp == NULL)
-		return (NULL);
-	return (tmp);
+	}
+	return (NULL);
 }
 
 ssize_t	check_newline(char *backup)
@@ -117,25 +119,3 @@ char	*restore_backup(char *backup, ssize_t gnl_len)
 	free (tmp);
 	return (backup);
 }
-/*
-#include <fcntl.h>
-#include <stdio.h>
-
-int	main (void)
-{
-	int		fd;
-	char	*str;
-
-	fd = open("main.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-
-	// while ((str = get_next_line(fd)) != NULL)
-	// 	printf("%s", str);
-
-	close (fd);
-	return (0);
-}
-*/

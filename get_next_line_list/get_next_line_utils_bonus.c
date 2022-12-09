@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:49 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 21:16:20 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/10 04:56:23 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ void	*free_all(t_list **head, t_list *lst)
 	if (*head == NULL || lst == NULL)
 		return (NULL);
 	tmp = *head;
-	while (tmp->next && tmp->next != lst)
-		tmp = tmp->next;
-	tmp->next = lst->next;
+	if (tmp == lst)
+		*head = lst->next;
+	else
+	{
+		while (tmp->next && tmp->next != lst)
+			tmp = tmp->next;
+		tmp->next = lst->next;
+	}
 	free (lst->backup);
-	lst->backup = NULL;
-	lst->next = NULL;
 	free (lst);
-	lst = NULL;
 	return (NULL);
 }
 
