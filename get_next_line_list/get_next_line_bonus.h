@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:52:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 02:46:58 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:30:52 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ typedef struct s_list
 }	t_list;
 
 char	*get_next_line(int fd);
-t_list	*find_fd(t_list **head, int fd);
+t_list	*find_fd(t_list **head, int fd_new);
 ssize_t	check_newline(char *backup);
 ssize_t	read_file(char **backup, int fd, ssize_t gnl_len);
 char	*restore_backup(char *backup, ssize_t gnl_len);
 
 void	*free_all(t_list **head, t_list *lst);
+t_list	*ft_lstnew(int fd_new);
+size_t	ft_strlen(const char *s);
 void	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *s1);
-t_list	*ft_lstnew(int fd_new);
 
 #endif

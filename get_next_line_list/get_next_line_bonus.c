@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 03:36:27 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:09:41 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list	*head;
-	t_list			*lst;
-	char			*gnl;
-	ssize_t			gnl_len;
+	static t_list	*head;// linked list head
+	t_list			*lst;// fd's struct
+	char			*gnl;// result
+	ssize_t			gnl_len;// len for newline
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1)
 		return (NULL);
@@ -44,13 +44,17 @@ t_list	*find_fd(t_list **head, int fd_new)
 	if (*head == NULL)
 	{
 		*head = ft_lstnew(fd_new);
+		if (*head == NULL)
+			return (NULL);
 		return (*head);
 	}
 	tmp = *head;
 	while (tmp && tmp->fd != fd_new)
 		tmp = tmp->next;
-	if (tmp == NULL)
+	if (tmp == NULL) // fd를 찾지 못함 >> 즉, 새로운 t_list 생성
 		tmp = ft_lstnew(fd_new);
+	if (tmp == NULL)
+		return (NULL);
 	return (tmp);
 }
 
@@ -66,16 +70,6 @@ ssize_t	check_newline(char *backup)
 		i++;
 	}
 	return (-1);
-}
-
-size_t	ft_strlen(char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
 }
 
 ssize_t	read_file(char **backup, int fd, ssize_t gnl_len)
@@ -111,9 +105,7 @@ char	*restore_backup(char *backup, ssize_t gnl_len)
 	char	*tmp;
 
 	len = 0;
-	while (backup[len])
-		len++;
-	len = len - gnl_len;
+	len = ft_strlen(backup) - gnl_len;
 	tmp = backup;
 	backup = (char *)malloc(sizeof(char) * (len + 1));
 	if (backup == NULL)
@@ -134,7 +126,7 @@ int	main (void)
 	int		fd;
 	char	*str;
 
-	fd = open("no_newline.txt", O_RDONLY);
+	fd = open("main.txt", O_RDONLY);
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
