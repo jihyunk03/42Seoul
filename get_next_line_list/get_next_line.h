@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 16:18:39 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/10 21:50:42 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
-# endif
-
-# ifndef OPEN_MAX
-#  define OPEN_MAX 10240
 # endif
 
 char	*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 05:16:21 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/10 21:51:01 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	char		*gnl;
 	ssize_t		gnl_len;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (free_all(&backup));
 	if (backup == NULL)
 		backup = ft_strdup("");
@@ -57,6 +57,7 @@ ssize_t	read_file(char **backup, int fd, ssize_t gnl_len)
 	char	*tmp;
 	char	buf[BUFFER_SIZE + 1];
 
+	readsize = 0;
 	while (gnl_len < 0)
 	{
 		readsize = read(fd, buf, BUFFER_SIZE);

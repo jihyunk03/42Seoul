@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/10 03:57:30 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/10 21:33:15 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 	char			*gnl;
 	ssize_t			gnl_len;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	lst = find_fd(&head, fd);
 	if (lst == NULL)
@@ -33,7 +33,10 @@ char	*get_next_line(int fd)
 	ft_strlcpy(gnl, lst->backup, gnl_len + 1);
 	lst->backup = restore_backup(lst->backup, gnl_len);
 	if (lst->backup == NULL)
+	{
+		free (gnl);
 		return (free_all(&head, lst));
+	}
 	return (gnl);
 }
 
