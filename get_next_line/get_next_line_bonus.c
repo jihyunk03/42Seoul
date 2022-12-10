@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/10 21:40:54 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/11 05:22:01 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_next_line(int fd)
 {
 	static char	*backup[OPEN_MAX];
 	char		*gnl;
-	ssize_t		gnl_len;
+	size_t		gnl_len;
 
 	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE < 1)
 		return (NULL);
@@ -25,7 +25,7 @@ char	*get_next_line(int fd)
 	if (backup[fd] == NULL)
 		return (NULL);
 	gnl_len = read_file(&backup[fd], fd, check_newline(backup[fd]));
-	if (gnl_len < 0 || ft_strlen(backup[fd]) == 0)
+	if (gnl_len == 0 || *(backup[fd]) == '\0')
 		return (free_all(&backup[fd]));
 	gnl = (char *)malloc(sizeof(char) * (gnl_len + 1));
 	if (gnl == NULL)
@@ -37,9 +37,9 @@ char	*get_next_line(int fd)
 	return (gnl);
 }
 
-ssize_t	check_newline(char *backup)
+size_t	check_newline(char *backup)
 {
-	ssize_t	i;
+	size_t	i;
 
 	i = 0;
 	while (backup[i])
@@ -48,39 +48,39 @@ ssize_t	check_newline(char *backup)
 			return (i + 1);
 		i++;
 	}
-	return (-1);
+	return (0);
 }
 
-ssize_t	read_file(char **backup, int fd, ssize_t gnl_len)
+size_t	read_file(char **backup, int fd, size_t gnl_len)
 {
 	ssize_t	readsize;
 	char	*tmp;
 	char	buf[BUFFER_SIZE + 1];
 
 	readsize = 0;
-	while (gnl_len < 0)
+	while (gnl_len == 0)
 	{
 		readsize = read(fd, buf, BUFFER_SIZE);
 		if (readsize == 0)
 			break ;
 		else if (readsize < 0)
-			return (-1);
+			return (0);
 		buf[readsize] = '\0';
 		tmp = *backup;
 		*backup = ft_strjoin(*backup, buf);
 		free (tmp);
 		if (*backup == NULL)
-			return (-1);
+			return (0);
 		gnl_len = check_newline(*backup);
 	}
-	if (readsize == 0 && gnl_len == -1)
+	if (readsize == 0 && gnl_len == 0)
 		gnl_len = ft_strlen(*backup);
 	return (gnl_len);
 }
 
-char	*restore_backup(char *backup, ssize_t gnl_len)
+char	*restore_backup(char *backup, size_t gnl_len)
 {
-	ssize_t	len;
+	size_t	len;
 	char	*tmp;
 
 	len = ft_strlen(backup) - gnl_len;
