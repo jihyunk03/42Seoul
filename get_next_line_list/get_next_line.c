@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/11 04:44:21 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/12 02:44:29 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd)
 	if (gnl == NULL)
 		return (free_all(&backup));
 	ft_strlcpy(gnl, backup, gnl_len + 1);
-	backup = restore_backup(backup, gnl_len);
+	backup = save_for_next(backup, gnl_len);
 	if (backup == NULL)
 		return (free_all(&gnl));
 	return (gnl);
@@ -44,9 +44,8 @@ size_t	check_newline(char *backup)
 	i = 0;
 	while (backup[i])
 	{
-		if (backup[i] == '\n')
-			return (i + 1);
-		i++;
+		if (backup[i++] == '\n')
+			return (i);
 	}
 	return (0);
 }
@@ -78,7 +77,7 @@ size_t	read_file(char **backup, int fd, size_t gnl_len)
 	return (gnl_len);
 }
 
-char	*restore_backup(char *backup, size_t gnl_len)
+char	*save_for_next(char *backup, size_t gnl_len)
 {
 	size_t	len;
 	char	*tmp;
@@ -89,15 +88,6 @@ char	*restore_backup(char *backup, size_t gnl_len)
 	if (backup == NULL)
 		return (free_all(&tmp));
 	ft_strlcpy(backup, tmp + gnl_len, len + 1);
-	free_all (&tmp);
+	free (tmp);
 	return (backup);
-}
-
-char	*free_all(char **str)
-{
-	if (*str == NULL)
-		return (NULL);
-	free(*str);
-	*str = NULL;
-	return (NULL);
 }

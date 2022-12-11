@@ -6,11 +6,20 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:53 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 16:33:01 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/12 02:44:09 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*free_all(char **str)
+{
+	if (*str == NULL)
+		return (NULL);
+	free(*str);
+	*str = NULL;
+	return (NULL);
+}
 
 size_t	ft_strlen(const char *s)
 {

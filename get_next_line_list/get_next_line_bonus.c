@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/11 04:52:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/12 02:45:16 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd)
 	if (gnl == NULL)
 		return (free_all(&head, lst));
 	ft_strlcpy(gnl, lst->backup, gnl_len + 1);
-	lst->backup = restore_backup(lst->backup, gnl_len);
+	lst->backup = save_for_next(lst->backup, gnl_len);
 	if (lst->backup == NULL)
 	{
 		free (gnl);
@@ -70,9 +70,8 @@ size_t	check_newline(char *backup)
 	i = 0;
 	while (backup[i])
 	{
-		if (backup[i] == '\n')
-			return (i + 1);
-		i++;
+		if (backup[i++] == '\n')
+			return (i);
 	}
 	return (0);
 }
@@ -104,7 +103,7 @@ size_t	read_file(char **backup, int fd, size_t gnl_len)
 	return (gnl_len);
 }
 
-char	*restore_backup(char *backup, size_t gnl_len)
+char	*save_for_next(char *backup, size_t gnl_len)
 {
 	size_t	len;
 	char	*tmp;
