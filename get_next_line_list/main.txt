@@ -1,3 +1,4 @@
+[ case1 ]
 #include <fcntl.h>
 #include <stdio.h>
 #include "get_next_line.h"
@@ -7,11 +8,37 @@ int	main (void)
 	int		fd;
 	char	*str;
 
-	fd = open("main.txt", O_RDONLY);
+	fd = open("test", O_RDONLY);
 	// printf("%s", get_next_line(fd));
 
-	while ((str = get_next_line(fd)) != NULL)
+	for (int i = 0; i < 15; i++)
+	{
+		str = get_next_line(fd);
 		printf("%s", str);
+	}
+
+	close (fd);
+	return (0);
+}
+
+
+[ case2 ]
+#include <fcntl.h>
+#include <stdio.h>
+
+int	main (void)
+{
+	int		fd;
+	char	*str;
+
+	fd = open("test", O_RDONLY);
+	// printf("%s", get_next_line(fd));
+
+	for (int i = 0; i < 15; i++)
+	{
+		str = get_next_line(fd);
+		printf("%s", str);
+	}
 
 	close (fd);
 	return (0);
