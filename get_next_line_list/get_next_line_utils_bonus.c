@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:49 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/10 04:56:23 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:30:51 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*free_all(t_list **head, t_list *lst)
 	return (NULL);
 }
 
-t_list	*ft_lstnew(int fd_new)
+t_list	*gnl_lstnew(int fd_new)
 {
 	t_list	*t_new;
 
