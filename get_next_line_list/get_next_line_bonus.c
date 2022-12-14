@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/13 19:55:54 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/14 01:21:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,69 @@ char	*get_next_line(int fd)
 	if (lst == NULL)
 		return (NULL);
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (buff == NULL)
+		return (free_all(&head, lst));
 	gnl_len = read_file(lst, &buff);
 	free (buff);
 	if (gnl_len == 0 || *(lst->backup) == '\0')
 		return (free_all(&head, lst));
 	return (cut_next_line(&head, lst, gnl_len));
+}
+
+t_list	*find_fd(t_list **head, int fd_new)
+{
+	t_list	*tmp;
+
+	if (*head == NULL)
+	{
+		*head = gnl_lstnew(fd_new);
+		return (*head);
+	}
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->fd == fd_new)
+			return (tmp);
+		if (tmp->next == NULL)
+			tmp->next = gnl_lstnew(fd_new);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+size_t	read_file(t_list *lst, char **buff)
+{
+	ssize_t	readsize;
+	char	*tmp;
+
+	while (check_newline(lst->backup) == 0)
+	{
+		readsize = read(lst->fd, *buff, BUFFER_SIZE);
+		if (readsize == 0)
+			return (ft_strlen(lst->backup));
+		else if (readsize < 0)
+			return (0);
+		(*buff)[readsize] = '\0';
+		tmp = lst->backup;
+		lst->backup = ft_strjoin(lst->backup, *buff);
+		free (tmp);
+		if (lst->backup == NULL)
+			return (0);
+	}
+	return (check_newline(lst->backup));
+}
+
+size_t	check_newline(char *backup)
+{
+	size_t	i;
+
+	i = 0;
+	while (backup[i])
+	{
+		if (backup[i++] == '\n')
+			return (i);
+	}
+	return (0);
 }
 
 char	*cut_next_line(t_list **head, t_list *lst, size_t	gnl_len)
@@ -55,84 +113,3 @@ char	*cut_next_line(t_list **head, t_list *lst, size_t	gnl_len)
 	free (tmp);
 	return (gnl);
 }
-
-t_list	*find_fd(t_list **head, int fd_new)
-{
-	t_list	*tmp;
-
-	if (*head == NULL)
-	{
-		*head = gnl_lstnew(fd_new);
-		if (*head == NULL)
-			return (NULL);
-		return (*head);
-	}
-	tmp = *head;
-	while (tmp)
-	{
-		if (tmp->fd == fd_new)
-			return (tmp);
-		if (tmp->next == NULL)
-			tmp->next = gnl_lstnew(fd_new);
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
-
-size_t	check_newline(char *backup)
-{
-	size_t	i;
-
-	i = 0;
-	while (backup[i])
-	{
-		if (backup[i++] == '\n')
-			return (i);
-	}
-	return (0);
-}
-
-size_t	read_file(t_list *lst, char **buff)
-{
-	ssize_t	readsize;
-	char	*tmp;
-
-	if (*buff == NULL)
-		return (0);
-	while (check_newline(lst->backup) == 0)
-	{
-		readsize = read(lst->fd, *buff, BUFFER_SIZE);
-		if (readsize == 0)
-			return (ft_strlen(lst->backup));
-		else if (readsize < 0)
-			return (0);
-		(*buff)[readsize] = '\0';
-		tmp = lst->backup;
-		lst->backup = ft_strjoin(lst->backup, *buff);
-		free (tmp);
-		if (lst->backup == NULL)
-			return (0);
-	}
-	return (check_newline(lst->backup));
-}
-/*
-char	*save_for_next(char *backup, char **gnl, size_t gnl_len)
-{
-	size_t	len;
-	char	*tmp;
-
-	len = ft_strlen(backup) - gnl_len;
-	tmp = backup;
-	backup = (char *)malloc(sizeof(char) * (len + 1));
-	if (backup == NULL)
-	{
-		free (*gnl);
-		*gnl = NULL;
-		free (tmp);
-		return (NULL);
-	}
-	ft_strlcpy(backup, tmp + gnl_len, len + 1);
-	free (tmp);
-	return (backup);
-}
-*/

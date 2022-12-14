@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:52:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/13 19:55:52 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/14 01:04:30 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ typedef struct s_list
 }	t_list;
 
 char	*get_next_line(int fd);
-char	*cut_next_line(t_list **head, t_list *lst, size_t	gnl_len);
+char	*cut_next_line(t_list **head, t_list *lst, size_t gnl_len);
 
 t_list	*find_fd(t_list **head, int fd_new);
-size_t	check_newline(char *backup);
 size_t	read_file(t_list *lst, char **buff);
+size_t	check_newline(char *backup);
 
 void	*free_all(t_list **head, t_list *lst);
 t_list	*gnl_lstnew(int fd_new);
