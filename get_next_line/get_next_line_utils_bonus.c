@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:49 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/09 16:33:24 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:29:56 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 char	*ft_strdup(const char *s1)
 {
+	size_t	len;
 	char	*res;
 
-	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	len = ft_strlen(s1);
+	res = (char *)malloc(sizeof(char) * (len + 1));
 	if (res == NULL)
 		return (NULL);
-	ft_strlcpy(res, (char *)s1, ft_strlen(s1) + 1);
+	ft_strlcpy(res, (char *)s1, len + 1);
 	return (res);
 }

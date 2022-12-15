@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/11 05:11:03 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:22:12 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_next_line(int fd)
 		backup = ft_strdup("");
 	if (backup == NULL)
 		return (NULL);
-	gnl_len = read_file(&backup, fd, check_newline(backup));
+	gnl_len = read_file(&backup, fd);
 	if (gnl_len == 0 || *backup == '\0')
 		return (free_all(&backup));
 	gnl = (char *)malloc(sizeof(char) * (gnl_len + 1));
@@ -37,32 +37,17 @@ char	*get_next_line(int fd)
 	return (gnl);
 }
 
-size_t	check_newline(char *backup)
-{
-	size_t	i;
-
-	i = 0;
-	while (backup[i])
-	{
-		if (backup[i] == '\n')
-			return (i + 1);
-		i++;
-	}
-	return (0);
-}
-
-size_t	read_file(char **backup, int fd, size_t gnl_len)
+size_t	read_file(char **backup, int fd)
 {
 	ssize_t	readsize;
 	char	*tmp;
 	char	buf[BUFFER_SIZE + 1];
 
-	readsize = 0;
-	while (gnl_len == 0)
+	while (check_newline(*backup) == 0)
 	{
 		readsize = read(fd, buf, BUFFER_SIZE);
 		if (readsize == 0)
-			break ;
+			return (ft_stlen(*backup));
 		else if (readsize < 0)
 			return (0);
 		buf[readsize] = '\0';
@@ -71,11 +56,21 @@ size_t	read_file(char **backup, int fd, size_t gnl_len)
 		free (tmp);
 		if (*backup == NULL)
 			return (0);
-		gnl_len = check_newline(*backup);
 	}
-	if (readsize == 0 && gnl_len == 0)
-		gnl_len = ft_strlen(*backup);
-	return (gnl_len);
+	return (check_newline(*backup));
+}
+
+size_t	check_newline(char *backup)
+{
+	size_t	i;
+
+	i = 0;
+	while (backup[i])
+	{
+		if (backup[i++] == '\n')
+			return (i);
+	}
+	return (0);
 }
 
 char	*restore_backup(char *backup, size_t gnl_len)
