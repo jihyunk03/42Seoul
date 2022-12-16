@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/14 18:25:57 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/17 02:38:39 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*get_next_line(int fd)
 	backup[fd] = restore_backup(backup[fd], gnl_len);
 	if (backup[fd] == NULL)
 		return (free_all(&gnl));
+	if (*backup[fd] == '\0')
+		free_all(&backup[fd]);
 	return (gnl);
 }
 

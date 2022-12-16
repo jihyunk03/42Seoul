@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/14 18:45:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/17 02:51:09 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ t_list	*find_fd(t_list **head, int fd_new)
 	t_list	*tmp;
 
 	if (*head == NULL)
-	{
 		*head = gnl_lstnew(fd_new);
-		return (*head);
-	}
 	tmp = *head;
 	while (tmp)
 	{
@@ -109,7 +106,8 @@ char	*cut_next_line(t_list **head, t_list *lst, size_t gnl_len)
 		free (tmp);
 		return (free_all(head, lst));
 	}
-	ft_strlcpy(lst->backup, tmp + gnl_len, len + 1);
+	if (ft_strlcpy(lst->backup, tmp + gnl_len, len + 1) == 0)
+		free_all(head, lst);
 	free (tmp);
 	return (gnl);
 }

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:49 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/13 19:30:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/17 02:28:40 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-void	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
@@ -73,6 +73,7 @@ void	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	if (dstsize > 0)
 		dst[i] = '\0';
+	return (ft_strlen(src));
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

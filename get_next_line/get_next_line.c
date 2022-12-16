@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:32:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/14 18:22:12 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/17 02:40:33 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*get_next_line(int fd)
 	backup = restore_backup(backup, gnl_len);
 	if (backup == NULL)
 		return (free_all(&gnl));
+	if (*backup == '\0')
+		free_all(&backup);
 	return (gnl);
 }
 
@@ -47,7 +49,7 @@ size_t	read_file(char **backup, int fd)
 	{
 		readsize = read(fd, buf, BUFFER_SIZE);
 		if (readsize == 0)
-			return (ft_stlen(*backup));
+			return (ft_strlen(*backup));
 		else if (readsize < 0)
 			return (0);
 		buf[readsize] = '\0';
