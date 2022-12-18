@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/17 02:51:09 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:50:45 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_next_line(int fd)
 		return (free_all(&head, lst));
 	gnl_len = read_file(lst, &buff);
 	free (buff);
-	if (gnl_len == 0 || *(lst->backup) == '\0')
+	if (gnl_len == 0)
 		return (free_all(&head, lst));
 	return (cut_next_line(&head, lst, gnl_len));
 }
