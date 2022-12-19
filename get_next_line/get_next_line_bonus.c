@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 04:51:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/17 02:38:39 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:28:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_next_line(int fd)
 	if (backup[fd] == NULL)
 		return (NULL);
 	gnl_len = read_file(&backup[fd], fd);
-	if (gnl_len == 0 || *(backup[fd]) == '\0')
+	if (gnl_len == 0)
 		return (free_all(&backup[fd]));
 	gnl = (char *)malloc(sizeof(char) * (gnl_len + 1));
 	if (gnl == NULL)
