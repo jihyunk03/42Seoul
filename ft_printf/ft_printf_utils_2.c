@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:43:51 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/01 16:19:47 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:46:58 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	print_base(unsigned long num, char *charset, int *len)
 		print_base(num % 16, charset, len);
 	}
 	else
-		*len += write(1, &charset[num % 16], 1);
+		*len += write(1, &charset[num], 1);
 }
