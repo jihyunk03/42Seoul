@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:31:45 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/11/30 20:54:00 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:32:49 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,10 @@ int	ft_atoi(const char *str)
 		str++;
 	if (*str == '+' || *str == '-')
 	{
-		if (*str == '-')
+		if (*str++ == '-')
 			sign *= -1;
-		str++;
 	}
 	while (*str >= '0' && *str <= '9')
-	{
-		res = res * 10 + (*str - '0');
-		str++;
-	}
+		res = res * 10 + (*str++ - '0');
 	return (sign * res);
 }
