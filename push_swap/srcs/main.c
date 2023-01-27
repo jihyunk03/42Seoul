@@ -6,8 +6,17 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:19:23 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/01/26 17:19:31 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:21:10 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+int	main(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
 
+	return (0);
+}
