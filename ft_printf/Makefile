@@ -12,7 +12,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(AR) $@ $^
 
-%.o: %c
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCD)
 
 clean:
