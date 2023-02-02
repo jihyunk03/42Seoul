@@ -6,11 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:20:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/01/26 17:20:29 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/02 23:46:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include "struct_info.h"
 
 #endif
