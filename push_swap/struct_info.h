@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:29:00 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/03 20:49:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/04 21:06:36 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_dll
 typedef struct s_stack
 {
 	t_dll	*head;
-	t_dll	*end;
+	t_dll	*tail;
 }	t_stack;
 
 #endif
