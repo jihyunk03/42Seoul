@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:12:09 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/04 21:08:25 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:25:03 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*a_stack;
 	t_stack	*b_stack;
+	char	**arr;	// result of split av
 
 	a_stack = stack_init(ac, av);
 	b_stack = new_stack();

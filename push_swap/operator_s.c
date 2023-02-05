@@ -6,17 +6,12 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:52:47 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/01/30 17:11:59 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/04 21:07:33 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_dll **a_top)
+void	sa(t_stack *a_st)
 {
-	t_dll	*tmp;
-
-	tmp = *a_top;
-	if (tmp == NULL)
-		return ;
 }
