@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:29:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/05 04:21:40 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/05 20:29:04 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_stack	*stack_init(int len, char **data)
 		{
 			new->tail->next = lst;
 			lst->prev = new->tail;
+			new->tail = lst;
 		}
-		new->tail = new->tail->next;
 	}
 	return (new);
 }
