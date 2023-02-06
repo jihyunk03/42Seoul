@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:29:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/05 20:29:04 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/06 13:30:31 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,7 @@ t_stack	*stack_init(int len, char **data)
 		lst = new_dll(ft_atoi(data[len]));
 		if (lst == NULL)
 			return (NULL);
-		if (new->head == NULL)
-		{
-			new->head = lst;
-			new->tail = lst;
-		}
-		else
-		{
-			new->tail->next = lst;
-			lst->prev = new->tail;
-			new->tail = lst;
-		}
+		dll_add_back(new, lst);
 	}
 	return (new);
 }
@@ -66,10 +56,19 @@ t_dll	*new_dll(int data)
 	new->next = NULL;
 	return (new);
 }
-/*
-t_dll	*dll_add_back(t_dll *end, t_dll *lst)
+
+void	dll_add_back(t_stack *new, t_dll *lst)
 {
-	end->next = lst;
-	lst->prev = end;
+	if (new->head == NULL)
+	{
+		new->head = lst;
+		new->tail = lst;
+	}
+	else
+	{
+		new->tail->next = lst;
+		lst->prev = new->tail;
+		new->tail = lst;
+	}
 }
-*/
+
