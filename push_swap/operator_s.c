@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:52:47 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/06 12:21:10 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/06 13:24:17 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	sa(t_stack *a_stack)
 	tmp = a_stack->head;
 	a_stack->head = tmp->next;
 	tmp->next = a_stack->head->next;
+	tmp->next->prev = tmp;
 	tmp->prev = a_stack->head;
 	a_stack->head->prev = NULL;
 	a_stack->head->next = tmp;
@@ -31,6 +32,7 @@ void	sa(t_stack *a_stack)
 	// a_stack->head->prev->prev = a_stack->head;
 	// a_stack->head->next = a_stack->head->prev;
 	// a_stack->head->prev = NULL;
+	// a_stack->head->next->next->prev = a_stack->head->next;
 }
 
 void	sb(t_stack *b_stack)
@@ -42,6 +44,7 @@ void	sb(t_stack *b_stack)
 	tmp = b_stack->head;
 	b_stack->head = tmp->next;
 	tmp->next = b_stack->head->next;
+	tmp->next->prev = tmp;
 	tmp->prev = b_stack->head;
 	b_stack->head->prev = NULL;
 	b_stack->head->next = tmp;
