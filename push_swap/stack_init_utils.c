@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:59:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/07 00:44:47 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/07 01:13:42 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int	push_to_stack(t_stack *new, char *data)
 		if (is_integer(arr[i]) == 0)
 			return (free_arr(arr));
 		lst = new_dll(push_swap_atoi(arr[i++], &flag), flag);
-		if (lst == NULL || flag)
+		if (lst == NULL)
 			return (free_arr(arr));
-		dll_add_back(new, lst);
+		if (dll_add_back(new, lst) == 0)
+			return (free_arr(arr));
 	}
 	free_arr(arr);
 	return (1);
@@ -74,8 +75,17 @@ int	push_swap_atoi(const char *str, int *flag)
 	return (sign * res);
 }
 
-void	dll_add_back(t_stack *new, t_dll *lst)
+int	dll_add_back(t_stack *new, t_dll *lst)
 {
+	t_dll	*node;
+
+	node = new->head;
+	while (node)
+	{
+		if (lst->data == node->data)
+			return (free_dll(lst));
+		node = node->next;
+	}
 	if (new->head == NULL)
 	{
 		new->head = lst;
@@ -88,9 +98,10 @@ void	dll_add_back(t_stack *new, t_dll *lst)
 		new->tail = lst;
 	}
 	new->size++;
+	return (1);
 }
 
-int	check_and_init(t_stack *stack)
+void	index_init(t_stack *stack)
 {
 	t_dll	*find;
 	t_dll	*node;
@@ -105,12 +116,9 @@ int	check_and_init(t_stack *stack)
 		{
 			if (find->data > node->data)
 				cnt++;
-			else if (&(find->data) != &(node->data) && find->data == node->data)
-				return (0);
 			node = node->next;
 		}
 		find->idx = cnt;
 		find = find->next;
 	}
-	return (1);
 }
