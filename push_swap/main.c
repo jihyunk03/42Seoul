@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:12:09 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/07 00:37:21 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/07 01:15:08 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	main(int ac, char **av)
 		node = node->next;
 	}
 
-	printf("%p, %d\n", &a_stack, a_stack->size);
-	printf("%p, %d\n", &b_stack, b_stack->size);
 	// for memory leaks: atexit
 	free_stack(a_stack);
 	free_stack(b_stack);
