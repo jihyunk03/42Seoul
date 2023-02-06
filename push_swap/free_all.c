@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:00:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/05 20:34:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:10:52 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void	*free_stack(t_stack *stack)
 	return (NULL);
 }
 
-void	*free_arr(char **arr)
+int	free_arr(char **arr)
 {
 	int	i;
 
 	if (arr == NULL)
-		return (NULL);
+		return (0);
 	i = 0;
 	while (arr[i])
 		free (arr[i++]);
 	free (arr);
-	return (NULL);
+	return (0);
 }
