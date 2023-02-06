@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:00:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/06 20:10:52 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/07 01:07:01 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void	*free_stack(t_stack *stack)
 	}
 	free (stack);
 	return (NULL);
+}
+
+int	free_dll(t_dll *lst)
+{
+	free (lst);
+	return (0);
 }
 
 int	free_arr(char **arr)

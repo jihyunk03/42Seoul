@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:12:09 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/06 20:26:38 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/07 00:37:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 		exit (0);
 	a_stack = stack_init(av);
 	b_stack = new_stack();
-	if (a_stack == NULL || b_stack == NULL)
+	if (a_stack == NULL || b_stack == NULL)	// 더 수정할 것(error 처리)
 	{
 		write(1, "Error\n", 6);
 		free_stack(a_stack);
@@ -32,17 +32,19 @@ int	main(int ac, char **av)
 	}
 
 	// test for stack input
-	t_dll	*node = a_stack->tail;
+	t_dll	*node = a_stack->head;
 	int		i = 0;
 	while (av[i])
 		printf("%s\n", av[i++]);
 	printf("\n");
 	while (node)
 	{
-		printf("%d\n", node->data);
-		node = node->prev;
+		printf("%d\n", node->idx);
+		node = node->next;
 	}
 
+	printf("%p, %d\n", &a_stack, a_stack->size);
+	printf("%p, %d\n", &b_stack, b_stack->size);
 	// for memory leaks: atexit
 	free_stack(a_stack);
 	free_stack(b_stack);
