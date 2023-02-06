@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:59:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/06 21:22:29 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/07 00:44:47 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,29 @@ void	dll_add_back(t_stack *new, t_dll *lst)
 		new->tail = lst;
 	}
 	new->size++;
+}
+
+int	check_and_init(t_stack *stack)
+{
+	t_dll	*find;
+	t_dll	*node;
+	int		cnt;
+
+	find = stack->head;
+	while (find)
+	{
+		node = stack->head;
+		cnt = 0;
+		while (node)
+		{
+			if (find->data > node->data)
+				cnt++;
+			else if (&(find->data) != &(node->data) && find->data == node->data)
+				return (0);
+			node = node->next;
+		}
+		find->idx = cnt;
+		find = find->next;
+	}
+	return (1);
 }
