@@ -1,0 +1,22 @@
+void	sa(t_stack *a_stack)
+{
+	t_dll	*tmp;
+
+	if (a_stack->head == NULL)
+		return ;
+	tmp = a_stack->head;
+	a_stack->head = tmp->next;
+	tmp->next = a_stack->head->next;
+	tmp->next->prev = tmp;
+	tmp->prev = a_stack->head;
+	a_stack->head->prev = NULL;
+	a_stack->head->next = tmp;
+
+// not use tmp
+	// a_stack->head = a_stack->head->next;
+	// a_stack->head->prev->next = a_stack->head->next;
+	// a_stack->head->prev->prev = a_stack->head;
+	// a_stack->head->next = a_stack->head->prev;
+	// a_stack->head->prev = NULL;
+	// a_stack->head->next->next->prev = a_stack->head->next;
+}
