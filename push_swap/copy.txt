@@ -20,3 +20,33 @@ void	sa(t_stack *a_stack)
 	// a_stack->head->prev = NULL;
 	// a_stack->head->next->next->prev = a_stack->head->next;
 }
+
+int	main(int ac, char **av)
+{
+	// test for stack input
+	t_dll	*node = a_stack->head;
+	int		i = 0;
+	while (av[i])
+		printf("%s\n", av[i++]);
+	printf("\n");
+	while (node)
+	{
+		printf("%d\n", node->idx);
+		node = node->next;
+	}
+
+	// for check operators and stack index
+	check_operator_result(a_stack, "prev(a)");
+	sa(a_stack);
+	check_operator_result(a_stack, "sa(a)");
+	pb(a_stack, b_stack);
+	check_operator_result(a_stack, "pb(a)");
+	check_operator_result(b_stack, "pb(b)");
+	ra(a_stack);
+	check_operator_result(a_stack, "ra(a)");
+	rb(b_stack);
+	printf("b_stack->head: %p\nb_stack->tail: %p\nb_stack->head->next: %p\nb_stack->head->prev: %p\n", b_stack->head, b_stack->tail, b_stack->head->next, b_stack->head->prev);
+	check_operator_result(b_stack, "rb(b)");
+	rra(a_stack);
+	check_operator_result(a_stack, "rra(a)");
+}
