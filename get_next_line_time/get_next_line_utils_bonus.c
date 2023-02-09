@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:14:11 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/29 19:23:34 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:15:07 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ char	*realloc_backup(t_list *lst)
 		free (tmp);
 		return (NULL);
 	}
-	ft_strlcpy(lst->buff, tmp, lst->len + 1);
+	gnl_strlcpy(lst->buff, tmp, lst->len + 1);
 	free (tmp);
 	return (lst->buff);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	gnl_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:04:55 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/29 19:22:12 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:14:30 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	*free_all(t_list **head, t_list *lst);
 t_list	*gnl_lstnew(int new_fd);
 size_t	check_newline(char *s);
 char	*realloc_backup(t_list *lst);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+size_t	gnl_strlcpy(char *dst, const char *src, size_t size);
 
 #endif

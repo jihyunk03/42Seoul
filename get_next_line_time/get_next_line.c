@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:04:25 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/29 19:22:10 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:16:22 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*cut_next_line(t_list **head, t_list *lst, size_t gnl_len)
 	gnl = malloc(sizeof(char) * (gnl_len + 1));
 	if (gnl == NULL)
 		return (free_all(head, lst));
-	ft_strlcpy(gnl, lst->buff, gnl_len + 1);
+	gnl_strlcpy(gnl, lst->buff, gnl_len + 1);
 	tmp = lst->buff;
 	lst->len = lst->len - gnl_len;
 	while (lst->len < lst->b_size / 2)
@@ -91,7 +91,7 @@ char	*cut_next_line(t_list **head, t_list *lst, size_t gnl_len)
 		free (tmp);
 		return (free_all(head, lst));
 	}
-	if (ft_strlcpy(lst->buff, tmp + gnl_len, lst->len + 1) == 0)
+	if (gnl_strlcpy(lst->buff, tmp + gnl_len, lst->len + 1) == 0)
 		free_all(head, lst);
 	free (tmp);
 	return (gnl);
