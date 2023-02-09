@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jihykim2 <jihykim2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:51:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/06 17:17:25 by jihykim2         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:37:33 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static char	**ft_free_all(char **arr, int len)
 
 	i = 0;
 	while (i < len)
-		free(arr[i++]);
+	{
+		free(arr[i]);
+		i++;
+	}
 	free (arr);
 	return (NULL);
 }
