@@ -6,16 +6,16 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:05:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/09 23:00:10 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:26:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "./my_libft/libft.h"
-// # include "./my_libft/ft_printf.h"
-// # include "./my_libft/get_next_line.h"
+// # include "./my_libft/libft.h"
+# include "./my_libft/ft_printf.h"
+# include "./my_libft/get_next_line.h"
 # include "struct_info.h"
 # include "error_define.h"
 
@@ -57,6 +57,20 @@ void	sort_to_b(t_stack * a_stack, t_stack *b_stack);
 void	sort_to_a(t_stack * a_stack, t_stack *b_stack);
 void	a_to_b(t_stack *a_stack, t_stack *b_stack, int num, int chunk);
 
+// check_sort.c
+int		check_sort(t_stack *stack, int size);
+
+// [ 모래시계 ]
+// a_sort_to_b.c
+void	sort_to_b(t_stack *a_stack, t_stack *b_stack);
+void	a_to_b(t_stack *a_stack, t_stack *b_stack, int num, int chunk);
+int		init_chunck(int size);
+int		is_in_stack(t_stack *stack, int num);
+
+// [ 퀵 정렬 ]
+// quick_sort.c
+// void	quick_sort(t_stack *a_stack, t_stack *b_stack);
+t_cmd	*new_cmd(void);
 
 // libft prototypes for test & check leaks => must remove!!
 void 	check_leak(void);

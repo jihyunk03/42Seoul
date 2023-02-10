@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:17:16 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/10 11:37:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:05:57 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_cmd	*new_cmd(void)
 		return (NULL);
 	new->cnt = 0;
 	new->cmd = malloc(sizeof(char) * 200000);
-	if (cmd == NULL)
+	if (new->cmd == NULL)
 	{
 		free (new);
 		return (NULL);

@@ -49,4 +49,20 @@ int	main(int ac, char **av)
 	check_operator_result(b_stack, "rb(b)");
 	rra(a_stack);
 	check_operator_result(a_stack, "rra(a)");
+
+	// test for sort: a to b
+	t_dll	*node;
+	int		i = 0;
+	while (av[i])
+		printf("%s\n", av[i++]);
+	printf("\nsort: %d\n", check_sort(a_stack, a_stack->size));
+	sort_to_b(a_stack, b_stack);
+	node = a_stack->head;
+	while (node)
+	{
+		printf("%d\n", node->idx);
+		node = node->next;
+	}
+	printf("\nsort: %d\n", check_sort(a_stack, a_stack->size));
+
 }

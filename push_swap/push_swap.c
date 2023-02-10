@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/10 11:38:11 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:07:14 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	t_stack	*b_stack;
 
 	// check memory leaks
-	atexit(check_leak);
+	// atexit(check_leak);
 	if (ac == 1)
 		exit (0);
 	// stack init
@@ -32,7 +32,10 @@ int	main(int ac, char **av)
 	}
 
 	// push_swap
-	quick_sort(a_stack, b_stack);
+	// quick_sort(a_stack, b_stack);
+
+
+
 
 	// for memory leaks: atexit
 	free_stack(a_stack);
