@@ -1,43 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_info.h                                      :+:      :+:    :+:   */
+/*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 16:29:00 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/10 11:37:46 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/02/09 14:17:16 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/02/10 11:37:51 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_INFO_H
-# define STRUCT_INFO_H
+#include "push_swap.h"
 
-typedef struct s_dll
+void	quick_sort(t_stack *a_stack, t_stack *b_stack)
 {
-	int				idx;
-	int				data;
-	struct s_dll	*prev;
-	struct s_dll	*next;
-}	t_dll;
+	t_cmd	*cmd;
 
-typedef struct s_stack
+	cmd = new_cmd();
+	if (cmd == NULL)
+		exit (1);	// error code(later)
+}
+
+t_cmd	*new_cmd(void)
 {
-	int		size;
-	t_dll	*head;
-	t_dll	*tail;
-}	t_stack;
+	t_cmd	*new;
 
-typedef struct s_cmd
-{
-	int		cnt;
-	char	*cmd;
-}	t_cmd;
-
-typedef struct s_pivot
-{
-	int	left;
-	int	right;
-}	t_pivot;
-
-#endif
+	new = malloc(sizeof(t_cmd));
+	if (new == NULL)
+		return (NULL);
+	new->cnt = 0;
+	new->cmd = malloc(sizeof(char) * 200000);
+	if (cmd == NULL)
+	{
+		free (new);
+		return (NULL);
+	}
+	return (new);
+}
