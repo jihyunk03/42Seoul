@@ -6,13 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:16:21 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/08 01:16:57 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:00:45 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_to_a(t_stack *a_stack, t_stack *b_stack)
-{
+// void	sort_to_a(t_stack *a_stack, t_stack *b_stack)
+// {
 
-}
+// }
