@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/08 01:31:56 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:38:15 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ void	pa(t_stack *from, t_stack *to)
 {
 	t_dll	*tmp;
 
-	if (from->head == NULL)
+	if (from->size == 0)
 		return ;
-
 	tmp = from->head;
 	from->head = tmp->next;
-	from->head->prev = NULL;
+	if (from->head == NULL)
+		from->tail = NULL;
+	else
+		from->head->prev = NULL;
 	p_to_stack(to, tmp);
 	from->size--;
 }
@@ -32,12 +34,14 @@ void	pb(t_stack *from, t_stack *to)
 {
 	t_dll	*tmp;
 
-	if (from->head == NULL)
+	if (from->size == 0)
 		return ;
-
 	tmp = from->head;
 	from->head = tmp->next;
-	from->head->prev = NULL;
+	if (from->head == NULL)
+		from->tail = NULL;
+	else
+		from->head->prev = NULL;
 	p_to_stack(to, tmp);
 	from->size--;
 }

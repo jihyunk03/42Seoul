@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/06 13:13:59 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:37:24 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ra(t_stack *a_stack)
 {
+	if (a_stack->size == 0)
+		return ;
 	a_stack->tail->next = a_stack->head;
 	a_stack->head->prev = a_stack->tail;
 	a_stack->tail = a_stack->head;
@@ -24,6 +26,8 @@ void	ra(t_stack *a_stack)
 
 void	rb(t_stack *b_stack)
 {
+	if (b_stack->size == 0)
+		return ;
 	b_stack->tail->next = b_stack->head;
 	b_stack->head->prev = b_stack->tail;
 	b_stack->tail = b_stack->head;
