@@ -6,20 +6,20 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:04:25 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/09 22:16:22 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:21:18 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list	*find_fd(t_list **head, int new_fd);
-size_t	read_file(t_list *lst);
-char	*cut_next_line(t_list **head, t_list *lst, size_t gnl_len);
+t_info	*find_fd(t_info **head, int new_fd);
+size_t	read_file(t_info *lst);
+char	*cut_next_line(t_info **head, t_info *lst, size_t gnl_len);
 
 char	*get_next_line(int fd)
 {
-	static t_list	*head;
-	t_list			*lst;
+	static t_info	*head;
+	t_info			*lst;
 	size_t			gnl_len;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
@@ -34,9 +34,9 @@ char	*get_next_line(int fd)
 	return (cut_next_line(&head, lst, gnl_len));
 }
 
-t_list	*find_fd(t_list **head, int new_fd)
+t_info	*find_fd(t_info **head, int new_fd)
 {
-	t_list	*tmp;
+	t_info	*tmp;
 
 	if (*head == NULL)
 		*head = gnl_lstnew(new_fd);
@@ -52,7 +52,7 @@ t_list	*find_fd(t_list **head, int new_fd)
 	return (NULL);
 }
 
-size_t	read_file(t_list *lst)
+size_t	read_file(t_info *lst)
 {
 	ssize_t	readsize;
 
@@ -71,7 +71,7 @@ size_t	read_file(t_list *lst)
 	return (check_newline(lst->buff));
 }
 
-char	*cut_next_line(t_list **head, t_list *lst, size_t gnl_len)
+char	*cut_next_line(t_info **head, t_info *lst, size_t gnl_len)
 {
 	char	*gnl;
 	char	*tmp;

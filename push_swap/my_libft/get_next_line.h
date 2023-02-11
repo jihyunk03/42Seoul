@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:04:55 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/09 22:14:30 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:21:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@
 #  endif
 # endif
 
-typedef struct s_list
+typedef struct s_info
 {
 	int				fd;
 	char			*buff;
 	size_t			len;
 	size_t			b_size;
-	struct s_list	*next;
-}	t_list;
+	struct s_info	*next;
+}	t_info;
 
 char	*get_next_line(int fd);
 
-void	*free_all(t_list **head, t_list *lst);
-t_list	*gnl_lstnew(int new_fd);
+void	*free_all(t_info **head, t_info *lst);
+t_info	*gnl_lstnew(int new_fd);
 size_t	check_newline(char *s);
-char	*realloc_backup(t_list *lst);
+char	*realloc_backup(t_info *lst);
 size_t	gnl_strlcpy(char *dst, const char *src, size_t size);
 
 #endif

@@ -6,15 +6,15 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:14:11 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/09 22:14:09 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:21:20 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*free_all(t_list **head, t_list *lst)
+void	*free_all(t_info **head, t_info *lst)
 {
-	t_list	*tmp;
+	t_info	*tmp;
 
 	if (*head == NULL || lst == NULL)
 		return (NULL);
@@ -32,11 +32,11 @@ void	*free_all(t_list **head, t_list *lst)
 	return (NULL);
 }
 
-t_list	*gnl_lstnew(int new_fd)
+t_info	*gnl_lstnew(int new_fd)
 {
-	t_list	*lst;
+	t_info	*lst;
 
-	lst = malloc(sizeof(t_list));
+	lst = malloc(sizeof(t_info));
 	if (lst == NULL)
 		return (NULL);
 	lst->fd = new_fd;
@@ -66,7 +66,7 @@ size_t	check_newline(char *s)
 	return (0);
 }
 
-char	*realloc_backup(t_list *lst)
+char	*realloc_backup(t_info *lst)
 {
 	char	*tmp;
 
