@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/10 13:38:15 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 16:33:40 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	pa(t_stack *from, t_stack *to)
 		from->head->prev = NULL;
 	p_to_stack(to, tmp);
 	from->size--;
+	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack *from, t_stack *to)
@@ -44,6 +45,7 @@ void	pb(t_stack *from, t_stack *to)
 		from->head->prev = NULL;
 	p_to_stack(to, tmp);
 	from->size--;
+	write(1, "pb\n", 3);
 }
 
 static void	p_to_stack(t_stack *stack, t_dll *lst)
