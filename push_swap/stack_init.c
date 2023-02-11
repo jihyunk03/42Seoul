@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:29:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/07 01:14:20 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 16:30:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_stack	*stack_init(char **data)
 			return (free_stack(new));
 	}
 	index_init(new);
+	new->length += new->size;
 	return (new);
 }
 
@@ -38,6 +39,7 @@ t_stack	*new_stack(void)
 	if (new == NULL)
 		return (NULL);
 	new->size = 0;
+	new->length = 0;
 	new->head = NULL;
 	new->tail = NULL;
 	return (new);
