@@ -35,7 +35,7 @@ clean	:
 
 .PHONY	: fclean
 fclean	:
-	$(MAKE) clean
+	@$(MAKE) clean
 	@$(RM) $(NAME)
 	@echo "[my_libft] Removed lib_jihykim2.a"
 

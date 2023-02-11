@@ -21,7 +21,7 @@ INCD	= push_swap.h \
 all		: libs $(NAME)
 
 libs	:
-	$(MAKE) -C my_libft/
+	@$(MAKE) -C my_libft/
 
 $(NAME)	: $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L ./my_libft/ -l_jihykim2
@@ -32,18 +32,18 @@ $(NAME)	: $(OBJS)
 
 .PHONY	: clean
 clean	:
-	$(MAKE) -C my_libft/ clean
+	@$(MAKE) -C my_libft/ clean
 	@$(RM) $(OBJS)
 	@echo "[push_swap] Removed Object files"
 
 .PHONY	: fclean
-fclean	:
-	$(MAKE) clean
-	$(MAKE) -C my_libft/ fclean
+fclean	: clean
+	@$(RM) ./my_libft/lib_jihykim2.a
+	@echo "[my_libft] Removed lib_jihykim2.a"
 	@$(RM) $(NAME)
 	@echo "[push_swap] Removed push_swap"
 
 .PHONY	: re
 re		:
-	$(MAKE) fclean
-	$(MAKE) all
+	@$(MAKE) fclean
+	@$(MAKE) all
