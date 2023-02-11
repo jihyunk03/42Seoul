@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:15:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/10 13:59:39 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 16:19:48 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,45 +22,30 @@ void	sort_to_b(t_stack *a_stack, t_stack *b_stack)
 	while (a_stack->size > 0)
 	{
 		a_to_b(a_stack, b_stack, num, chunk);
-		if (is_in_stack(b_stack, num))
+		if (is_in_stack(b_stack, num))		// 원래는 이 방법이 아님(내가 추가)
 			num++;
-		ft_printf("size: %d\n", a_stack->size);		// remove
 	}
 }
 
 void	a_to_b(t_stack *a_stack, t_stack *b_stack, int num, int chunk)
 {
 	while (a_stack->head->idx > num + chunk)
-	{
 		ra(a_stack);
-		write(1, "ra\n", 3);
-	}
 	if (a_stack->head->idx < num)
-	{
 		pb(a_stack, b_stack);
-		write(1, "pb\n", 3);
-	}
 	else
 	{
 		pb(a_stack, b_stack);
-		write(1, "pb\n", 3);
 		rb(a_stack);
-		write(1, "rb\n", 3);
 	}
 }
 
 int	init_chunck(int size)
 {
-	if (size < 100)
-		return (15);
-	else if (size < 500)
-		return (30);
-	else if (size < 1000)
-		return (45);
-	else if (size < 2000)
-		return (65);
-	else
-		return (150);
+	int	chunk;
+
+	chunk = (int)(0.000000053 * size * size + 0.03 * size + 14.5);
+	return (chunk);
 }
 
 int	is_in_stack(t_stack *stack, int num)
