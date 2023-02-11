@@ -6,12 +6,12 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 15:07:14 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 15:33:55 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:50:58 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 void	short_sort(t_stack *a_stack, t_stack *b_stack)
 {
 	if (check_sort(a_stack, b_stack))
@@ -40,3 +40,4 @@ void	sort_size_five(t_stack *a_stack, t_stack *b_stack)
 {
 
 }
+*/
