@@ -1,4 +1,4 @@
-NAME	= libft.a
+NAME	= lib_jihykim2.a
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
@@ -23,7 +23,7 @@ all		: $(NAME)
 
 $(NAME)	: $(OBJS)
 	@$(AR) $@ $^
-	@echo "[libft] Ready to use libft.a: libft functions, ft_printf, get_next_line"
+	@echo "[my_libft] Ready to use lib_jihykim2.a"
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -31,12 +31,13 @@ $(NAME)	: $(OBJS)
 .PHONY	: clean
 clean	:
 	@$(RM) $(OBJS)
-	@echo "[libft] Removed Object files"
+	@echo "[my_libft] Removed Object files"
 
 .PHONY	: fclean
-fclean	: clean
+fclean	:
+	$(MAKE) clean
 	@$(RM) $(NAME)
-	@echo "[libft] Removed libft.a"
+	@echo "[my_libft] Removed lib_jihykim2.a"
 
 .PHONY	: re
 re		:

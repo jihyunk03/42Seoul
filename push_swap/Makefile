@@ -8,31 +8,42 @@ SRCS	= push_swap.c \
 		  free_all.c \
 		  stack_init.c stack_init_utils.c \
 		  operator_s.c operator_p.c operator_r.c operator_r_r.c \
-		  check_sort.c \
+		  check_stack.c \
 		  a_sort_to_b.c \
-		  b_sort_to_a.c
+		  b_sort_to_a.c \
+		  short_sort.c
 OBJS	= $(SRCS:.c=.o)
 INCD	= push_swap.h \
-		  struct_info.h
+		  struct_info.h \
+		  number_define.h
 
 .PHONY	: all
-all		: $(NAME)
+all		: libs $(NAME)
+
+libs	:
+	$(MAKE) -C my_libft/
 
 $(NAME)	: $(OBJS)
-	$(MAKE) -C libft/ re
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L ./my_libft/ -l_jihykim2
+	@echo "[push_swap] Ready"
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY	: clean
 clean	:
-	$(MAKE) -C libft/ clean
+	$(MAKE) -C my_libft/ clean
+	@$(RM) $(OBJS)
+	@echo "[push_swap] Removed Object files"
 
 .PHONY	: fclean
-fclean	: clean
-	$()
+fclean	:
+	$(MAKE) clean
+	$(MAKE) -C my_libft/ fclean
+	@$(RM) $(NAME)
+	@echo "[push_swap] Removed push_swap"
 
-
-
-make -C ~~
--lft # libft.a를 사용하기 위한 옵션() lib와 .a를 제외한 이름을 인식
+.PHONY	: re
+re		:
+	$(MAKE) fclean
+	$(MAKE) all
