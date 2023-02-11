@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/10 14:07:14 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:52:22 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,20 @@ int	main(int ac, char **av)
 	}
 
 	// push_swap
-	// quick_sort(a_stack, b_stack);
+	// if (a_stack->size < 6)
+	// 	short_sort(a_stack, b_stack);
+	// else
+	// {
+	// 	sort_to_b(a_stack, b_stack);
+	// 	sort_to_a(a_stack, b_stack);
+	// }
+	sort_to_b(a_stack, b_stack);
+	sort_to_a(a_stack, b_stack);
 
-
-
+	// check stack is sorted
+	ft_printf("stack sorted: %d\n", check_sort(a_stack, a_stack->size));
+	ft_printf("a_stack->head->idx: %d\n", a_stack->head->idx);
+	ft_printf("b_stack->size: %d\n", b_stack->size);
 
 	// for memory leaks: atexit
 	free_stack(a_stack);
