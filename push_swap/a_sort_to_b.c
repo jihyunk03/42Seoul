@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:15:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 16:19:48 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:55:44 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	sort_to_b(t_stack *a_stack, t_stack *b_stack)
 	chunk = init_chunck(a_stack->size);
 	while (a_stack->size > 0)
 	{
-		a_to_b(a_stack, b_stack, num, chunk);
-		if (is_in_stack(b_stack, num))		// 원래는 이 방법이 아님(내가 추가)
-			num++;
+		a_to_b(a_stack, b_stack, num++, chunk);
+		// if (is_in_stack(b_stack, num))		// 원래는 이 방법이 아님(내가 추가)
+		// 	num++;
 	}
 }
 
@@ -45,6 +45,7 @@ int	init_chunck(int size)
 	int	chunk;
 
 	chunk = (int)(0.000000053 * size * size + 0.03 * size + 14.5);
+	ft_printf("[ chunk: %d ]\n", chunk);
 	return (chunk);
 }
 
