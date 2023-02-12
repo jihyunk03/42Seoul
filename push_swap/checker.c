@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:18:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 19:28:34 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:49:30 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int ac, char **av)
 	t_stack	*b_stack;
 	char	*line;
 
+	if (ac == 1)
+		return (0);
 	a_stack = stack_init(av);
 	b_stack = new_stack();
 	if (a_stack == NULL || b_stack == NULL)

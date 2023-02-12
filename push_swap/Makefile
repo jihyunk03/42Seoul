@@ -50,7 +50,7 @@ clean	:
 
 .PHONY	: fclean
 fclean	: clean
-	@$(RM) ./my_libft/lib_jihykim2.a $(NAME) $(NAME)
+	@$(RM) ./my_libft/lib_jihykim2.a $(NAME) $(NAME2)
 	@echo "[my_libft] Removed lib_jihykim2.a"
 	@echo "[push_swap & checker] Removed push_swap"
 
