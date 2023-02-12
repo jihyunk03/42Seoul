@@ -1,4 +1,6 @@
 NAME	= push_swap
+NAME2	= checker
+
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
@@ -14,6 +16,16 @@ SRCS	= push_swap.c \
 		  short_sort.c
 OBJS	= $(SRCS:.c=.o)
 INCD	= push_swap.h \
+		  struct_info.h \
+		  number_define.h
+
+SRCS2	= checker.c \
+		  free_all.c \
+		  stack_init.c stack_init_utils.c \
+		  operator_s.c operator_p.c operator_r.c operator_r_r.c \
+		  check_stack.c
+OBJS2	= $(SRCS2:.c=.o)
+INCD2	= checker.h \
 		  struct_info.h \
 		  number_define.h
 
@@ -33,17 +45,23 @@ $(NAME)	: $(OBJS)
 .PHONY	: clean
 clean	:
 	@$(MAKE) -C my_libft/ clean
-	@$(RM) $(OBJS)
-	@echo "[push_swap] Removed Object files"
+	@$(RM) $(OBJS) $(OBJS2)
+	@echo "[push_swap & checker] Removed Object files"
 
 .PHONY	: fclean
 fclean	: clean
-	@$(RM) ./my_libft/lib_jihykim2.a
+	@$(RM) ./my_libft/lib_jihykim2.a $(NAME) $(NAME)
 	@echo "[my_libft] Removed lib_jihykim2.a"
-	@$(RM) $(NAME)
-	@echo "[push_swap] Removed push_swap"
+	@echo "[push_swap & checker] Removed push_swap"
 
 .PHONY	: re
 re		:
 	@$(MAKE) fclean
 	@$(MAKE) all
+
+.PHONY	: bonus
+bonus	: $(NAME2)
+
+$(NAME2): $(OBJS2)
+	@$(CC) $(CFLAGS) -o $(NAME2) $(OBJS2) -L ./my_libft/ -l_jihykim2
+	@echo "[checker] Ready"
