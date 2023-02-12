@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:15:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 01:47:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 02:56:16 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	sort_to_b(t_stack *a_stack, t_stack *b_stack)
 void	a_to_b(t_stack *a_stack, t_stack *b_stack, int num, int chunk)
 {
 	while (a_stack->head->idx > num + chunk)
-		rotate(a_stack, RA);
+		rotate(a_stack, RA);		// 이 부분에서 최적화 할 수 있을듯?
 	if (a_stack->head->idx <= num)
 		push(a_stack, b_stack, PB);
 	else
