@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:19:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 23:09:10 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 02:17:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "define_enum.h"
 
 // checker.c
-void	find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line);
-void	error_exit_checker(t_stack *a_stack, t_stack *b_stack, char *line);
+int		find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line);
+int		error_exit_checker(t_stack *a_stack, t_stack *b_stack, char *line);
 
 // stack_init.c
 t_stack	*stack_init(char **data);
@@ -55,5 +55,9 @@ void	do_rotate(t_stack *stack);
 void	rv_rotate(t_stack *stack, char *op);
 void	rv_rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
 void	do_rv_rotate(t_stack *stack);
+
+// remove!!!!!!!!!!!
+void	check_stack_idx(t_stack *stack);
+void	check_leak(void);
 
 #endif

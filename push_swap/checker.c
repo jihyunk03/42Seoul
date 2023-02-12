@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:18:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 23:09:40 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 02:18:47 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int ac, char **av)
 	t_stack	*b_stack;
 	char	*line;
 
+	// check memory leaks
+	atexit(check_leak);
 	if (ac == 1)
 		return (0);
 	a_stack = stack_init(av);
@@ -32,7 +34,8 @@ int	main(int ac, char **av)
 		line = get_next_line(0);
 		if (line == NULL)
 			break ;
-		find_and_operate(a_stack, b_stack, line);
+		if (find_and_operate(a_stack, b_stack, line) == 0)
+			return (error_exit_checker(a_stack, b_stack, line));
 		free (line);
 	}
 	if (check_sort(a_stack, a_stack->size))
@@ -44,7 +47,7 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-void	find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line)
+int	find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line)
 {
 	if (ft_strcmp(line, SA) == 0)
 		swap(a_stack, 0);
@@ -69,14 +72,35 @@ void	find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line)
 	else if (ft_strcmp(line, RRR) == 0)
 		rv_rotate_both(a_stack, b_stack, 0);
 	else
-		error_exit_checker(a_stack, b_stack, line);
+		return (0);
+	return (1);
 }
 
-void	error_exit_checker(t_stack *a_stack, t_stack *b_stack, char *line)
+int	error_exit_checker(t_stack *a_stack, t_stack *b_stack, char *line)
 {
-	free (a_stack);
-	free (b_stack);
-	free (line);
+	free_stack(a_stack);
+	free_stack(b_stack);
+	if (line)
+		free (line);
 	ft_printf("Error\n");
-	exit (1);
+	return (1);
+}
+
+void	check_stack_idx(t_stack *stack)
+{
+	t_dll	*node;
+
+	ft_printf("==========\n");
+	node = stack->head;
+	while (node)
+	{
+		ft_printf("%d\n", node->idx);
+		node = node->next;
+	}
+	ft_printf("==========\n");
+}
+
+void	check_leak(void)
+{
+	system("leaks checker");
 }
