@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:15:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 23:08:32 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 01:47:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	sort_to_b(t_stack *a_stack, t_stack *b_stack)
 	while (a_stack->size > 0)
 	{
 		a_to_b(a_stack, b_stack, num++, chunk);
-		if (is_in_stack(b_stack, num))		// 원래는 이 방법이 아님(내가 추가)
-			num++;
+		// if (is_in_stack(b_stack, num))		// 원래는 이 방법이 아님(내가 추가)
+		// 	num++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 20:03:20 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 02:12:41 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	main(int ac, char **av)
 	// ft_printf("a_stack->head->idx: %d\n", a_stack->head->idx);
 	// ft_printf("b_stack->size: %d\n", b_stack->size);
 
-	// for memory leaks: atexit
 	free_stack(a_stack);
 	free_stack(b_stack);
 	return (0);
@@ -57,7 +56,7 @@ int	main(int ac, char **av)
 // memory leaks
 void	check_leak(void)
 {
-	system("leaks a.out");
+	system("leaks push_swap");
 }
 
 void	check_operator_result(t_stack *stack, char *op)
@@ -74,4 +73,18 @@ void	check_operator_result(t_stack *stack, char *op)
 		node = node->next;
 	}
 	printf("=====size: %d=====\n\n", stack->size);
+}
+
+void	check_stack_idx(t_stack *stack)
+{
+	t_dll	*node;
+
+	ft_printf("==========\n");
+	node = stack->head;
+	while (node)
+	{
+		ft_printf("%d\n", node->idx);
+		node = node->next;
+	}
+	ft_printf("==========\n");
 }
