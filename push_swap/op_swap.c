@@ -1,44 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator_s.c                                       :+:      :+:    :+:   */
+/*   op_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:52:47 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 16:07:13 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:44:56 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a_stack)
+void	swap(t_stack *stack, char *op)
+{
+	if (stack->size < 2)
+		return ;
+	do_swap(stack);
+	if (op)
+		ft_printf("%s", op);
+}
+
+void	swap_both(t_stack *a_stack, t_stack *b_stack, char *op)
+{
+	if (a_stack->size < 2 && b_stack->size < 2)
+		return ;
+	do_swap(a_stack);
+	do_swap(b_stack);
+	if (op)
+		ft_printf("%s", op);
+}
+
+void	do_swap(t_stack *stack)
 {
 	int	tmp;
 
-	if (a_stack->size < 2)
-		return ;
-	tmp = a_stack->head->idx;
-	a_stack->head->idx = a_stack->head->next->idx;
-	a_stack->head->next->idx = tmp;
-	write(1, "sa\n", 3);
-}
-
-void	sb(t_stack *b_stack)
-{
-	int	tmp;
-
-	if (b_stack->size < 2)
-		return ;
-	tmp = b_stack->head->idx;
-	b_stack->head->idx = b_stack->head->next->idx;
-	b_stack->head->next->idx = tmp;
-	write(1, "sb\n", 3);
-}
-
-void	ss(t_stack *a_stack, t_stack *b_stack)
-{
-	sa(a_stack);
-	sb(b_stack);
-	write(1, "ss\n", 3);
+	tmp = stack->head->idx;
+	stack->head->idx = stack->head->next->idx;
+	stack->head->next->idx = tmp;
 }

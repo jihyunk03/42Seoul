@@ -1,46 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator_r.c                                       :+:      :+:    :+:   */
+/*   op_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 16:07:31 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:46:07 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *a_stack)
+void	rotate(t_stack *stack, char *op)
 {
-	if (a_stack->size < 2)
+	if (stack->size < 2)
 		return ;
-	a_stack->tail->next = a_stack->head;
-	a_stack->head->prev = a_stack->tail;
-	a_stack->tail = a_stack->head;
-	a_stack->head = a_stack->head->next;
-	a_stack->head->prev = NULL;
-	a_stack->tail->next = NULL;
-	write(1, "ra\n", 3);
+	do_rotate(stack);
+	if (op)
+		ft_printf("%s", op);
 }
 
-void	rb(t_stack *b_stack)
+void	rotate_both(t_stack *a_stack, t_stack *b_stack, char *op)
 {
-	if (b_stack->size < 2)
+	if (a_stack->size < 2 && b_stack->size < 2)
 		return ;
-	b_stack->tail->next = b_stack->head;
-	b_stack->head->prev = b_stack->tail;
-	b_stack->tail = b_stack->head;
-	b_stack->head = b_stack->head->next;
-	b_stack->head->prev = NULL;
-	b_stack->tail->next = NULL;
-	write(1, "rb\n", 3);
+	do_rotate(a_stack);
+	do_rotate(b_stack);
+	if (op)
+		ft_printf("%s", op);
 }
 
-void	rr(t_stack *a_stack, t_stack *b_stack)
+void	do_rotate(t_stack *stack)
 {
-	ra(a_stack);
-	rb(b_stack);
-	write(1, "rr\n", 3);
+	stack->tail->next = stack->head;
+	stack->head->prev = stack->tail;
+	stack->tail = stack->head;
+	stack->head = stack->head->next;
+	stack->head->prev = NULL;
+	stack->tail->next = NULL;
 }

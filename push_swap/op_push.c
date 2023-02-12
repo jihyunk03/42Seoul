@@ -1,54 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator_p.c                                       :+:      :+:    :+:   */
+/*   op_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 16:33:40 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:45:39 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	p_to_stack(t_stack *stack, t_dll *lst);
+static void	move_to_stack(t_stack *stack, t_dll *lst);
 
-void	pa(t_stack *from, t_stack *to)
+void	push(t_stack *from, t_stack *to, char *op)
+{
+	if (from->size == 0)
+		return ;
+	do_push(from, to);
+	if (op)
+		ft_printf("%s", op);
+}
+
+void	do_push(t_stack *from, t_stack *to)
 {
 	t_dll	*tmp;
 
-	if (from->size == 0)
-		return ;
 	tmp = from->head;
 	from->head = tmp->next;
 	if (from->head == NULL)
 		from->tail = NULL;
 	else
 		from->head->prev = NULL;
-	p_to_stack(to, tmp);
+	move_to_stack(to, tmp);
 	from->size--;
-	write(1, "pa\n", 3);
 }
 
-void	pb(t_stack *from, t_stack *to)
-{
-	t_dll	*tmp;
-
-	if (from->size == 0)
-		return ;
-	tmp = from->head;
-	from->head = tmp->next;
-	if (from->head == NULL)
-		from->tail = NULL;
-	else
-		from->head->prev = NULL;
-	p_to_stack(to, tmp);
-	from->size--;
-	write(1, "pb\n", 3);
-}
-
-static void	p_to_stack(t_stack *stack, t_dll *lst)
+static void	move_to_stack(t_stack *stack, t_dll *lst)
 {
 	if (stack->head == NULL)
 	{
