@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:05:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 19:30:57 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:45:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,5 @@ void	rotate_for_push(t_stack *stack, int cnt);
 // libft prototypes for test & check leaks => must remove!!
 void 	check_leak(void);
 void	check_operator_result(t_stack *stack, char *op);
-// int		ft_isdigit(int c);
-// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-// char	**ft_split(char const *s, char c);
 
 #endif
