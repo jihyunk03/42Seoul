@@ -1,8 +1,16 @@
+# folders
 .DS_Store
 .vscode
+
+# compile results(default value)
 a.out
-*.dSYM
-*.gch
 *.o
 *.a
+*.dSYM
+*.gch
+
+# swap file
 *.swp
+
+# only for push_swap(test)
+push_swap_run_args.log
