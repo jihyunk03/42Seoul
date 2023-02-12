@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:05:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 18:54:25 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:27:22 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,20 @@ int		is_in_stack(t_stack *stack, int num);
 // b_sort_to_a.c
 void	sort_to_a(t_stack *a_stack, t_stack *b_stack);
 int		find_value(t_stack *stack, int value);
-void	rotate_for_push(t_stack *stack, int cnt);
+void	rotate_for_push(t_stack *b_stack, int cnt);
 
 // operator.c
-void	sa(t_stack *a_stack);
-void	sb(t_stack *b_stack);
-void	ss(t_stack *a_stack, t_stack *b_stack);
-void	pa(t_stack *from, t_stack *to);
-void	pb(t_stack *from, t_stack *to);
-void	ra(t_stack *a_stack);
-void	rb(t_stack *b_stack);
-void	rr(t_stack *a_stack, t_stack *b_stack);
-void	rra(t_stack *a_stack);
-void	rrb(t_stack *b_stack);
-void	rrr(t_stack *a_stack, t_stack *b_stack);
+void	swap(t_stack *stack, char *op);
+void	swap_both(t_stack *a_stack, t_stack *b_stack, char *op);
+void	do_swap(t_stack *stack);
+void	push(t_stack *from, t_stack *to, char *op);
+void	do_push(t_stack *from, t_stack *to);
+void	rotate(t_stack *stack, char *op);
+void	rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
+void	do_rotate(t_stack *stack);
+void	rv_rotate(t_stack *stack, char *op);
+void	rv_rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
+void	do_rv_rotate(t_stack *stack);
 
 // libft prototypes for test & check leaks => must remove!!
 void 	check_leak(void);

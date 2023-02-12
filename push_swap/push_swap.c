@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 19:43:00 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:03:20 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	main(int ac, char **av)
 	sort_to_a(a_stack, b_stack);
 
 	// check stack is sorted
-	ft_printf("stack sorted: %d\n", check_sort(a_stack, a_stack->size));
-	ft_printf("a_stack->head->idx: %d\n", a_stack->head->idx);
-	ft_printf("b_stack->size: %d\n", b_stack->size);
+	// ft_printf("stack sorted: %d\n", check_sort(a_stack, a_stack->size));
+	// ft_printf("a_stack->head->idx: %d\n", a_stack->head->idx);
+	// ft_printf("b_stack->size: %d\n", b_stack->size);
 
 	// for memory leaks: atexit
 	free_stack(a_stack);

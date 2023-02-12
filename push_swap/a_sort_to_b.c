@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:15:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 18:55:44 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:23:10 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ void	sort_to_b(t_stack *a_stack, t_stack *b_stack)
 	while (a_stack->size > 0)
 	{
 		a_to_b(a_stack, b_stack, num++, chunk);
-		// if (is_in_stack(b_stack, num))		// 원래는 이 방법이 아님(내가 추가)
-		// 	num++;
+		if (is_in_stack(b_stack, num))		// 원래는 이 방법이 아님(내가 추가)
+			num++;
 	}
 }
 
 void	a_to_b(t_stack *a_stack, t_stack *b_stack, int num, int chunk)
 {
 	while (a_stack->head->idx > num + chunk)
-		ra(a_stack);
-	if (a_stack->head->idx < num)
-		pb(a_stack, b_stack);
+		roate(a_stack, RA);
+	if (a_stack->head->idx <= num)
+		push(a_stack, b_stack, PB);
 	else
 	{
-		pb(a_stack, b_stack);
-		rb(a_stack);
+		push(a_stack, b_stack, PB);
+		rotate(b_stack, RB);
 	}
 }
 
@@ -44,8 +44,13 @@ int	init_chunck(int size)
 {
 	int	chunk;
 
-	chunk = (int)(0.000000053 * size * size + 0.03 * size + 14.5);
-	ft_printf("[ chunk: %d ]\n", chunk);
+	if (size < 10)
+		chunk = 3;
+	else if (size < 30)
+		chunk = 5;
+	else
+		chunk = (int)(0.000000053 * size * size + 0.03 * size + 14.5);
+	// ft_printf("[ chunk: %d ]\n", chunk);
 	return (chunk);
 }
 

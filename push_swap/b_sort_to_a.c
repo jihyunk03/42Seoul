@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:16:21 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 18:28:52 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:27:23 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sort_to_a(t_stack *a_stack, t_stack *b_stack)
 	{
 		cnt = find_value(b_stack, b_stack->size - 1);
 		rotate_for_push(b_stack, cnt);
-		pb(b_stack, a_stack);
+		push(b_stack, a_stack, PA);
 	}
 }
 
@@ -50,7 +50,7 @@ int	find_value(t_stack *stack, int value)
 		return (cnt2);
 }
 
-void	rotate_for_push(t_stack *stack, int cnt)
+void	rotate_for_push(t_stack *b_stack, int cnt)
 {
 	int	i;
 
@@ -61,9 +61,9 @@ void	rotate_for_push(t_stack *stack, int cnt)
 	while (cnt)
 	{
 		if (i < 0)
-			rb(stack);
+			rotate(b_stack, RB);
 		else
-			rrb(stack);
+			rv_rotate(b_stack, RRB);
 		cnt += i;
 	}
 }
