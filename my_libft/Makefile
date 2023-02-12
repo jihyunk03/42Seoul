@@ -1,11 +1,11 @@
-NAME	= libft.a
+NAME	= lib_jihykim2.a
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 AR		= ar -rcs
 
 SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-		  ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strncmp.c \
+		  ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strcmp.c ft_strncmp.c \
 		  ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
 		  ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c \
 		  ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c \
@@ -23,7 +23,7 @@ all		: $(NAME)
 
 $(NAME)	: $(OBJS)
 	@$(AR) $@ $^
-	@echo "[libft] Ready to use libft.a: libft functions, ft_printf, get_next_line"
+	@echo "[my_libft] Ready to use lib_jihykim2.a"
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -31,12 +31,13 @@ $(NAME)	: $(OBJS)
 .PHONY	: clean
 clean	:
 	@$(RM) $(OBJS)
-	@echo "[libft] Removed Object files"
+	@echo "[my_libft] Removed Object files"
 
 .PHONY	: fclean
-fclean	: clean
+fclean	:
+	@$(MAKE) clean
 	@$(RM) $(NAME)
-	@echo "[libft] Removed libft.a"
+	@echo "[my_libft] Removed lib_jihykim2.a"
 
 .PHONY	: re
 re		:
