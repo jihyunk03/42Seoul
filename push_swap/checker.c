@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:18:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 19:49:30 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:58:46 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ int	main(int ac, char **av)
 		line = get_next_line(0);
 		if (line == NULL)
 			break ;
-		if (find_command(a_stack, b_stack, line))
-		{
-			free (line);
-			break ;		// no check_sort!!!!!!!!!
-		}
+		find_command(a_stack, b_stack, line);
 		free (line);
 	}
 	if (check_sort(a_stack, a_stack->size))
@@ -48,31 +44,39 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-int	find_command(t_stack *a_stack, t_stack *b_stack, char *line)
+void	find_command(t_stack *a_stack, t_stack *b_stack, char *line)
 {
-	if (ft_strncmp(line, "sa\n", 4) == 0)
-		sa(a_stack);
-	else if (ft_strncmp(line, "sb\n", 4) == 0)
-		sb(b_stack);
-	else if (ft_strncmp(line, "ss\n", 4) == 0)
-		ss(a_stack, b_stack);
-	else if (ft_strncmp(line, "pa\n", 4) == 0)
-		pa(b_stack, a_stack);
-	else if (ft_strncmp(line, "pb\n", 4) == 0)
-		pb(a_stack, b_stack);
-	else if (ft_strncmp(line, "ra\n", 4) == 0)
-		ra(a_stack);
-	else if (ft_strncmp(line, "rb\n", 4) == 0)
-		rb(b_stack);
-	else if (ft_strncmp(line, "rr\n", 4) == 0)
-		rr(a_stack, b_stack);
-	else if (ft_strncmp(line, "rra\n", 5) == 0)
-		rra(a_stack);
-	else if (ft_strncmp(line, "rrb\n", 5) == 0)
-		rrb(b_stack);
-	else if (ft_strncmp(line, "rrr\n", 5) == 0)
-		rrr(a_stack, b_stack);
+	if (ft_strcmp(line, SA) == 0)
+		swap(a_stack, 0);
+	else if (ft_strcmp(line, SB) == 0)
+		swap(b_stack, 0);
+	else if (ft_strcmp(line, SS) == 0)
+		swap_both(a_stack, b_stack, 0);
+	else if (ft_strcmp(line, PA) == 0)
+		push(b_stack, a_stack, 0);
+	else if (ft_strcmp(line, PB) == 0)
+		push(a_stack, b_stack, 0);
+	else if (ft_strcmp(line, RA) == 0)
+		rotate(a_stack, 0);
+	else if (ft_strcmp(line, RB) == 0)
+		rotate(b_stack, 0);
+	else if (ft_strcmp(line, RR) == 0)
+		rotate_both(a_stack, b_stack, 0);
+	else if (ft_strcmp(line, RRA) == 0)
+		rv_rotate(a_stack, 0);
+	else if (ft_strcmp(line, RRB) == 0)
+		rv_rotate(b_stack, 0);
+	else if (ft_strcmp(line, RRR) == 0)
+		rv_rotate_both(a_stack, b_stack, 0);
 	else
-		return (ft_printf("Error\n"));
-	return (0);
+		error_exit_checker(a_stack, b_stack, line);
+}
+
+void	error_exit_checker(t_stack *a_stack, t_stack *b_stack, char *line)
+{
+	free (a_stack);
+	free (b_stack);
+	free (line);
+	ft_printf("Error\n");
+	exit (1);
 }

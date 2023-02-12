@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:19:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 19:29:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 23:00:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include "number_define.h"
 
 // checker.c
-int	find_command(t_stack *a_stack, t_stack *b_stack, char *line);
+void	find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line);
+void	error_exit_checker(t_stack *a_stack, t_stack *b_stack, char *line);
 
 // stack_init.c
 t_stack	*stack_init(char **data);
@@ -43,16 +44,16 @@ int		free_arr(char **arr);
 int		check_sort(t_stack *stack, int size);
 
 // operator.c
-void	sa(t_stack *a_stack);
-void	sb(t_stack *b_stack);
-void	ss(t_stack *a_stack, t_stack *b_stack);
-void	pa(t_stack *from, t_stack *to);
-void	pb(t_stack *from, t_stack *to);
-void	ra(t_stack *a_stack);
-void	rb(t_stack *b_stack);
-void	rr(t_stack *a_stack, t_stack *b_stack);
-void	rra(t_stack *a_stack);
-void	rrb(t_stack *b_stack);
-void	rrr(t_stack *a_stack, t_stack *b_stack);
+void	swap(t_stack *stack, char *op);
+void	swap_both(t_stack *a_stack, t_stack *b_stack, char *op);
+void	do_swap(t_stack *stack);
+void	push(t_stack *from, t_stack *to, char *op);
+void	do_push(t_stack *from, t_stack *to);
+void	rotate(t_stack *stack, char *op);
+void	rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
+void	do_rotate(t_stack *stack);
+void	rv_rotate(t_stack *stack, char *op);
+void	rv_rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
+void	do_rv_rotate(t_stack *stack);
 
 #endif
