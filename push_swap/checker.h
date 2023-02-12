@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:19:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 23:00:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 23:09:10 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "./my_libft/ft_printf.h"
 # include "./my_libft/get_next_line.h"
 # include "struct_info.h"
-# include "number_define.h"
+# include "define_enum.h"
 
 // checker.c
 void	find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line);

@@ -9,7 +9,7 @@ AR		= ar -rcs
 SRCS	= push_swap.c \
 		  free_all.c \
 		  stack_init.c stack_init_utils.c \
-		  operator_s.c operator_p.c operator_r.c operator_r_r.c \
+		  op_swap.c op_push.c op_rotate.c op_rv_rotate.c \
 		  check_stack.c \
 		  a_sort_to_b.c \
 		  b_sort_to_a.c \
@@ -17,17 +17,17 @@ SRCS	= push_swap.c \
 OBJS	= $(SRCS:.c=.o)
 INCD	= push_swap.h \
 		  struct_info.h \
-		  number_define.h
+		  define_enum.h
 
 SRCS2	= checker.c \
 		  free_all.c \
 		  stack_init.c stack_init_utils.c \
-		  operator_s.c operator_p.c operator_r.c operator_r_r.c \
+		  op_swap.c op_push.c op_rotate.c op_rv_rotate.c \
 		  check_stack.c
 OBJS2	= $(SRCS2:.c=.o)
 INCD2	= checker.h \
 		  struct_info.h \
-		  number_define.h
+		  define_enum.h
 
 .PHONY	: all
 all		: libs $(NAME)

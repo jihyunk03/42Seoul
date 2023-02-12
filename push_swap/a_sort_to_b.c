@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:15:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 22:23:10 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 23:08:32 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	sort_to_b(t_stack *a_stack, t_stack *b_stack)
 void	a_to_b(t_stack *a_stack, t_stack *b_stack, int num, int chunk)
 {
 	while (a_stack->head->idx > num + chunk)
-		roate(a_stack, RA);
+		rotate(a_stack, RA);
 	if (a_stack->head->idx <= num)
 		push(a_stack, b_stack, PB);
 	else

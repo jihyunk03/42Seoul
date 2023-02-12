@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:18:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 22:58:46 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/12 23:09:40 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int ac, char **av)
 		line = get_next_line(0);
 		if (line == NULL)
 			break ;
-		find_command(a_stack, b_stack, line);
+		find_and_operate(a_stack, b_stack, line);
 		free (line);
 	}
 	if (check_sort(a_stack, a_stack->size))
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-void	find_command(t_stack *a_stack, t_stack *b_stack, char *line)
+void	find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line)
 {
 	if (ft_strcmp(line, SA) == 0)
 		swap(a_stack, 0);
