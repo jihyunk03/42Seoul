@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_sort.c                                       :+:      :+:    :+:   */
+/*   check_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:13:56 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/10 11:38:04 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:08:29 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	check_sort(t_stack *stack, int size)
 	int		val;
 
 	if (stack->head == NULL || stack->size == 1)
-		return (1);		// 스택이 비어있거나 1개인 경우 종료(true 로 종료)
+		return (TRUE);
 	node = stack->head;
 	val = stack->head->idx;
 	while (size--)
 	{
 		if (node->idx != val++)
-			return (0);
+			return (FALSE);
 		node = node->next;
 	}
-	return (1);
+	return (TRUE);
 }

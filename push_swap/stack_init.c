@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:29:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/11 18:37:52 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:43:14 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_dll	*new_dll(int data, int flag)
 {
 	t_dll	*new;
 
-	if (flag)
+	if (flag == FALSE)
 		return (NULL);
 	new = malloc(sizeof(t_dll));
 	if (new == NULL)

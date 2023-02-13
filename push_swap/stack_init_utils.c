@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:59:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/07 01:13:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:44:06 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	push_to_stack(t_stack *new, char *data)
 	if (arr == NULL)
 		return (0);
 	i = 0;
-	flag = 0;
+	flag = TRUE;
 	while (arr[i])
 	{
-		if (is_integer(arr[i]) == 0)
+		if (is_integer(arr[i]) == FALSE)
 			return (free_arr(arr));
 		lst = new_dll(push_swap_atoi(arr[i++], &flag), flag);
 		if (lst == NULL)
 			return (free_arr(arr));
-		if (dll_add_back(new, lst) == 0)
+		if (dll_add_back(new, lst) == FALSE)
 			return (free_arr(arr));
 	}
 	free_arr(arr);
@@ -44,10 +44,10 @@ int	is_integer(char *s)
 		s++;
 	while (*s)
 	{
-		if (ft_isdigit(*s++) == 0)
-			return (0);
+		if (ft_isdigit(*s++) == FALSE)
+			return (FALSE);
 	}
-	return (1);
+	return (TRUE);
 }
 
 int	push_swap_atoi(const char *str, int *flag)
@@ -59,8 +59,6 @@ int	push_swap_atoi(const char *str, int *flag)
 	res = 0;
 	len = 0;
 	sign = 1;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
-		str++;
 	if (*str == '+' || *str == '-')
 	{
 		if (*str++ == '-')
@@ -69,9 +67,11 @@ int	push_swap_atoi(const char *str, int *flag)
 	while (*str >= '0' && *str <= '9')
 	{
 		res = res * 10 + (*str++ - '0');
-		if (++len > 10 || res < INT_MIN || res > INT_MAX)
-			(*flag)++;
+		if (++len >= 10 && (res < INT_MIN || res > INT_MAX))
+			*flag = FALSE;
 	}
+	if (len == 0)
+		*flag = FALSE;
 	return (sign * res);
 }
 
@@ -98,7 +98,7 @@ int	dll_add_back(t_stack *new, t_dll *lst)
 		new->tail = lst;
 	}
 	new->size++;
-	return (1);
+	return (TRUE);
 }
 
 void	index_init(t_stack *stack)
