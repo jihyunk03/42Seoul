@@ -2,6 +2,7 @@
 .DS_Store
 .vscode
 
+
 # compile results(default value)
 a.out
 *.o
@@ -9,11 +10,15 @@ a.out
 *.dSYM
 *.gch
 
+
 # swap file
 *.swp
 
+
 # only for push_swap(test)
-push_swap_run_args.log
-push_swap_visualizer
+push_swap_visualizer/
 imgui.ini
-push_swap_tester*
+
+push_swap_tester_leaks/
+push_swap_tester/
+push_swap_run_args.log
