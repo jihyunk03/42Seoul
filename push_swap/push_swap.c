@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 02:12:41 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:10:49 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,26 @@ int	main(int ac, char **av)
 
 	// check memory leaks
 	// atexit(check_leak);
-	if (ac == 1)
+	if (ac < 2)
 		return (0);
-	// stack init
 	a_stack = stack_init(av);
 	b_stack = new_stack();
 	if (a_stack == NULL || b_stack == NULL)
 	{
-		write(1, "Error\n", 6);
-		exit (1);
+		ft_putstr_fd("Error\n", STDERR_FILENO);	// ERROR HANDLING
+		free_stack(a_stack);
+		free_stack(b_stack);
+		return (EXIT_FAILURE);
 	}
-
-	// push_swap
-	// if (a_stack->size < 6)
-	// 	short_sort(a_stack, b_stack);
-	// else
-	// {
-	// 	sort_to_b(a_stack, b_stack);
-	// 	sort_to_a(a_stack, b_stack);
-	// }
-	sort_to_b(a_stack, b_stack);
-	sort_to_a(a_stack, b_stack);
-
-	// check stack is sorted
-	// ft_printf("stack sorted: %d\n", check_sort(a_stack, a_stack->size));
-	// ft_printf("a_stack->head->idx: %d\n", a_stack->head->idx);
-	// ft_printf("b_stack->size: %d\n", b_stack->size);
+	if (check_sort(a_stack, a_stack->size) == TRUE)
+		;
+	else
+		sort_to_b(a_stack, b_stack);
+		sort_to_a(a_stack, b_stack);
 
 	free_stack(a_stack);
 	free_stack(b_stack);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 // 1 2 3 4 "1 2 3 4" 5 6 7 8 9
