@@ -1,5 +1,5 @@
 NAME	= push_swap
-NAME2	= checker
+BONUS	= checker
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
@@ -8,8 +8,12 @@ AR		= ar -rcs
 
 SRCS	= push_swap.c \
 		  free_all.c \
-		  stack_init.c stack_init_utils.c \
-		  op_swap.c op_push.c op_rotate.c op_rv_rotate.c \
+		  stack_init.c \
+		  stack_init_utils.c \
+		  op_swap.c \
+		  op_push.c \
+		  op_rotate.c \
+		  op_rv_rotate.c \
 		  check_stack.c \
 		  a_sort_to_b.c \
 		  b_sort_to_a.c \
@@ -19,52 +23,65 @@ INCD	= push_swap.h \
 		  struct_info.h \
 		  define_enum.h
 
-SRCS2	= checker.c \
+B_SRCS	= checker.c \
 		  free_all.c \
-		  stack_init.c stack_init_utils.c \
-		  op_swap.c op_push.c op_rotate.c op_rv_rotate.c \
+		  stack_init.c \
+		  stack_init_utils.c \
+		  op_swap.c \
+		  op_push.c \
+		  op_rotate.c \
+		  op_rv_rotate.c \
 		  check_stack.c
-OBJS2	= $(SRCS2:.c=.o)
-INCD2	= checker.h \
+B_OBJS	= $(B_SRCS:.c=.o)
+B_INCD	= checker.h \
 		  struct_info.h \
 		  define_enum.h
 
-LIBJIHYKIM2 = my_libft/lib_jihykim2.a
+LIB		= my_libft/lib_jihykim2.a
 
-.PHONY	: all
-all		: libs $(NAME)
+all		: $(LIB) $(NAME)
 
-libs	:
-	@$(MAKE) -C my_libft/
+$(LIB)	:
+	@$(MAKE) -C $(dir $(LIB))
 
 $(NAME)	: $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBJIHYKIM2)
-	@echo "[push_swap] 💻Ready"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
+	@echo $(GREEN) "⚡︎ [ push_swap ]	Ready" $(RESET)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY	: clean
 clean	:
-	@$(MAKE) -C $(dir $(LIBJIHYKIM2)) clean
-	@$(RM) $(OBJS) $(OBJS2)
-	@echo "[push_swap & checker] 🔥Removed Object files"
+	@$(MAKE) -C $(dir $(LIB)) clean
+	@echo $(CYAN) "✭  [ my_libft ]	Removed Object files" $(RESET)
+	@$(RM) $(OBJS) $(B_OBJS)
+	@echo $(GREEN) "⚡︎ [ push_swap ]	Removed Object files" $(RESET)
 
-.PHONY	: fclean
 fclean	: clean
-	@$(MAKE) -C $(dir $(LIBJIHYKIM2)) fclean
-	@$(RM) $(NAME) $(NAME2)
-	@echo "[my_libft] Removed lib_jihykim2.a"
-	@echo "[push_swap & checker] 🔥Removed push_swap"
+	@$(MAKE) -C $(dir $(LIB)) fclean
+	@echo $(CYAN) "✭  [ my_libft ]	Removed lib_jihykim2.a" $(RESET)
+	@$(RM) $(NAME) $(BONUS)
+	@echo $(GREEN) "⚡︎ [ push_swap ]	Removed push_swap" $(RESET)
+	@echo $(GREEN) "⚡︎ [ checker ]		Removed checker" $(RESET)
 
-.PHONY	: re
 re		:
 	@$(MAKE) fclean
 	@$(MAKE) all
 
-.PHONY	: bonus
-bonus	: $(NAME2)
+bonus	: $(BONUS)
 
-$(NAME2): $(OBJS2)
-	@$(CC) $(CFLAGS) -o $(NAME2) $(OBJS2) -L ./my_libft/ -l_jihykim2
-	@echo "[checker] 💻Ready"
+$(BONUS): $(B_OBJS)
+	@$(CC) $(CFLAGS) $(B_OBJS) $(LIB) -o $(BONUS)
+	@echo $(GREEN) "⚡︎ [ checker ]		Ready" $(RESET)
+
+RESET	=	"\x1b[0m"
+GREY	=	"\x1b[30m"
+RED		=	"\x1b[31m"
+GREEN	=	"\x1b[32m"
+YELLOW	=	"\x1b[33m"
+BLUE	=	"\x1b[34m"
+PURPLE	=	"\x1b[35m"
+CYAN	=	"\x1b[36m"
+WHITE	=	"\x1b[37m"
+
+.PHONY	: all clean fclean re bonus

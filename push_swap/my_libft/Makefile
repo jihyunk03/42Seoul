@@ -18,28 +18,34 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 		  get_next_line.c get_next_line_utils.c
 OBJS	= $(SRCS:.c=.o)
 
-.PHONY	: all
 all		: $(NAME)
 
 $(NAME)	: $(OBJS)
 	@$(AR) $@ $^
-	@echo "[my_libft] 💻Ready to use lib_jihykim2.a"
+	@echo $(CYAN) "✭  [ my_libft ]	Ready to use lib_jihykim2.a" $(RESET)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY	: clean
 clean	:
 	@$(RM) $(OBJS)
-	@echo "[my_libft] 🔥Removed Object files"
 
-.PHONY	: fclean
 fclean	:
 	@$(MAKE) clean
 	@$(RM) $(NAME)
-	@echo "[my_libft] 🔥Removed lib_jihykim2.a"
 
-.PHONY	: re
 re		:
 	@$(MAKE) fclean
 	@$(MAKE) all
+
+RESET	=	"\x1b[0m"
+GREY	=	"\x1b[30m"
+RED		=	"\x1b[31m"
+GREEN	=	"\x1b[32m"
+YELLOW	=	"\x1b[33m"
+BLUE	=	"\x1b[34m"
+PURPLE	=	"\x1b[35m"
+CYAN	=	"\x1b[36m"
+WHITE	=	"\x1b[37m"
+
+.PHONY	: all clean fclean re
