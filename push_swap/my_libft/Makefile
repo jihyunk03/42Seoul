@@ -23,7 +23,7 @@ all		: $(NAME)
 
 $(NAME)	: $(OBJS)
 	@$(AR) $@ $^
-	@echo "[my_libft] Ready to use lib_jihykim2.a"
+	@echo "[my_libft] 💻Ready to use lib_jihykim2.a"
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -31,13 +31,13 @@ $(NAME)	: $(OBJS)
 .PHONY	: clean
 clean	:
 	@$(RM) $(OBJS)
-	@echo "[my_libft] Removed Object files"
+	@echo "[my_libft] 🔥Removed Object files"
 
 .PHONY	: fclean
 fclean	:
 	@$(MAKE) clean
 	@$(RM) $(NAME)
-	@echo "[my_libft] Removed lib_jihykim2.a"
+	@echo "[my_libft] 🔥Removed lib_jihykim2.a"
 
 .PHONY	: re
 re		:

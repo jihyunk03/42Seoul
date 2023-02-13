@@ -29,6 +29,8 @@ INCD2	= checker.h \
 		  struct_info.h \
 		  define_enum.h
 
+LIBJIHYKIM2 = my_libft/lib_jihykim2.a
+
 .PHONY	: all
 all		: libs $(NAME)
 
@@ -36,23 +38,24 @@ libs	:
 	@$(MAKE) -C my_libft/
 
 $(NAME)	: $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L ./my_libft/ -l_jihykim2
-	@echo "[push_swap] Ready"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBJIHYKIM2)
+	@echo "[push_swap] 💻Ready"
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY	: clean
 clean	:
-	@$(MAKE) -C my_libft/ clean
+	@$(MAKE) -C $(dir $(LIBJIHYKIM2)) clean
 	@$(RM) $(OBJS) $(OBJS2)
-	@echo "[push_swap & checker] Removed Object files"
+	@echo "[push_swap & checker] 🔥Removed Object files"
 
 .PHONY	: fclean
 fclean	: clean
-	@$(RM) ./my_libft/lib_jihykim2.a $(NAME) $(NAME2)
+	@$(MAKE) -C $(dir $(LIBJIHYKIM2)) fclean
+	@$(RM) $(NAME) $(NAME2)
 	@echo "[my_libft] Removed lib_jihykim2.a"
-	@echo "[push_swap & checker] Removed push_swap"
+	@echo "[push_swap & checker] 🔥Removed push_swap"
 
 .PHONY	: re
 re		:
@@ -64,4 +67,4 @@ bonus	: $(NAME2)
 
 $(NAME2): $(OBJS2)
 	@$(CC) $(CFLAGS) -o $(NAME2) $(OBJS2) -L ./my_libft/ -l_jihykim2
-	@echo "[checker] Ready"
+	@echo "[checker] 💻Ready"
