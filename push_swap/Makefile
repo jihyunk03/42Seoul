@@ -46,7 +46,7 @@ $(LIB)	:
 
 $(NAME)	: $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
-	@echo $(GREEN) "⚡︎ [ push_swap ]	Ready" $(RESET)
+	@echo $(GREEN) "⚡︎ [ push_swap ]	Ready to use push_swap" $(RESET)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -72,7 +72,7 @@ bonus	: $(BONUS)
 
 $(BONUS): $(B_OBJS)
 	@$(CC) $(CFLAGS) $(B_OBJS) $(LIB) -o $(BONUS)
-	@echo $(GREEN) "⚡︎ [ checker ]		Ready" $(RESET)
+	@echo $(GREEN) "⚡︎ [ checker ]		Ready to use checker" $(RESET)
 
 RESET	=	"\x1b[0m"
 GREY	=	"\x1b[30m"
