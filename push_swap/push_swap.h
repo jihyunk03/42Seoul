@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:05:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 01:37:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:54:24 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,11 @@ void	rotate_for_push(t_stack *b_stack, int cnt);
 // operator.c
 void	swap(t_stack *stack, char *op);
 void	swap_both(t_stack *a_stack, t_stack *b_stack, char *op);
-void	do_swap(t_stack *stack);
 void	push(t_stack *from, t_stack *to, char *op);
-void	do_push(t_stack *from, t_stack *to);
 void	rotate(t_stack *stack, char *op);
 void	rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
-void	do_rotate(t_stack *stack);
 void	rv_rotate(t_stack *stack, char *op);
 void	rv_rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
-void	do_rv_rotate(t_stack *stack);
 
 // libft prototypes for test & check leaks => must remove!!
 void 	check_leak(void);

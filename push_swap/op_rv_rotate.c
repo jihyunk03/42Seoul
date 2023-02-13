@@ -6,11 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:13 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 22:46:28 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:53:15 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	do_rv_rotate(t_stack *stack);
 
 void	rv_rotate(t_stack *stack, char *op)
 {
@@ -31,7 +33,7 @@ void	rv_rotate_both(t_stack *a_stack, t_stack *b_stack, char *op)
 		ft_printf("%s", op);
 }
 
-void	do_rv_rotate(t_stack *stack)
+static void	do_rv_rotate(t_stack *stack)
 {
 	if (stack->size < 2)
 		return ;

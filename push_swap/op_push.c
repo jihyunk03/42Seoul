@@ -6,12 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 22:45:39 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:52:51 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static void	do_push(t_stack *from, t_stack *to);
 static void	move_to_stack(t_stack *stack, t_dll *lst);
 
 void	push(t_stack *from, t_stack *to, char *op)
@@ -23,7 +24,7 @@ void	push(t_stack *from, t_stack *to, char *op)
 		ft_printf("%s", op);
 }
 
-void	do_push(t_stack *from, t_stack *to)
+static void	do_push(t_stack *from, t_stack *to)
 {
 	t_dll	*tmp;
 

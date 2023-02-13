@@ -6,12 +6,12 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:22:21 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 14:53:59 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 03:00:45 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NUMBER_DEFINE_H
-# define NUMBER_DEFINE_H
+#ifndef DEFINE_ENUM_H
+# define DEFINE_ENUM_H
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
@@ -30,14 +30,15 @@
 # define RRA "rra\n"
 # define RRB "rrb\n"
 # define RRR "rrr\n"
+# define NOPRINT NULL
 
-enum e_error
+typedef enum s_error
 {
 	NoInt = 0,
 	Overflow,
 	Duplicated,
 	A_alloc,
 	B_alloc
-}	ERROR;
+}	t_error;
 
 #endif

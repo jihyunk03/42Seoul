@@ -6,11 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:52:47 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/12 22:44:56 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:48:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	do_swap(t_stack *stack);
 
 void	swap(t_stack *stack, char *op)
 {
@@ -31,7 +33,7 @@ void	swap_both(t_stack *a_stack, t_stack *b_stack, char *op)
 		ft_printf("%s", op);
 }
 
-void	do_swap(t_stack *stack)
+static void	do_swap(t_stack *stack)
 {
 	int	tmp;
 

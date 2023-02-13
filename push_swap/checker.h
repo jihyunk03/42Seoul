@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:19:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 02:17:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 03:01:43 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,11 @@ int		check_sort(t_stack *stack, int size);
 // operator.c
 void	swap(t_stack *stack, char *op);
 void	swap_both(t_stack *a_stack, t_stack *b_stack, char *op);
-void	do_swap(t_stack *stack);
 void	push(t_stack *from, t_stack *to, char *op);
-void	do_push(t_stack *from, t_stack *to);
 void	rotate(t_stack *stack, char *op);
 void	rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
-void	do_rotate(t_stack *stack);
 void	rv_rotate(t_stack *stack, char *op);
 void	rv_rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
-void	do_rv_rotate(t_stack *stack);
 
 // remove!!!!!!!!!!!
 void	check_stack_idx(t_stack *stack);
