@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:59:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 20:09:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:13:53 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	push_to_stack(t_stack *new, char *data)
 
 	arr = ft_split(data, ' ');
 	if (arr == NULL || arr[0] == NULL)
-		return (FALSE);
+		return (free_arr(arr));
 	i = 0;
 	flag = TRUE;
 	while (arr[i])
