@@ -53,13 +53,13 @@ $(NAME)	: $(OBJS)
 
 clean	:
 	@$(MAKE) -C $(dir $(LIB)) clean
-	@echo $(CYAN) "✭  [ my_libft ]	Removed Object files" $(RESET)
+	@echo $(YELLOW) "✭  [ my_libft ]	Removed Object files" $(RESET)
 	@$(RM) $(OBJS) $(B_OBJS)
 	@echo $(GREEN) "⚡︎ [ push_swap ]	Removed Object files" $(RESET)
 
 fclean	: clean
 	@$(MAKE) -C $(dir $(LIB)) fclean
-	@echo $(CYAN) "✭  [ my_libft ]	Removed lib_jihykim2.a" $(RESET)
+	@echo $(YELLOW) "✭  [ my_libft ]	Removed lib_jihykim2.a" $(RESET)
 	@$(RM) $(NAME) $(BONUS)
 	@echo $(GREEN) "⚡︎ [ push_swap ]	Removed push_swap" $(RESET)
 	@echo $(GREEN) "⚡︎ [ checker ]		Removed checker" $(RESET)

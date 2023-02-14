@@ -22,7 +22,7 @@ all		: $(NAME)
 
 $(NAME)	: $(OBJS)
 	@$(AR) $@ $^
-	@echo $(CYAN) "✭  [ my_libft ]	Ready to use lib_jihykim2.a" $(RESET)
+	@echo $(YELLOW) "✭  [ my_libft ]	Ready to use lib_jihykim2.a" $(RESET)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
