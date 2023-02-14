@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:18:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 03:06:53 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:33:42 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 			return (error_exit_checker(a_stack, b_stack, line));
 		free (line);
 	}
-	if (check_sort(a_stack, a_stack->size))
+	if (check_sort(a_stack, a_stack->size) && b_stack->size == 0)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
