@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:05:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 02:54:24 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:14:37 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include "define_enum.h"
 
 // push_swap.c
-void	sort_to_b(t_stack * a_stack, t_stack *b_stack);
-void	sort_to_a(t_stack * a_stack, t_stack *b_stack);
-void	a_to_b(t_stack *a_stack, t_stack *b_stack, int num, int chunk);
 
 // stack_init.c
 t_stack	*stack_init(char **data);
@@ -46,14 +43,9 @@ int		check_sort(t_stack *stack, int size);
 // [ 모래시계 ]
 // a_sort_to_b.c
 void	sort_to_b(t_stack *a_stack, t_stack *b_stack);
-void	a_to_b(t_stack *a_stack, t_stack *b_stack, int num, int chunk);
-int		init_chunck(int size);
-int		is_in_stack(t_stack *stack, int num);
 
 // b_sort_to_a.c
 void	sort_to_a(t_stack *a_stack, t_stack *b_stack);
-int		find_value(t_stack *stack, int value);
-void	rotate_for_push(t_stack *b_stack, int cnt);
 
 // operator.c
 void	swap(t_stack *stack, char *op);

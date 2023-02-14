@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:22:21 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 03:00:45 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:17:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@
 
 typedef enum s_error
 {
-	NoInt = 0,
+	NOERROR = 0,
+	NoInt,
 	Overflow,
 	Duplicated,
 	A_alloc,
