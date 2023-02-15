@@ -1,20 +1,20 @@
 # 42Seoul
-### libft
+### [ libft ]
 ##### libft bonus: linked list
 
-### ft printf
+### [ ft printf ]
 ##### no bonus
 
-### get next line
+### [ get next line ]
 ##### gnl bonus
 ###### 1. OPEN_MAX
 ###### 2. Linked list
 ###### 3. No Timeout: not use strjoin function
 
-### Born2beroot
+### [ Born2beroot ]
 ##### no bonus
 
-### push_swap
+### [ push_swap ]
 ##### push_swap bonus: checker
 
-### FDF
+### FDF: ing
