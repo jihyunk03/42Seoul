@@ -74,6 +74,15 @@ int	main(int ac, char **av)
 arg=$(seq 1 500 | sort -R | tr '\n' ' '); ./push_swap $arg | wc -l
 
 
+
+
+
+
+
+
+
+
+
 // Makefile example
 NAME = minishell
 
@@ -214,3 +223,47 @@ ECHO = echo $(YELLOW) "`expr " [ \`expr $C '*' 100 / $T\`" : '.*\(....\)$$'`% ]"
 endif
 
 .PHONY : all clean fclean re
+
+
+
+
+
+
+
+
+
+
+void	check_leak(void)
+{
+	system("leaks --quiet push_swap");
+}
+
+void	check_operator_result(t_stack *stack, char *op)
+{
+	t_dll	*node;
+	int		i;
+
+	node = stack->head;
+	i = 0;
+	printf("=====name: %s=====\n", op);
+	while (node)
+	{
+		printf("idx[%d]: %d\n", i++, node->idx);
+		node = node->next;
+	}
+	printf("=====size: %d=====\n\n", stack->size);
+}
+
+void	check_stack_idx(t_stack *stack)
+{
+	t_dll	*node;
+
+	ft_printf("==========\n");
+	node = stack->head;
+	while (node)
+	{
+		ft_printf("%d\n", node->idx);
+		node = node->next;
+	}
+	ft_printf("==========\n");
+}
