@@ -6,11 +6,23 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:00:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 15:17:07 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:26:44 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	free_for_exit(t_stack *a_stack, t_stack *b_stack, int errorno)
+{
+	free_stack(a_stack);
+	free_stack(b_stack);
+	if (errorno == FALSE)
+	{
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
 
 void	*free_stack(t_stack *stack)
 {
@@ -32,6 +44,8 @@ void	*free_stack(t_stack *stack)
 
 int	free_dll(t_dll *lst)
 {
+	if (lst == NULL)
+		return (0);
 	free (lst);
 	return (0);
 }
