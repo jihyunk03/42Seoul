@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:05:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 13:14:37 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:07:31 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int		check_sort(t_stack *stack, int size);
 
 // [ 모래시계 ]
 // a_sort_to_b.c
-void	sort_to_b(t_stack *a_stack, t_stack *b_stack);
+void	a_sort_to_b(t_stack *a_stack, t_stack *b_stack);
 
 // b_sort_to_a.c
-void	sort_to_a(t_stack *a_stack, t_stack *b_stack);
+void	b_sort_to_a(t_stack *a_stack, t_stack *b_stack);
 
 // operator.c
 void	swap(t_stack *stack, char *op);

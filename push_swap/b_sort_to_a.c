@@ -6,34 +6,33 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:16:21 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 14:18:24 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:11:36 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	decide_command(t_stack *stack, int value);
-static void	rotate_for_push(t_stack *b_stack, int cnt);
+static int	decide_direction(t_stack *stack, int value);
 
-void	sort_to_a(t_stack *a_stack, t_stack *b_stack)
+void	b_sort_to_a(t_stack *a_stack, t_stack *b_stack)
 {
-	int	cmd;
+	int	dir;
 
 	while (b_stack->size)
 	{
-		cmd = find_value(b_stack, b_stack->size - 1);
+		dir = decide_direction(b_stack, b_stack->size - 1);
 		while (b_stack->head->idx != b_stack->size - 1)
 		{
-			if (cmd > 0)
+			if (dir > 0)
 				rotate(b_stack, RB);
 			else
-				rv_rotate(b_stack, RRB)
+				rv_rotate(b_stack, RRB);
 		}
 		push(b_stack, a_stack, PA);
 	}
 }
 
-static int	decide_command(t_stack *stack, int value)		// RB RRB -> cmd로 구분 불가능!!!!!!!!
+static int	decide_direction(t_stack *stack, int value)
 {
 	t_dll	*node;
 	int		cnt;
@@ -49,22 +48,4 @@ static int	decide_command(t_stack *stack, int value)		// RB RRB -> cmd로 구분
 		return (1);
 	else
 		return (-1);
-}
-
-static void	rotate_for_push(t_stack *b_stack, int cnt)
-{
-	int	i;
-
-	if (cnt < 0)
-		i = 1;
-	else
-		i = -1;
-	while (cnt)
-	{
-		if (i < 0)
-			rotate(b_stack, RB);
-		else
-			rv_rotate(b_stack, RRB);
-		cnt += i;
-	}
 }
