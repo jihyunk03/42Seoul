@@ -10,14 +10,14 @@ SRCS	= push_swap.c \
 		  free_all.c \
 		  stack_init.c \
 		  stack_init_utils.c \
+		  short_sort.c \
 		  op_swap.c \
 		  op_push.c \
 		  op_rotate.c \
 		  op_rv_rotate.c \
 		  check_stack.c \
 		  a_sort_to_b.c \
-		  b_sort_to_a.c \
-		  short_sort.c
+		  b_sort_to_a.c
 OBJS	= $(SRCS:.c=.o)
 INCD	= push_swap.h \
 		  struct_info.h \

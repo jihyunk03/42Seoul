@@ -6,11 +6,16 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:59:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 12:13:53 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:47:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int		is_integer(char *s);
+static int		push_swap_atoi(const char *str, int *flag);
+static int		dll_add_back(t_stack *new, t_dll *lst);
+static t_dll	*new_dll(int data, int flag);
 
 int	push_to_stack(t_stack *new, char *data)
 {
@@ -35,10 +40,10 @@ int	push_to_stack(t_stack *new, char *data)
 			return (free_arr(arr));
 	}
 	free_arr(arr);
-	return (1);
+	return (TRUE);
 }
 
-int	is_integer(char *s)
+static int	is_integer(char *s)
 {
 	if (*s == '+' || *s == '-')
 		s++;
@@ -50,7 +55,22 @@ int	is_integer(char *s)
 	return (TRUE);
 }
 
-int	push_swap_atoi(const char *str, int *flag)
+static t_dll	*new_dll(int data, int flag)
+{
+	t_dll	*new;
+
+	if (flag == FALSE)
+		return (NULL);
+	new = malloc(sizeof(t_dll));
+	if (new == NULL)
+		return (NULL);
+	new->data = data;
+	new->prev = NULL;
+	new->next = NULL;
+	return (new);
+}
+
+static int	push_swap_atoi(const char *str, int *flag)
 {
 	long	res;
 	int		len;
@@ -75,7 +95,7 @@ int	push_swap_atoi(const char *str, int *flag)
 	return (sign * res);
 }
 
-int	dll_add_back(t_stack *new, t_dll *lst)
+static int	dll_add_back(t_stack *new, t_dll *lst)
 {
 	t_dll	*node;
 
@@ -99,26 +119,4 @@ int	dll_add_back(t_stack *new, t_dll *lst)
 	}
 	new->size++;
 	return (TRUE);
-}
-
-void	index_init(t_stack *stack)
-{
-	t_dll	*find;
-	t_dll	*node;
-	int		cnt;
-
-	find = stack->head;
-	while (find)
-	{
-		node = stack->head;
-		cnt = 0;
-		while (node)
-		{
-			if (find->data > node->data)
-				cnt++;
-			node = node->next;
-		}
-		find->idx = cnt;
-		find = find->next;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:00:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 19:26:44 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:43:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ int	free_arr(char **arr)
 	int	i;
 
 	if (arr == NULL)
-		return (0);
+		return (FALSE);
 	i = 0;
 	while (arr[i])
 		free (arr[i++]);
 	free (arr);
-	return (0);
+	return (FALSE);
 }

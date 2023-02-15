@@ -6,11 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:29:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 15:43:14 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:47:43 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	index_init(t_stack *stack);
 
 t_stack	*stack_init(char **data)
 {
@@ -23,7 +25,7 @@ t_stack	*stack_init(char **data)
 	i = 0;
 	while (data[++i])
 	{
-		if (push_to_stack(new, data[i]) == 0)
+		if (push_to_stack(new, data[i]) == FALSE)
 			return (free_stack(new));
 	}
 	index_init(new);
@@ -43,17 +45,24 @@ t_stack	*new_stack(void)
 	return (new);
 }
 
-t_dll	*new_dll(int data, int flag)
+static void	index_init(t_stack *stack)
 {
-	t_dll	*new;
+	t_dll	*find;
+	t_dll	*node;
+	int		cnt;
 
-	if (flag == FALSE)
-		return (NULL);
-	new = malloc(sizeof(t_dll));
-	if (new == NULL)
-		return (NULL);
-	new->data = data;
-	new->prev = NULL;
-	new->next = NULL;
-	return (new);
+	find = stack->head;
+	while (find)
+	{
+		node = stack->head;
+		cnt = 0;
+		while (node)
+		{
+			if (find->data > node->data)
+				cnt++;
+			node = node->next;
+		}
+		find->idx = cnt;
+		find = find->next;
+	}
 }

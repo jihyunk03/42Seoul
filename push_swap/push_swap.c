@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 19:25:34 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:49:17 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 {
 	t_stack	*a_stack;
 	t_stack	*b_stack;
-	// t_error	errorno;
 
 	// check memory leaks
 	// atexit(check_leak);
@@ -38,40 +37,4 @@ int	main(int ac, char **av)
 		}
 	}
 	return (free_for_exit(a_stack, b_stack, TRUE));
-}
-
-// memory leaks
-void	check_leak(void)
-{
-	system("leaks --quiet push_swap");
-}
-
-void	check_operator_result(t_stack *stack, char *op)
-{
-	t_dll	*node;
-	int		i;
-
-	node = stack->head;
-	i = 0;
-	printf("=====name: %s=====\n", op);
-	while (node)
-	{
-		printf("idx[%d]: %d\n", i++, node->idx);
-		node = node->next;
-	}
-	printf("=====size: %d=====\n\n", stack->size);
-}
-
-void	check_stack_idx(t_stack *stack)
-{
-	t_dll	*node;
-
-	ft_printf("==========\n");
-	node = stack->head;
-	while (node)
-	{
-		ft_printf("%d\n", node->idx);
-		node = node->next;
-	}
-	ft_printf("==========\n");
 }

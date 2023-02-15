@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:05:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 19:19:13 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:51:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,16 @@
 # include "struct_info.h"
 # include "define_enum.h"
 
-// stack_init.c
 t_stack	*stack_init(char **data);
 t_stack	*new_stack(void);
-t_dll	*new_dll(int data, int flag);
-
-// stack_init_utils.c
 int		push_to_stack(t_stack *new, char *data);
-int		is_integer(char *s);
-int		push_swap_atoi(const char *str, int *flag);
-int		dll_add_back(t_stack *new, t_dll *lst);
-void	index_init(t_stack *stack);
 
-// free_all.c
-void	*free_stack(t_stack *stack);
-int		free_dll(t_dll *lst);
-int		free_arr(char **arr);
-
-// check_sort.c
 int		check_sort(t_stack *stack, int size);
-
-// [ HARD CODING ]
-// short_sort.c
 void	short_sort(t_stack *a_stack, t_stack *b_stack);
 
-// [ 모래시계 ]
-// a_sort_to_b.c
 void	a_sort_to_b(t_stack *a_stack, t_stack *b_stack);
-
-// b_sort_to_a.c
 void	b_sort_to_a(t_stack *a_stack, t_stack *b_stack);
 
-// operator.c
 void	swap(t_stack *stack, char *op);
 void	swap_both(t_stack *a_stack, t_stack *b_stack, char *op);
 void	push(t_stack *from, t_stack *to, char *op);
@@ -58,9 +36,9 @@ void	rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
 void	rv_rotate(t_stack *stack, char *op);
 void	rv_rotate_both(t_stack *a_stack, t_stack *b_stack, char *op);
 
-// libft prototypes for test & check leaks => must remove!!
-void 	check_leak(void);
-void	check_operator_result(t_stack *stack, char *op);
-void	check_stack_idx(t_stack *stack);
+int		free_for_exit(t_stack *a_stack, t_stack *b_stack, int errorno);
+void	*free_stack(t_stack *stack);
+int		free_dll(t_dll *lst);
+int		free_arr(char **arr);
 
 #endif

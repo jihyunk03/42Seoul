@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:18:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 12:33:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:41:48 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@ int	main(int ac, char **av)
 	char	*line;
 
 	// check memory leaks
-	// atexit(check_leak);
-	if (ac == 1)
+	atexit(check_leak);
+	if (ac < 2)
 		return (0);
 	a_stack = stack_init(av);
 	b_stack = new_stack();
 	if (a_stack == NULL || b_stack == NULL)
-	{
-		write(1, "Error\n", 6);
-		exit (1);
-	}
+		return (free_for_exit(a_stack, b_stack, FALSE));
 	while (TRUE)
 	{
 		line = get_next_line(STDIN_FILENO);
@@ -42,9 +39,7 @@ int	main(int ac, char **av)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	free_stack(a_stack);
-	free_stack(b_stack);
-	return (EXIT_SUCCESS);
+	return (free_for_exit(a_stack, b_stack, TRUE));
 }
 
 int	find_and_operate(t_stack *a_stack, t_stack *b_stack, char *line)
@@ -82,25 +77,11 @@ int	error_exit_checker(t_stack *a_stack, t_stack *b_stack, char *line)
 	free_stack(b_stack);
 	if (line)
 		free (line);
-	ft_printf("Error\n");
-	return (1);
-}
-
-void	check_stack_idx(t_stack *stack)
-{
-	t_dll	*node;
-
-	ft_printf("==========\n");
-	node = stack->head;
-	while (node)
-	{
-		ft_printf("%d\n", node->idx);
-		node = node->next;
-	}
-	ft_printf("==========\n");
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	return (EXIT_FAILURE);
 }
 
 void	check_leak(void)
 {
-	system("leaks checker");
+	system("leaks --quiet checker");
 }
