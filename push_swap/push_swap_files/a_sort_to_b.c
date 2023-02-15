@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:15:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 15:43:37 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/16 04:46:38 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	a_sort_to_b(t_stack *a_stack, t_stack *b_stack)
 
 	num = 0;
 	chunk = init_chunck(a_stack->size);
-	while (a_stack->size > 0)
+	while (a_stack->size)
 	{
 		dir = decide_direction(a_stack, num + chunk);
 		while (a_stack->head->idx > num + chunk)

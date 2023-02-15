@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:59:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 19:47:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/16 04:57:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ static int	is_integer(char *s)
 	if (*s == '+' || *s == '-')
 		s++;
 	while (*s)
-	{
 		if (ft_isdigit(*s++) == FALSE)
 			return (FALSE);
-	}
 	return (TRUE);
 }
 
@@ -80,14 +78,13 @@ static int	push_swap_atoi(const char *str, int *flag)
 	len = 0;
 	sign = 1;
 	if (*str == '+' || *str == '-')
-	{
 		if (*str++ == '-')
 			sign *= -1;
-	}
 	while (*str >= '0' && *str <= '9')
 	{
 		res = res * 10 + (*str++ - '0');
-		if (++len >= 10 && (res < INT_MIN || res > INT_MAX))
+		len++;
+		if (res < INT_MIN || res > INT_MAX)
 			*flag = FALSE;
 	}
 	if (len == 0)

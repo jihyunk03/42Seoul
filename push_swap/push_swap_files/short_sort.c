@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 15:07:14 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 18:21:29 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/16 05:10:26 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	where_is_max(t_stack *stack);
 
 void	short_sort(t_stack *a_stack, t_stack *b_stack)
 {
-	if (check_sort(a_stack, a_stack->size))
-		return ;
 	if (a_stack->size == 2)
 		swap(a_stack, SA);
 	else if (a_stack->size == 3)
