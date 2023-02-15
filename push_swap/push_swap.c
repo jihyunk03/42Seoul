@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 15:11:05 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:25:34 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*a_stack;
 	t_stack	*b_stack;
+	// t_error	errorno;
 
 	// check memory leaks
 	// atexit(check_leak);
@@ -25,23 +26,18 @@ int	main(int ac, char **av)
 	a_stack = stack_init(av);
 	b_stack = new_stack();
 	if (a_stack == NULL || b_stack == NULL)
+		return (free_for_exit(a_stack, b_stack, FALSE));
+	if (check_sort(a_stack, a_stack->size) == FALSE)
 	{
-		ft_putstr_fd("Error\n", STDERR_FILENO);	// ERROR HANDLING
-		free_stack(a_stack);
-		free_stack(b_stack);
-		return (EXIT_FAILURE);
+		if (a_stack->size <= 5)
+			short_sort(a_stack, b_stack);
+		else
+		{
+			a_sort_to_b(a_stack, b_stack);
+			b_sort_to_a(a_stack, b_stack);
+		}
 	}
-	if (check_sort(a_stack, a_stack->size) == TRUE)
-		;
-	else
-	{
-		a_sort_to_b(a_stack, b_stack);
-		b_sort_to_a(a_stack, b_stack);
-	}
-
-	free_stack(a_stack);
-	free_stack(b_stack);
-	return (EXIT_SUCCESS);
+	return (free_for_exit(a_stack, b_stack, TRUE));
 }
 
 // memory leaks
