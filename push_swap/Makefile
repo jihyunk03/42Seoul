@@ -6,36 +6,38 @@ CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 AR		= ar -rcs
 
-SRCS	= push_swap.c \
-		  free_all.c \
-		  stack_init.c \
-		  stack_init_utils.c \
-		  short_sort.c \
-		  op_swap.c \
-		  op_push.c \
-		  op_rotate.c \
-		  op_rv_rotate.c \
-		  check_stack.c \
-		  a_sort_to_b.c \
-		  b_sort_to_a.c
+P_DIR	= ./push_swap_files/
+SRCS	= $(P_DIR)push_swap.c \
+		  $(P_DIR)free_all.c \
+		  $(P_DIR)stack_init.c \
+		  $(P_DIR)stack_init_utils.c \
+		  $(P_DIR)short_sort.c \
+		  $(P_DIR)op_swap.c \
+		  $(P_DIR)op_push.c \
+		  $(P_DIR)op_rotate.c \
+		  $(P_DIR)op_rv_rotate.c \
+		  $(P_DIR)check_stack.c \
+		  $(P_DIR)a_sort_to_b.c \
+		  $(P_DIR)b_sort_to_a.c
 OBJS	= $(SRCS:.c=.o)
-INCD	= push_swap.h \
-		  struct_info.h \
-		  define_enum.h
+INCD	= $(P_DIR)push_swap.h \
+		  $(P_DIR)struct_info.h \
+		  $(P_DIR)define_enum.h
 
-B_SRCS	= checker.c \
-		  free_all.c \
-		  stack_init.c \
-		  stack_init_utils.c \
-		  op_swap.c \
-		  op_push.c \
-		  op_rotate.c \
-		  op_rv_rotate.c \
-		  check_stack.c
+B_DIR	= ./checker_files/
+B_SRCS	= $(B_DIR)checker.c \
+		  $(B_DIR)free_all.c \
+		  $(B_DIR)stack_init.c \
+		  $(B_DIR)stack_init_utils.c \
+		  $(B_DIR)op_swap.c \
+		  $(B_DIR)op_push.c \
+		  $(B_DIR)op_rotate.c \
+		  $(B_DIR)op_rv_rotate.c \
+		  $(B_DIR)check_stack.c
 B_OBJS	= $(B_SRCS:.c=.o)
-B_INCD	= checker.h \
-		  struct_info.h \
-		  define_enum.h
+B_INCD	= $(B_DIR)checker.h \
+		  $(B_DIR)struct_info.h \
+		  $(B_DIR)define_enum.h
 
 LIB		= my_libft/lib_jihykim2.a
 

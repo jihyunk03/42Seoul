@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 19:49:17 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:10:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	main(int ac, char **av)
 	t_stack	*a_stack;
 	t_stack	*b_stack;
 
-	// check memory leaks
-	// atexit(check_leak);
 	if (ac < 2)
 		return (0);
 	a_stack = stack_init(av);

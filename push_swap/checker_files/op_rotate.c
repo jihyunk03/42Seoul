@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 02:50:07 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:06:46 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 static void	do_rotate(t_stack *stack);
 

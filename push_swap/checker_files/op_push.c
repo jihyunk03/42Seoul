@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:23:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 02:52:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:06:42 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 static void	do_push(t_stack *from, t_stack *to);
 static void	move_to_stack(t_stack *stack, t_dll *lst);

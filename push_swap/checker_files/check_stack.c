@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:13:56 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/13 16:08:29 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:06:20 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 int	check_sort(t_stack *stack, int size)
 {

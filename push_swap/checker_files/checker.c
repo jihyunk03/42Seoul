@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 17:18:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 19:41:48 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:09:36 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	main(int ac, char **av)
 	t_stack	*b_stack;
 	char	*line;
 
-	// check memory leaks
-	atexit(check_leak);
 	if (ac < 2)
 		return (0);
 	a_stack = stack_init(av);
@@ -79,9 +77,4 @@ int	error_exit_checker(t_stack *a_stack, t_stack *b_stack, char *line)
 		free (line);
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	return (EXIT_FAILURE);
-}
-
-void	check_leak(void)
-{
-	system("leaks --quiet checker");
 }

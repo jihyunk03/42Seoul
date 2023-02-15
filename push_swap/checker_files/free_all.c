@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 20:00:38 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/15 19:43:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:06:38 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 int	free_for_exit(t_stack *a_stack, t_stack *b_stack, int errorno)
 {
