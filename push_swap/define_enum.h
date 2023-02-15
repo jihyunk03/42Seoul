@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:22:21 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/14 12:17:27 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:22:24 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,5 @@
 # define RRB "rrb\n"
 # define RRR "rrr\n"
 # define NOPRINT NULL
-
-typedef enum s_error
-{
-	NOERROR = 0,
-	NoInt,
-	Overflow,
-	Duplicated,
-	A_alloc,
-	B_alloc
-}	t_error;
 
 #endif
