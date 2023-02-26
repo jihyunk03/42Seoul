@@ -6,13 +6,16 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/23 15:52:43 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:44:37 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-
+typedef struct s_args
+{
+	int	i;
+}	t_args;
 
 #endif
