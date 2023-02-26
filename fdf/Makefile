@@ -7,8 +7,7 @@ AR		= ar -rcs
 
 SRCS	= $(addprefix ./fdf_files/,
 		  fdf.c \
-		  map_parse.c \
-		  )
+		  map_parse.c)
 OBJS	= $(SRCS:.c=.o)
 
 LIB		= my_libft/lib_jihykim2.a
@@ -23,7 +22,7 @@ $(MLX)	:
 	@$(MAKE) -C $(dir $(MLX))
 
 $(NAME)	: $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 	@echo $(GREEN) "⚡︎	[ fdf ]		Ready to use fdf" $(RESET)
 
 %.o		: %.c
