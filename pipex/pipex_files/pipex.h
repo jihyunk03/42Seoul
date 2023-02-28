@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/27 17:07:47 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/03/01 03:42:00 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 
 typedef struct s_args
 {
-	int	i;
+	int		high;
+	int		length;
+	char	**arr;
 }	t_args;
 
 #endif
