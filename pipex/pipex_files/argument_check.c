@@ -6,8 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 03:47:22 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/03/01 03:47:32 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:34:29 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	argument_check(char **av)
+{
+
+}

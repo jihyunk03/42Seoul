@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/03/01 03:42:00 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:35:12 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "../my_libft/ft_printf.h"
 # include "../my_libft/get_next_line.h"
 # include <fcntl.h>
+
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_args
 {
