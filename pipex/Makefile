@@ -19,7 +19,7 @@ $(LIB)	:
 
 $(NAME)	: $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
-	@echo $(GREEN) "⚡︎	[ pipex ]		Ready to use fdf" $(RESET)
+	@echo $(GREEN) "⚡︎	[ pipex ]	Ready to use fdf" $(RESET)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -28,13 +28,13 @@ clean	:
 	@$(MAKE) -C $(dir $(LIB)) clean
 	@echo $(YELLOW) "✭	[ my_libft ]	Removed Object files" $(RESET)
 	@$(RM) $(OBJS)
-	@echo $(GREEN) "⚡︎	[ pipex ]		Removed Object files" $(RESET)
+	@echo $(GREEN) "⚡︎	[ pipex ]	Removed Object files" $(RESET)
 
 fclean	: clean
 	@$(MAKE) -C $(dir $(LIB)) fclean
 	@echo $(YELLOW) "✭	[ my_libft ]	Removed lib_jihykim2.a" $(RESET)
 	@$(RM) $(NAME)
-	@echo $(GREEN) "⚡︎	[ pipex ]		Removed fdf" $(RESET)
+	@echo $(GREEN) "⚡︎	[ pipex ]	Removed fdf" $(RESET)
 
 re		:
 	@$(MAKE) fclean
