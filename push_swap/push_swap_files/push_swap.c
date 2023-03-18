@@ -6,12 +6,14 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:23:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/16 04:46:29 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:29:34 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
+void	check_leaks(void);
 
 int	main(int ac, char **av)
 {
