@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 20:32:57 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/05/16 21:09:03 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:06:53 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while (++i < ac)
 	{
 		mode = F_OK;
 		if (access(av[i], mode) != 0)
@@ -33,7 +33,6 @@ int	main(int ac, char **av)
 			printf("Access: %s: Permission denied\n", av[i]);
 		else
 			printf("Access: %s: OK\n\n", av[i]);
-		i++;
 	}
 	return (0);
 }

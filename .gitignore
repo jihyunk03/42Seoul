@@ -1,7 +1,6 @@
 # folders
 .DS_Store
 .vscode
-sample_for_redirections
 
 # compile results(default value)
 a.out
@@ -15,10 +14,15 @@ a.out
 *.swp
 
 
-# only for push_swap(test)
+##	only for push_swap(test)
 push_swap_visualizer/
 imgui.ini
 
 push_swap_tester_leaks/
 push_swap_tester/
 push_swap_run_args.log
+
+##	only for pipex(test)
+sample_for_redirections
+chmod000.txt
+chmod000
