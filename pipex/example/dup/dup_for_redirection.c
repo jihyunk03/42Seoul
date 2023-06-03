@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 20:34:09 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/03 18:06:25 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:17:11 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(void)
 	printf("=====================================\n\n");
 
 // picture 3
-	// STDERR_FILENO에 대한 fd를 setfd에 대한 fd가 되도록 복제
+	// STDERR_FILENO에 대한 fd를setfd에 대한 fd가 되도록 복제
 	ret = dup2(STDERR_FILENO, setfd);
 
 	// ret에 대한 출력은 error로 출력!
