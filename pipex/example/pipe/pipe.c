@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 21:44:43 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/09 15:34:41 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:55:58 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	parent_proc(int pipe[2], pid_t pid)
 	fd = open("write.txt", O_WRONLY);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
+	printf("\t\t{open->fd: %d}\n", fd);
 	write_fd = dup2(fd, STDOUT_FILENO);
 	close(fd);
 	if (write_fd == -1)
