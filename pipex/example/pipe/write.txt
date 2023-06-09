@@ -1,0 +1,12 @@
+[Parent]: Eventually I'll read STDIN(pipe) and write to STDOUT(file)
+[Parent]: This is parent_command
+		{pipe[P_WRITE]: 4, write_fd: 1, STDOUT: 1}
+[Child]: I'm going to connect STDIN to fd from a file
+		{fd: 3, read_fd: 0, STDIN: 0}
+[Child]: Eventually I'll read from STDIN(file) and write to STDOUT(pipe)
+[Child]: This is child_command
+=====read.txt=====
+this is read file
+=======END========
+[Child]: END
+[Parent]: END
