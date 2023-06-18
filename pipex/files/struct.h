@@ -6,18 +6,25 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 21:00:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/02 21:03:58 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/07 21:47:29 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef struct s_args
+# define P_READ		0;
+# define P_WRITE	1;
+
+typedef struct s_pipe
 {
-	int		high;
-	int		length;
+	int		idx;
+	int		cmd;
+	int		prev;
+	int		curr;
+	int		fd[2];
 	char	**arr;
-}	t_args;
+	char	**env;
+}	t_pipe;
 
 #endif
