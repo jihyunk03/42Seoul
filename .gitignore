@@ -23,6 +23,5 @@ push_swap_tester/
 push_swap_run_args.log
 
 ##	only for pipex(test)
-sample_for_redirections
 chmod000.txt
 chmod000
