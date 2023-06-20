@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 15:52:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 07:12:52 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/06/21 04:53:02 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/06/21 05:04:23 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	main(int ac, char **av, char **env)
+int	error_exit(char *s, int true)
 {
-	t_pipex	*pipex;
-	int		status;
-
-	if (ac < 5)
+	if (true)
 	{
-		ft_putstr_fd("argc error: more arguments are needed\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
+		perror(s);
+		return (errno);
 	}
-	pipex = init_pipex(ac, av, env);
-	if (pipex == NULL)
-		return (EXIT_FAILURE);
-	return (0);
+	ft_putchar_fd(s, STDERR_FILENO);
+	return (EXIT_FAILURE);
 }

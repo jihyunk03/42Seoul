@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/19 17:45:45 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/21 07:13:26 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,15 @@
 # include <fcntl.h>		// macro for functions(open, unlink)
 # include <stdio.h>		// perror
 # include <string.h>	// strerror
+# include <errno.h>
 
 /* functions */
-t_pipe	*init_pipe(int ac, char **av, char **env);
+/* init_pipex */
+t_pipex	*init_pipex(int ac, char **av, char **env);
+
+
+
+/* error */
+int		error_exit(char *s, int true);
 
 #endif
