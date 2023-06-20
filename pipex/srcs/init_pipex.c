@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipe.c                                        :+:      :+:    :+:   */
+/*   init_pipex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:06:20 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 07:12:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/21 07:31:59 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static int	_is_here_doc(char *s);
+static int	_is_here_doc(char *infile);
 static void	_get_files_fds(t_pipex *p, int ac, char **av);
 static void	_get_here_doc_fd(t_pipex *p, char *limiter);
 static void	_get_envp_arr(t_pipex *p, char **env);
@@ -30,9 +30,9 @@ t_pipex	*init_pipex(int ac, char **av, char **env)
 	return (new_pipex);
 }
 
-static int	_is_here_doc(char *s)
+static int	_is_here_doc(char *infile)
 {
-	if (ft_strncmp(s, "here_doc", ft_strlen(s)) == 0)
+	if (ft_strlen(infile) == 8 && ft_strncmp(infile, "here_doc", 8) == 0)
 		return (TRUE);
 	return (FALSE);
 }
