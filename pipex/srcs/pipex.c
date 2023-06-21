@@ -6,13 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 21:53:22 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/21 23:18:22 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	process_cmds(t_pipex *p, int ac, char **av);
+static void	_multi_process_with_pipe(t_pipex *p, int ac, char **av);
 
 int	main(int ac, char **av, char **env)
 {
@@ -25,13 +25,11 @@ int	main(int ac, char **av, char **env)
 		return (EXIT_FAILURE);
 	}
 	pipex = init_pipex(ac, av, env);
-	// if (pipex == NULL)
-	// 	return (EXIT_FAILURE);
-	process_cmds(pipex, ac, av);
+	multi_process_with_pipe(pipex, ac, av);
 	return (0);
 }
 
-void	process_cmds(t_pipex *p, int ac, char **av)
+static void	_multi_process_with_pipe(t_pipex *p, int ac, char **av)
 {
 	int	i;
 	int	pid;
@@ -42,7 +40,7 @@ void	process_cmds(t_pipex *p, int ac, char **av)
 	while (i < ac - 1)
 	{
 		if (i < ac - 2 && pipe(p->pipe) == -1)
-			exit(EXIT_FAILURE);		// 다른 방법으로 해야하나..?(마지막에는 NO pipe)
+			exit(EXIT_FAILURE);		// message: pipe error
 		pid = fork();
 		if (pid == 0)
 			child_process(p, i, ac, av[i]);
