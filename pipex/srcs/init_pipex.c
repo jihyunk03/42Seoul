@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:06:20 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 19:50:24 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/21 23:11:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	_is_here_doc(char *infile);
 static void	_get_files_fds(t_pipex *p, int ac, char **av);
 static void	_get_here_doc_fd(t_pipex *p, char *limiter);
-// static void	_get_envp_arr(t_pipex *p, char **env);
+static void	_get_path_arr(t_pipex *p, char **env);
 
 t_pipex	*init_pipex(int ac, char **av, char **env)
 {
@@ -26,7 +26,7 @@ t_pipex	*init_pipex(int ac, char **av, char **env)
 		exit (EXIT_FAILURE);	// error(?): memory allocate error
 	new_pipex->here_doc = is_here_doc(av[1]);
 	_get_file_fds(new_pipex, ac, av);
-	// _get_envp_arr(new_pipex, env);
+	_get_path_arr(new_pipex, env);
 	new_pipex->envp = env;
 	return (new_pipex);
 }
@@ -76,8 +76,8 @@ static void	_get_here_doc_fd(t_pipex *p, char *limiter)
 	free(line);		// 함수 안에서 open한 fd는 나중에 다른 함수에서 close 해도 되는가?
 }
 
-/* // path가 NULL인 경우, 추가적으로 처리해줘야 함
-static void	_get_envp_arr(t_pipex *p, char **env)
+// path가 NULL인 경우, 추가적으로 처리해줘야 함
+static void	_get_path_arr(t_pipex *p, char **env)
 {
 	int	i;
 
@@ -94,4 +94,3 @@ static void	_get_envp_arr(t_pipex *p, char **env)
 	if (p->envp == NULL)
 		exit (EXIT_FAILURE);		// message: ft_split error
 }
-*/
