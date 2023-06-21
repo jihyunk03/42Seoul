@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:35:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 23:18:59 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/21 23:24:31 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	parent_process(t_pipex *p, int pid)
 
 void	child_process(t_pipex *p, int idx, int ac, char *cmd)
 {
-	p->path = split_command(cmd);
+	p->path = split_command(p, cmd);
+	// 만약 여기서 access 처리에서 에러가 난다면 pipe는 어떻게 되는가? 이도 따로 처리해줘야 할듯?
 	if (idx == 2 || (p->here_doc && idx == 3))
 		_begin_child_process(p);
 	else if (idx < ac - 2)

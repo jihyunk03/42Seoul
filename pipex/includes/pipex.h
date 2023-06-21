@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 21:52:54 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/21 23:24:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@
 /* init_pipex */
 t_pipex	*init_pipex(int ac, char **av, char **env);
 
+/* multi_process */
+void	parent_process(t_pipex *p, int pid);
+void	child_process(t_pipex *p, int idx, int ac, char *cmd);
+
+
 /* split & exec command */
-char	**split_command(char *cmd);
+char	**split_command(t_pipex *p, char *cmd);
 void	exec_command(t_pipex *p, char *cmd);
 
 
