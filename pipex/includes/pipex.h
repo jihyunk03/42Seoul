@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 07:13:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:52:54 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 /* init_pipex */
 t_pipex	*init_pipex(int ac, char **av, char **env);
 
+/* split & exec command */
+char	**split_command(char *cmd);
+void	exec_command(t_pipex *p, char *cmd);
 
 
 /* error */

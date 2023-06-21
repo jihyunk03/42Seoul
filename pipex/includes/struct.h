@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 21:00:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 18:22:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:42:26 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@
 typedef struct s_pipex
 {
 	int		here_doc;	// flag for here_doc
-	int		in_fd;			// infile fd
-	int		out_fd;			// outfile fd
-	// int		prev_fd;		// previous fd for pipe(in): 이전 파이프에서 읽은 값에 대한 출력 fd값 임시 저장
-	// int		curr_fd;		// ???????????????   current fd for pipe(out)?
-	// char	**args;		// array of commands
+	int		in_fd;		// infile fd
+	int		out_fd;		// outfile fd
+	int		pipe[2];	// for parent-child process interacting
 	char	**envp;		// point of array(res of split PATH) >> 인자 그대로임
+	char	**path;		// for exec-function's argument: for checking accessible
 }	t_pipex;
 
 #endif
