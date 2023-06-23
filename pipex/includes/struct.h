@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 21:00:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 21:42:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:33:45 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 /* defines for macro */
 # define TRUE		1
 # define FALSE		0
+
 # define P_READ		0
 # define P_WRITE	1
+
 
 /* typedef */
 typedef struct s_pipex
@@ -28,6 +30,14 @@ typedef struct s_pipex
 	int		pipe[2];	// for parent-child process interacting
 	char	**envp;		// point of array(res of split PATH) >> 인자 그대로임
 	char	**path;		// for exec-function's argument: for checking accessible
-}	t_pipex;
+}	t_pipe;
+
+typedef enum s_quote
+{
+	NO_QUOTE,
+	S_QUOTE,
+	D_QUOTE
+};
+
 
 #endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_command.c                                     :+:      :+:    :+:   */
+/*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:07:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 21:52:56 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:34:11 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	exec_command(t_pipex *p, char *cmd)
+void	exec_command(t_pipe *p, char *cmd)
 {
 
 }

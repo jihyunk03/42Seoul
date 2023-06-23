@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipex.c                                       :+:      :+:    :+:   */
+/*   init_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,15 +13,15 @@
 #include "../includes/pipex.h"
 
 static int	_is_here_doc(char *infile);
-static void	_get_files_fds(t_pipex *p, int ac, char **av);
-static void	_get_here_doc_fd(t_pipex *p, char *limiter);
-static void	_get_path_arr(t_pipex *p, char **env);
+static void	_get_files_fds(t_pipe *p, int ac, char **av);
+static void	_get_here_doc_fd(t_pipe *p, char *limiter);
+static void	_get_path_arr(t_pipe *p, char **env);
 
-t_pipex	*init_pipex(int ac, char **av, char **env)
+t_pipe	*init_pipe(int ac, char **av, char **env)
 {
-	t_pipex	*new_pipex;
+	t_pipe	*new_pipex;
 
-	new_pipex = malloc(sizeof(t_pipex));
+	new_pipex = malloc(sizeof(t_pipe));
 	if (new_pipex == NULL)
 		exit (EXIT_FAILURE);	// error(?): memory allocate error
 	new_pipex->here_doc = is_here_doc(av[1]);
@@ -38,7 +38,7 @@ static int	_is_here_doc(char *infile)
 	return (FALSE);
 }
 
-static void	_get_files_fds(t_pipex *p, int ac, char **av)
+static void	_get_files_fds(t_pipe *p, int ac, char **av)
 {
 	if (p->here_doc == TRUE)
 	{
@@ -53,7 +53,7 @@ static void	_get_files_fds(t_pipex *p, int ac, char **av)
 	// error check: open files....? -> open에서 오류가 나더라도 명령들은 정상 작동함...
 }
 
-static void	_get_here_doc_fd(t_pipex *p, char *limiter)
+static void	_get_here_doc_fd(t_pipe *p, char *limiter)
 {
 	char	*line;
 
@@ -73,11 +73,13 @@ static void	_get_here_doc_fd(t_pipex *p, char *limiter)
 		ft_putstr_fd(line, p->in_fd);
 		free(line);
 	}
-	free(line);		// 함수 안에서 open한 fd는 나중에 다른 함수에서 close 해도 되는가?
+	free(line);
+	// 함수 안에서 open한 fd는 나중에 다른 함수에서 close 해도 되는가?
+	// >> ㅇㅇ 가능함, 그리고 여기서 open 한 file은 끝낼 때 unlink 해줘야 함
 }
 
 // path가 NULL인 경우, 추가적으로 처리해줘야 함
-static void	_get_path_arr(t_pipex *p, char **env)
+static void	_get_path_arr(t_pipe *p, char **env)
 {
 	int	i;
 
