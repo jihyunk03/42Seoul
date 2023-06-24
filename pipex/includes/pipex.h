@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/23 17:32:44 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:02:43 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	child_process(t_pipe *p, int idx, int ac, char *cmd);
 
 /* split & exec command */
 char	**split_command(t_pipe *p, char *cmd);
-void	exec_command(t_pipe *p, char *cmd);
+void	exec_command(t_pipe *p, char **cmd_arr);
 
 
 /* error */

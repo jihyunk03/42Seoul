@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:35:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/23 17:33:58 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:02:41 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parent_process(t_pipe *p, int pid)
 void	child_process(t_pipe *p, int idx, int ac, char *cmd)
 {
 	char	**cmd_arr;
-	char	*cmd_path;
+	// char	*cmd_path;
 
 	cmd_arr = split_command(p, cmd);
 	// access 권한 검사 이유: 에러가 cmd가 없어서인지 확인용도..? >> 근데 이건 exec에서 다 걸러줌
@@ -39,7 +39,7 @@ void	child_process(t_pipe *p, int idx, int ac, char *cmd)
 		_mid_child_process(p);
 	else
 		_end_child_process(p);	// no pipe
-	exec_command(p, cmd);	// 인자로 가져간 것들은 모두 free 해줘야 함
+	exec_command(p, cmd_arr);	// 인자로 가져간 것들은 모두 free 해줘야 함
 }
 
 static void	_begin_child_process(t_pipe *p)

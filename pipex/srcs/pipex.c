@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/23 17:34:20 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:24:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av, char **env)
 		return (EXIT_FAILURE);
 	}
 	pipex = init_pipe(ac, av, env);
-	multi_process_with_pipe(pipex, ac, av);
+	_multi_process_with_pipe(pipex, ac, av);
 	return (0);
 }
 
