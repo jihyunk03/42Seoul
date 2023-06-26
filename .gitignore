@@ -25,3 +25,6 @@ push_swap_run_args.log
 ##	only for pipex(test)
 chmod000.txt
 chmod000
+split_libft.c
+
+
