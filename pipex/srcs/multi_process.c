@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:35:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/24 15:02:41 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/26 12:59:58 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ void	child_process(t_pipe *p, int idx, int ac, char *cmd)
 	// char	*cmd_path;
 
 	cmd_arr = split_command(p, cmd);
-	// access 권한 검사 이유: 에러가 cmd가 없어서인지 확인용도..? >> 근데 이건 exec에서 다 걸러줌
-	// check_command(p, cmd);
-	// 만약 여기서 access 처리에서 에러가 난다면 pipe는 어떻게 되는가? 이도 따로 처리해줘야 할듯?
 	if (idx == 2 || (p->here_doc && idx == 3))
 		_begin_child_process(p);
 	else if (idx < ac - 2)

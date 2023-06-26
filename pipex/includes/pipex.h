@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/24 15:02:43 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/26 12:59:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void	exec_command(t_pipe *p, char **cmd_arr);
 
 /* error */
 int		error_exit(char *s, int true);
+int		error_no_command(char *no_path);
 
 #endif
