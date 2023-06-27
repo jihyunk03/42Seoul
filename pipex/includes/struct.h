@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 21:00:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/23 17:33:45 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:55:00 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef enum s_quote
 	NO_QUOTE,
 	S_QUOTE,
 	D_QUOTE
-};
+}	t_quote;
 
 
 #endif
