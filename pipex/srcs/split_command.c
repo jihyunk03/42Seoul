@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:43:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 19:06:56 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:46:28 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	_cmd_arr_len(char *cmd);
 static void	_is_in_string(char **cmd);
 static int	_is_quote(char q, char *tmp_quote);
 static int	_string_length(char **cmd, char *quote);
-static char	*_make_string(char **cmd);
-static char *_join_string(char **cmd, char *string);
+static char	*_make_string(char **cmd, char *string, int space_end);
+// static char *_join_string(char **cmd, char *string, char *_add);
 
 char	**split_command(t_pipe *p, char *cmd)
 {
@@ -34,10 +34,7 @@ char	**split_command(t_pipe *p, char *cmd)
 	{
 		if (*cmd != ' ')
 		{	// 난 그냥 두가지로 나눠서 strjoin 할래ㅡㅡ 짜증나
-			if (space_end == TRUE)
-				cmd_arr[i] = _make_string(&cmd);
-			else
-				cmd_arr[i] = _join_string(&cmd, cmd_arr[i]);
+			cmd_arr[i] = _make_string(&cmd, cmd_arr[i], space_end);
 			if (*cmd != ' ')
 				space_end = FALSE;
 			else	// string이 끝났으므로 cmd_arr의 index를 증가
@@ -110,6 +107,7 @@ static int	_string_length(char **cmd, char *quote)	// quote를 제외한 string�
 	int		len;
 
 	len = 0;
+	*quote = 0;
 	if (_is_quote(**cmd, quote) == TRUE)
 	{
 		while (*(++(*cmd)) != *quote && ++len)
@@ -127,36 +125,40 @@ static int	_string_length(char **cmd, char *quote)	// quote를 제외한 string�
 	return (len);
 }
 
-static char	*_make_string(char **cmd)
+static char	*_make_string(char **cmd, char *string, int space_end)
 {
-	char	*string;
+	char	*new_string;
 	char	*copy_address;
 	char	quote;
 	int		len;
+	char	*tmp;
 
 	copy_address = *cmd;
-	quote = 0;
 	len = _string_length(cmd, &quote);
-	string = malloc(sizeof(char) * (len + 1));
-	if (string == NULL)
+	new_string = malloc(sizeof(char) * (len + 1));
+	if (new_string == NULL)
 		exit (EXIT_FAILURE);
 	if (quote != 0)
 		copy_address++;
-	ft_strlcpy(string, copy_address, len + 1);
-	return (string);
-
-}
-
-static char *_join_string(char **cmd, char *string)
-{
-	char	*new_string;
-	char	*tmp;
-
-	tmp = _make_string(cmd);
-	new_string = ft_strjoin(string, tmp);
-	free (string);
+	ft_strlcpy(new_string, copy_address, len + 1);
+	if (space_end == TRUE)
+		return (new_string);
+	tmp = new_string;
+	new_string = ft_strjoin(string, new_string);
 	free (tmp);
 	if (new_string == NULL)
 		exit (EXIT_FAILURE);
 	return (new_string);
 }
+/*
+static char *_join_string(char **cmd, char *string, char *_add)
+{
+	char	*new_string;
+
+	new_string = ft_strjoin(string, _add);
+	free (string);
+	if (new_string == NULL)
+		exit (EXIT_FAILURE);
+	return (new_string);
+}
+*/
