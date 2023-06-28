@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:43:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 20:46:28 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:44:15 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	_is_in_string(char **cmd);
 static int	_is_quote(char q, char *tmp_quote);
 static int	_string_length(char **cmd, char *quote);
 static char	*_make_string(char **cmd, char *string, int space_end);
-// static char *_join_string(char **cmd, char *string, char *_add);
+static char *_join_string(char *string, char *_add);
 
 char	**split_command(t_pipe *p, char *cmd)
 {
@@ -131,7 +131,6 @@ static char	*_make_string(char **cmd, char *string, int space_end)
 	char	*copy_address;
 	char	quote;
 	int		len;
-	char	*tmp;
 
 	copy_address = *cmd;
 	len = _string_length(cmd, &quote);
@@ -143,22 +142,17 @@ static char	*_make_string(char **cmd, char *string, int space_end)
 	ft_strlcpy(new_string, copy_address, len + 1);
 	if (space_end == TRUE)
 		return (new_string);
-	tmp = new_string;
-	new_string = ft_strjoin(string, new_string);
-	free (tmp);
-	if (new_string == NULL)
-		exit (EXIT_FAILURE);
-	return (new_string);
+	return (_join_string(string, new_string));
 }
-/*
-static char *_join_string(char **cmd, char *string, char *_add)
+
+static char *_join_string(char *string, char *_add)
 {
 	char	*new_string;
 
 	new_string = ft_strjoin(string, _add);
 	free (string);
+	free (_add);
 	if (new_string == NULL)
 		exit (EXIT_FAILURE);
 	return (new_string);
 }
-*/
