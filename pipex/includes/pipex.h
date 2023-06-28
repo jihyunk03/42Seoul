@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/26 12:59:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:37:14 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,23 @@ t_pipe	*init_pipe(int ac, char **av, char **env);
 
 /* multi_process */
 void	parent_process(t_pipe *p, int pid);
-void	child_process(t_pipe *p, int idx, int ac, char *cmd);
+void	child_process(t_pipe *p, int idx, int ac);
 
 
-/* split & exec command */
-char	**split_command(t_pipe *p, char *cmd);
-void	exec_command(t_pipe *p, char **cmd_arr);
+/* split command */
+void	split_command(t_pipe *p, char *cmd);
+int		cmd_args_len(char *cmd);
+int		is_quote(char q, char *tmp_quote);
+
+/* execute command */
+void	exec_command(t_pipe *p);
 
 
 /* error */
 int		error_exit(char *s, int true);
-int		error_no_command(char *no_path);
+int		error_no_command(t_pipe *p);
+
+/* free functions */
+void	free_arr_args(char **cmd_args);
 
 #endif

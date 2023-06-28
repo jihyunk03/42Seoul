@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 21:00:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/27 20:55:00 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:47:00 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,7 @@ typedef struct s_pipex
 	int		pipe[2];	// for parent-child process interacting
 	char	**envp;		// point of array(res of split PATH) >> 인자 그대로임
 	char	**path;		// for exec-function's argument: for checking accessible
+	char	**cmd_args;
 }	t_pipe;
-
-typedef enum s_quote
-{
-	NO_QUOTE,
-	S_QUOTE,
-	D_QUOTE
-}	t_quote;
-
 
 #endif
