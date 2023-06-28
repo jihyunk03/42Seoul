@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:43:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 17:10:33 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:43:00 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ static int	_cmd_arr_len(char *cmd);
 static void	_is_in_string(char **cmd);
 static int	_is_quote(char q, char *tmp_quote);
 static int	_string_length(char **cmd, char *quote);
+static char	*_make_string(char **cmd);
+static char *_join_string(char **cmd, char *string);
 
 char	**split_command(t_pipe *p, char *cmd)
 {
 	char	**cmd_arr;
 	int		space_end;
-	int		str_len;
 	int		i;
 
 	cmd_arr = malloc(sizeof(char *) * (_cmd_arr_len(cmd) + 1));
@@ -34,22 +35,16 @@ char	**split_command(t_pipe *p, char *cmd)
 		if (*cmd != ' ')
 		{	// 난 그냥 두가지로 나눠서 strjoin 할래ㅡㅡ 짜증나
 			if (space_end == TRUE)
-				str_len = _string_length(&cmd);
+				cmd_arr[i] = _make_string(&cmd);
 			else
-				str_len += _string_length(&cmd);
-			if (*cmd != ' ')	// 해당 경우에만 i++ (string이 끝났기 때문)
+				cmd_arr[i] = _join_string(&cmd, cmd_arr[i]);
+			if (*cmd != ' ')
 				space_end = FALSE;
-			else
-			{
-				cmd_arr[i] = malloc(sizeof(char) * (str_len + 1));
-				ft_strlcpy(cmd_arr, cmd - str_len, str_len + 1);
-				// 해당 quote 값을 strim으로 뺀다^^
-				// 응 아니 난 strjoin으로 할래~
-			}
+			else	// string이 끝났으므로 cmd_arr의 index를 증가
+				i++;
 			continue ;
 		}
 		cmd++;
-		str_len = 0;
 		space_end = TRUE;
 	}
 	cmd_arr[i] = NULL;
@@ -112,14 +107,13 @@ static int	_string_length(char **cmd, char *quote)	// quote를 제외한 string�
 {
 	int		len;
 
-	*quote = 0;
 	len = 0;
 	if (_is_quote(**cmd, quote) == TRUE)
 	{
-		(*cmd)++;
-		while (*(*cmd)++ != *quote && ++len)
+		while (*(++(*cmd)) != *quote && ++len)
 			if (**cmd == 0)
 				exit (EXIT_FAILURE);
+		(*cmd)++;
 	}
 	else
 		while (**cmd && _is_quote(**cmd, quote) == FALSE && **cmd != ' ' \
@@ -131,32 +125,33 @@ static int	_string_length(char **cmd, char *quote)	// quote를 제외한 string�
 static char	*_make_string(char **cmd)
 {
 	char	*string;
+	char	*copy_address;
 	char	quote;
+	int		len;
 
-	string = malloc(sizeof(char) * (_string_length(cmd, &quote) + 1));
+	copy_address = *cmd;
+	quote = 0;
+	len = _string_length(cmd, &quote);
+	string = malloc(sizeof(char) * (len + 1));
 	if (string == NULL)
 		exit (EXIT_FAILURE);
+	if (quote)
+		copy_address++;
+	ft_strlcpy(string, copy_address, len + 1);
+	return (string);
 
 }
 
 static char *_join_string(char **cmd, char *string)
 {
+	char	*new_string;
+	char	*tmp;
 
-}
-
-
-
-// 확인용 main문
-#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-	if (ac == 1)
-		return (EXIT_FAILURE);
-	printf("[%s]: %d\n", av[ac - 1], _cmd_arr_len(av[ac - 1]));
-
-	char *s = "hello";
-	char **arr = &s;
-	while (*(++(*arr)))
-		printf("%c", **arr);
+	tmp = _make_string(cmd);
+	new_string = ft_strjoin(string, tmp);
+	free (string);
+	free (tmp);
+	if (new_string == NULL)
+		exit (EXIT_FAILURE);
+	return (new_string);
 }
