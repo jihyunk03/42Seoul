@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:43:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 17:43:00 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:06:56 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	**split_command(t_pipe *p, char *cmd)
 		cmd++;
 		space_end = TRUE;
 	}
+	if (space_end == FALSE)
+		i++;
 	cmd_arr[i] = NULL;
 	return (cmd_arr);
 }
@@ -116,9 +118,12 @@ static int	_string_length(char **cmd, char *quote)	// quote를 제외한 string�
 		(*cmd)++;
 	}
 	else
+	{
 		while (**cmd && _is_quote(**cmd, quote) == FALSE && **cmd != ' ' \
 				&& ++len)
 			(*cmd)++;
+		*quote = 0;
+	}
 	return (len);
 }
 
@@ -135,7 +140,7 @@ static char	*_make_string(char **cmd)
 	string = malloc(sizeof(char) * (len + 1));
 	if (string == NULL)
 		exit (EXIT_FAILURE);
-	if (quote)
+	if (quote != 0)
 		copy_address++;
 	ft_strlcpy(string, copy_address, len + 1);
 	return (string);
