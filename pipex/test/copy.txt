@@ -106,3 +106,23 @@ static int	_string_length(char **cmd)
 	}
 	exit (127);
 */
+
+/* ************************************************************************** */
+
+[[ init_pipe.c: test path_array of envp ]]
+/*
+void	print_path(char **path)
+{
+	int	i;
+
+	i = 0;
+	while (TRUE)
+	{
+		printf("path[%d]:%s\n", i, path[i]);
+		if (path[i] == NULL)
+			break ;
+		i++;
+	}
+	printf("======[path-end]======\n");
+}
+*/
