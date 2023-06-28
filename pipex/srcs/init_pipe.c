@@ -13,7 +13,7 @@
 #include "../includes/pipex.h"
 
 static int	_is_here_doc(char *infile);
-static void	_get_files_fds(t_pipe *p, int ac, char **av);
+static void	_get_file_fds(t_pipe *p, int ac, char **av);
 static void	_get_here_doc_fd(t_pipe *p, char *limiter);
 static void	_get_path_arr(t_pipe *p, char **env);
 
@@ -23,7 +23,7 @@ t_pipe	*init_pipe(int ac, char **av, char **env)
 
 	new_pipex = malloc(sizeof(t_pipe));
 	if (new_pipex == NULL)
-		exit (EXIT_FAILURE);	// error(?): memory allocate error
+		exit (EXIT_FAILURE);
 	new_pipex->here_doc = is_here_doc(av[1]);
 	_get_file_fds(new_pipex, ac, av);
 	_get_path_arr(new_pipex, env);
@@ -38,7 +38,7 @@ static int	_is_here_doc(char *infile)
 	return (FALSE);
 }
 
-static void	_get_files_fds(t_pipe *p, int ac, char **av)
+static void	_get_file_fds(t_pipe *p, int ac, char **av)
 {
 	if (p->here_doc == TRUE)
 	{
@@ -81,18 +81,24 @@ static void	_get_here_doc_fd(t_pipe *p, char *limiter)
 // path가 NULL인 경우, 추가적으로 처리해줘야 함
 static void	_get_path_arr(t_pipe *p, char **env)
 {
-	int	i;
+	char	*env_path;
+	int		i;
 
 	if (env == NULL)
-		exit (EXIT_FAILURE);		// error 아니면 어떻게 처리?
+		exit (EXIT_FAILURE);
 	i = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			break;
+		{
+			env_path = env[i] + 5;
+			break ;
+		}
 		i++;
 	}
-	p->envp = ft_split(env[i], ':');
+	if (env[i] == NULL || *env_path == NULL)
+		exit (EXIT_FAILURE);		// message: no PATH or PATH == NULL
+	p->envp = ft_split(env_path, ':');
 	if (p->envp == NULL)
-		exit (EXIT_FAILURE);		// message: ft_split error
+		exit (EXIT_FAILURE);
 }
