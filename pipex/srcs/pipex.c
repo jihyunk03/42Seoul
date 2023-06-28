@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 07:00:31 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/29 07:30:15 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av, char **env)
 	t_pipe	*pipe;
 	int		status;
 
-	if (ac < 5)
+	if (ac != 5)
 		error_exit(NULL, "usage: the number of args is too small\n");
 	pipe = init_pipe(ac, av, env);
 	status = _multi_process_with_pipe(pipe, ac, av);
