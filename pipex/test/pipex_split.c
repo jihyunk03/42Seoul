@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:43:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 19:06:46 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:40:06 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	_cmd_arr_len(char *cmd);
 static void	_is_in_string(char **cmd);
 static int	_is_quote(char q, char *tmp_quote);
 static int	_string_length(char **cmd, char *quote);
-static char	*_make_string(char **cmd);
-static char *_join_string(char **cmd, char *string);
+static char	*_make_string(char **cmd, char *string, int space_end);
+static char *_join_string(char *string, char *_add);
 
 char	**split_command(char *cmd)
 {
@@ -34,10 +34,7 @@ char	**split_command(char *cmd)
 	{
 		if (*cmd != ' ')
 		{	// 난 그냥 두가지로 나눠서 strjoin 할래ㅡㅡ 짜증나
-			if (space_end == TRUE)
-				cmd_arr[i] = _make_string(&cmd);
-			else
-				cmd_arr[i] = _join_string(&cmd, cmd_arr[i]);
+			cmd_arr[i] = _make_string(&cmd, cmd_arr[i], space_end);
 			if (*cmd != ' ')
 				space_end = FALSE;
 			else	// string이 끝났으므로 cmd_arr의 index를 증가
@@ -110,6 +107,7 @@ static int	_string_length(char **cmd, char *quote)	// quote를 제외한 string�
 	int		len;
 
 	len = 0;
+	*quote = 0;
 	if (_is_quote(**cmd, quote) == TRUE)
 	{
 		while (*(++(*cmd)) != *quote && ++len)
@@ -127,35 +125,33 @@ static int	_string_length(char **cmd, char *quote)	// quote를 제외한 string�
 	return (len);
 }
 
-static char	*_make_string(char **cmd)
+static char	*_make_string(char **cmd, char *string, int space_end)
 {
-	char	*string;
+	char	*new_string;
 	char	*copy_address;
 	char	quote;
 	int		len;
 
 	copy_address = *cmd;
-	quote = 0;
 	len = _string_length(cmd, &quote);
-	string = malloc(sizeof(char) * (len + 1));
-	if (string == NULL)
+	new_string = malloc(sizeof(char) * (len + 1));
+	if (new_string == NULL)
 		exit (EXIT_FAILURE);
 	if (quote != 0)
 		copy_address++;
-	ft_strlcpy(string, copy_address, len + 1);
-	return (string);
-
+	ft_strlcpy(new_string, copy_address, len + 1);
+	if (space_end == TRUE)
+		return (new_string);
+	return (_join_string(string, new_string));
 }
 
-static char *_join_string(char **cmd, char *string)
+static char *_join_string(char *string, char *_add)
 {
 	char	*new_string;
-	char	*tmp;
 
-	tmp = _make_string(cmd);
-	new_string = ft_strjoin(string, tmp);
+	new_string = ft_strjoin(string, _add);
 	free (string);
-	free (tmp);
+	free (_add);
 	if (new_string == NULL)
 		exit (EXIT_FAILURE);
 	return (new_string);
@@ -163,11 +159,20 @@ static char *_join_string(char **cmd, char *string)
 
 
 
+
+
 // 확인용 main문
 #include <stdio.h>
 
+void	check_leak(void)
+{
+	system("leaks --quiet a.out");
+}
+
 int	main(int ac, char **av)
 {
+	atexit(check_leak);
+
 	if (ac == 1)
 	{
 		printf("no args\n\n");
@@ -184,21 +189,18 @@ int	main(int ac, char **av)
 		printf("cmd[%d]: %s\n", i, string_arr[i]);
 */
 	// 다른 버전
-	char	*string = "";
+	char	*string = ft_strdup("");
 	char	*tmp;
-	char	*tmp2;
 	for (int i = 1; i < ac; i++)
 	{
 		tmp = string;
 		string = ft_strjoin(string, av[i]);
-		if (i != 1)
-			free (tmp);
-		tmp2 = string;
-		if (i < ac - 1)
-		{
-			string = ft_strjoin(string, " ");
-			free (tmp2);
-		}
+		free (tmp);
+		if (i == ac - 1)
+			break ;
+		tmp = string;
+		string = ft_strjoin(string, " ");
+		free (tmp);
 	}
 	printf("cmd: %s\n", string);
 
@@ -208,5 +210,12 @@ int	main(int ac, char **av)
 	printf("cmd length: %d\n\n", len);
 	for (int i = 0; i < len + 1; i++)
 		printf("cmd[%d]: %s\n", i, string_arr[i]);
+
+	// free
+	int	idx = 0;
+	free (string);
+	while (string_arr[idx])
+		free (string_arr[idx++]);
+	free (string_arr);
 	return (EXIT_SUCCESS);
 }

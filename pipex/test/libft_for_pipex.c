@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 20:49:05 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 17:51:21 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:57:48 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,17 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	size_t	len;
+	char	*res;
+
+	len = ft_strlen(s1);
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (res == NULL)
+		return (NULL);
+	ft_strlcpy(res, (char *)s1, len + 1);
+	return (res);
 }
