@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:07:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 23:16:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/29 06:18:18 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	exec_command(t_pipe *p)
 		exit (error_no_command(p));
 	if (execve(cmd_path, p->cmd_args, p->envp) == -1)
 		exit (error_execute(p, cmd_path));
-	free (cmd_path);
-	free_arr_args(p->cmd_args);
 }
 
 static char	*_check_command_path(t_pipe *p)
@@ -52,4 +50,3 @@ static char	*_check_command_path(t_pipe *p)
 	}
 	return (NULL);
 }
-// error in ft_strjoin: no way for exit parent process

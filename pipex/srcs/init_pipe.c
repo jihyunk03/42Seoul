@@ -14,8 +14,8 @@
 
 static int	_is_here_doc(char *infile);
 static void	_get_file_fds(t_pipe *p, int ac, char **av);
-static void	_get_here_doc_fd(t_pipe *p, char *limiter);
-static void	_get_path_arr(t_pipe *p, char **env);
+static void	_make_here_doc_file(char *limiter);
+static void	_get_path_arr(t_pipe *p);
 
 t_pipe	*init_pipe(int ac, char **av, char **env)
 {
@@ -24,10 +24,11 @@ t_pipe	*init_pipe(int ac, char **av, char **env)
 	new_pipex = malloc(sizeof(t_pipe));
 	if (new_pipex == NULL)
 		exit (EXIT_FAILURE);
-	new_pipex->here_doc = is_here_doc(av[1]);
+	new_pipex->here_doc = _is_here_doc(av[1]);
 	_get_file_fds(new_pipex, ac, av);
-	_get_path_arr(new_pipex, env);
 	new_pipex->envp = env;
+	_get_path_arr(new_pipex);
+	new_pipex->cmd_args = NULL;
 	return (new_pipex);
 }
 
@@ -42,65 +43,65 @@ static void	_get_file_fds(t_pipe *p, int ac, char **av)
 {
 	if (p->here_doc == TRUE)
 	{
-		_get_here_doc_fd(p, av[2]);
-		p->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		_make_here_doc_file(av[2]);
+		p->in_fd = open("_here_doc.txt", O_RDONLY);
+		p->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 	}
 	else
 	{
 		p->in_fd = open(av[1], O_RDONLY);
-		if (p->in_fd == -1)
-			perror("open(infile)");
-		p->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+		p->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	}
-	if (p->out_fd == -1)
-		perror("open(outfile)");
+	if (p->in_fd == -1 || p->out_fd == -1)
+		perror("open");
 }
 
-static void	_get_here_doc_fd(t_pipe *p, char *limiter)
+static void	_make_here_doc_file(char *limiter)
 {
 	char	*line;
+	int		fd;
 
-	p->in_fd = open("_here_doc.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (p->in_fd == -1)
+	fd = open("_here_doc.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
 		perror("open(here_doc)");
 	limiter = ft_strjoin(limiter, "\n");
 	if (limiter == NULL)
-		exit (EXIT_FAILURE);	// message: strjoin error
+		exit (error_here_doc(NULL));
 	while (TRUE)
 	{
+		ft_printf("heredoc> ");
 		line = get_next_line(STDIN_FILENO);
 		if (line == NULL)
-			exit(EXIT_FAILURE);		// message: get_next_line error
+			exit (error_here_doc(limiter));
 		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
-			break;
-		ft_putstr_fd(line, p->in_fd);
+			break ;
+		ft_putstr_fd(line, fd);
 		free(line);
 	}
 	free(line);
-// unlink!!!!!!!!!!!!!!!
+	close(fd);
 }
 
-// path가 NULL인 경우, 추가적으로 처리해줘야 함
-static void	_get_path_arr(t_pipe *p, char **env)
+static void	_get_path_arr(t_pipe *p)
 {
 	char	*env_path;
 	int		i;
 
-	if (env == NULL)
+	if (p->envp == NULL)
 		exit (EXIT_FAILURE);
 	i = 0;
-	while (env[i])
+	while (p->envp[i])
 	{
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
+		if (ft_strncmp(p->envp[i], "PATH=", 5) == 0)
 		{
-			env_path = env[i] + 5;
+			env_path = p->envp[i] + 5;
 			break ;
 		}
 		i++;
 	}
-	if (env[i] == NULL || *env_path == NULL)
-		exit (EXIT_FAILURE);		// message: no PATH or PATH == NULL
-	p->envp = ft_split(env_path, ':');
-	if (p->envp == NULL)
+	if (p->envp[i] == NULL || *env_path == 0)
+		exit (EXIT_FAILURE);
+	p->path = ft_split(env_path, ':');
+	if (p->path == NULL)
 		exit (EXIT_FAILURE);
 }

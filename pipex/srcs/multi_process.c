@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:35:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 23:34:04 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/29 06:46:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	_begin_child_process(t_pipe *p);
 static void	_mid_child_process(t_pipe *p);
 static void	_end_child_process(t_pipe *p);
 
-void	parent_process(t_pipe *p, int pid)
+void	parent_process(t_pipe *p)
 {
 	close(p->pipe[P_WRITE]);
 	if (dup2(p->pipe[P_READ], STDIN_FILENO) == -1)
@@ -56,6 +56,8 @@ static void	_mid_child_process(t_pipe *p)
 
 static void	_end_child_process(t_pipe *p)
 {
+	close(p->pipe[P_READ]);
+	close(p->pipe[P_WRITE]);
 	if (dup2(p->out_fd, STDOUT_FILENO) == -1)
 		perror("dup2(stdout)");
 	close(p->out_fd);
