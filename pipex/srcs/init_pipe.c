@@ -48,9 +48,12 @@ static void	_get_file_fds(t_pipe *p, int ac, char **av)
 	else
 	{
 		p->in_fd = open(av[1], O_RDONLY);
+		if (p->in_fd == -1)
+			perror("open(infile)");
 		p->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 	}
-	// error check: open files....? -> open에서 오류가 나더라도 명령들은 정상 작동함...
+	if (p->out_fd == -1)
+		perror("open(outfile)");
 }
 
 static void	_get_here_doc_fd(t_pipe *p, char *limiter)
@@ -58,8 +61,8 @@ static void	_get_here_doc_fd(t_pipe *p, char *limiter)
 	char	*line;
 
 	p->in_fd = open("_here_doc.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	// if (p->in_fd == -1)
-	// 	return (-1);	// message: open error
+	if (p->in_fd == -1)
+		perror("open(here_doc)");
 	limiter = ft_strjoin(limiter, "\n");
 	if (limiter == NULL)
 		exit (EXIT_FAILURE);	// message: strjoin error
@@ -74,8 +77,7 @@ static void	_get_here_doc_fd(t_pipe *p, char *limiter)
 		free(line);
 	}
 	free(line);
-	// 함수 안에서 open한 fd는 나중에 다른 함수에서 close 해도 되는가?
-	// >> ㅇㅇ 가능함, 그리고 여기서 open 한 file은 끝낼 때 unlink 해줘야 함
+// unlink!!!!!!!!!!!!!!!
 }
 
 // path가 NULL인 경우, 추가적으로 처리해줘야 함

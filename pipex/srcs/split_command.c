@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:43:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 22:39:27 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/28 23:03:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	_string_length(char **cmd, char *quote);
 static char	*_make_string(char **cmd, char *string, int space_end);
-static char *_join_string(char *string, char *_add);
+static char	*_join_string(char *string, char *_add);
 
 void	split_command(t_pipe *p, char *cmd)
 {
@@ -29,11 +29,11 @@ void	split_command(t_pipe *p, char *cmd)
 	while (*cmd)
 	{
 		if (*cmd != ' ')
-		{	// 난 그냥 두가지로 나눠서 strjoin 할래ㅡㅡ 짜증나
+		{
 			p->cmd_args[i] = _make_string(&cmd, p->cmd_args[i], space_end);
 			if (*cmd != ' ')
 				space_end = FALSE;
-			else	// string이 끝났으므로 p->cmd_args의 index를 증가
+			else
 				i++;
 			continue ;
 		}
@@ -88,7 +88,7 @@ static char	*_make_string(char **cmd, char *string, int space_end)
 	return (_join_string(string, new_string));
 }
 
-static char *_join_string(char *string, char *_add)
+static char	*_join_string(char *string, char *_add)
 {
 	char	*new_string;
 

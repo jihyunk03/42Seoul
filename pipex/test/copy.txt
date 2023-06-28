@@ -82,3 +82,27 @@ static int	_string_length(char **cmd)
 
 /* ************************************************************************** */
 
+[[ execute_command.c: 이전 코드(애송이시절)]]
+/*
+	if (execve(cmd_arr[0], cmd_arr, p->envp) == 0)	// 절대 경로인 경우
+		exit (EXIT_SUCCESS);
+	i = 0;
+	while (p->path[i])
+	{
+		tmp = ft_strjoin(p->path[i], "/");
+		if (tmp == NULL)
+			exit (EXIT_FAILURE);		// message: strjoin error
+		cmd_path = ft_strjoin(tmp, cmd_arr[0]);
+		free (tmp);
+		if (cmd_path == NULL)
+			exit (EXIT_FAILURE);		// message: strjoin error, [유의]자식 프로세스만 종료됨 >> path_arr 모두 free해야 함
+		if (execve(cmd_path, cmd_arr, p->envp) == 0)
+		{
+			free (cmd_path);		// path_arr도 free해야 함
+			exit (EXIT_SUCCESS);
+		}
+		free (cmd_path);
+		i++;
+	}
+	exit (127);
+*/
