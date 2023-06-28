@@ -1,37 +1,43 @@
-NAME	= pipex
+NAME		= pipex
 
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
-RM		= rm -f
-AR		= ar -rcs
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
+RM			= rm -f
+AR			= ar -rcs
 
-SRCS	= $(addprefix ./pipex_files/,
-		  pipex.c \
-		  argument_check.c)
-OBJS	= $(SRCS:.c=.o)
+INC_DIR		= ./includes/
+SRCS_DIR	= ./srcs/
+LIB_DIR		= ./my_libft/
 
-LIB		= my_libft/lib_jihykim2.a
+SRCS		= pipex.c \
+			  init_pipe.c \
+			  multi_process.c \
+			  split_command.c split_command_utils.c \
+			  execute_command.c \
+			  free_all.c error_exit.c
 
-all		: $(LIB) $(NAME)
+OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
-$(LIB)	:
-	@$(MAKE) -C $(dir $(LIB))
+all		: mylib $(NAME)
 
-$(NAME)	: $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
-	@echo $(GREEN) "⚡︎	[ pipex ]	Ready to use fdf" $(RESET)
+mylib	:
+	@$(MAKE) -C $(LIB_DIR)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+$(NAME)	: $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -L$(LIB_DIR) -l_jihykim2 -o $(NAME)
+	@echo $(GREEN) "⚡︎	[ pipex ]	Ready to use pipex" $(RESET)
+
 clean	:
-	@$(MAKE) -C $(dir $(LIB)) clean
+	@$(MAKE) -C $(LIB_DIR) clean
 	@echo $(YELLOW) "✭	[ my_libft ]	Removed Object files" $(RESET)
 	@$(RM) $(OBJS)
 	@echo $(GREEN) "⚡︎	[ pipex ]	Removed Object files" $(RESET)
 
 fclean	: clean
-	@$(MAKE) -C $(dir $(LIB)) fclean
+	@$(MAKE) -C $(LIB_DIR) fclean
 	@echo $(YELLOW) "✭	[ my_libft ]	Removed lib_jihykim2.a" $(RESET)
 	@$(RM) $(NAME)
 	@echo $(GREEN) "⚡︎	[ pipex ]	Removed fdf" $(RESET)
