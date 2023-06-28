@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 06:42:05 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/29 06:59:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	child_process(t_pipe *p, int idx, int ac);
 void	exec_command(t_pipe *p);
 
 void	free_pipe(t_pipe *p);
-void	free_arr_args(char **cmd_args);
+void	free_arr_args(char **arr);
 void	free_prev_cmd_args(char **cmd_args);
 
 void	error_exit(t_pipe *p, char *s);
