@@ -52,8 +52,6 @@ static void	_get_file_fds(t_pipe *p, int ac, char **av)
 		p->in_fd = open(av[1], O_RDONLY);
 		p->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	}
-	if (p->in_fd == -1 || p->out_fd == -1)
-		perror("open");
 }
 
 static void	_make_here_doc_file(char *limiter)

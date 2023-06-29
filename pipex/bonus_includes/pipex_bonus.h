@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 07:03:41 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:58:00 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		cmd_args_len(char *cmd);
 int		is_quote(char q, char *tmp_quote);
 
 void	parent_process(t_pipe *p);
-void	child_process(t_pipe *p, int idx, int ac);
+void	child_process(t_pipe *p, int idx, int ac, char **av);
 void	exec_command(t_pipe *p);
 
 void	free_pipe(t_pipe *p);
@@ -42,6 +42,7 @@ void	free_prev_cmd_args(char **cmd_args);
 
 void	error_exit(t_pipe *p, char *s);
 int		error_here_doc(char *for_free);
+void	error_check_file_fds(int fd, char *filename);
 int		error_no_command(t_pipe *p);
 int		error_execute(t_pipe *p, char *cmd_path);
 

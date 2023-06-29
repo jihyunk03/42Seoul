@@ -126,3 +126,11 @@ void	print_path(char **path)
 	printf("======[path-end]======\n");
 }
 */
+
+/* ************************************************************************** */
+
+[[ _multi_process_with_pipe: case of using waitpid function in while-loop ]]
+// if (i < ac - 1)
+// 	waitpid(pid, &status, WNOHANG);
+// else
+// 	waitpid(0, &status, 0);

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 04:53:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 06:34:11 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:58:45 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ int	error_here_doc(char *for_free)
 		free (for_free);
 	unlink("_here_doc.txt");
 	return (EXIT_FAILURE);
+}
+
+void	error_check_file_fds(int fd, char *filename)
+{
+	if (fd != -1)
+		return ;
+	ft_putstr_fd("pipex: ", STDERR_FILENO);
+	ft_putstr_fd(filename, STDERR_FILENO);
+	ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
+	exit (EXIT_FAILURE);
 }
 
 int	error_no_command(t_pipe *p)

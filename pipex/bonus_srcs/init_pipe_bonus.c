@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipe.c                                       :+:      :+:    :+:   */
+/*   init_pipe_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:06:20 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/21 23:11:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:31:06 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static void	_get_file_fds(t_pipe *p, int ac, char **av)
 		p->in_fd = open(av[1], O_RDONLY);
 		p->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	}
-	if (p->in_fd == -1 || p->out_fd == -1)
-		perror("open");
 }
 
 static void	_make_here_doc_file(char *limiter)
