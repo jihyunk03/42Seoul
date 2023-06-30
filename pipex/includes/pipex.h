@@ -6,16 +6,16 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:52:12 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 20:58:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:28:34 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../my_libft/libft.h"
-# include "../my_libft/ft_printf.h"
-# include "../my_libft/get_next_line.h"
+# include "../my_libft/libft/libft.h"
+# include "../my_libft/ft_printf/ft_printf.h"
+# include "../my_libft/get_next_line/get_next_line.h"
 
 # include "./struct.h"
 

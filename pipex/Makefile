@@ -3,7 +3,6 @@ NAME		= pipex
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
-AR			= ar -rcs
 
 LIB_DIR		= ./my_libft/
 
@@ -41,7 +40,7 @@ mylib	:
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -L$(LIB_DIR) -l_jihykim2 -o $(NAME)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L$(LIB_DIR) -l_jihykim2
 	@echo $(GREEN) "⚡︎	[ pipex ]	Ready to use pipex" $(RESET)
 
 clean	:
