@@ -6,15 +6,15 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:43:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 23:03:27 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:53:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static int	_string_length(char **cmd, char *quote);
 static char	*_make_string(char **cmd, char *string, int space_end);
 static char	*_join_string(char *string, char *_add);
+static int	_string_length(char **cmd, char *quote);
 
 void	split_command(t_pipe *p, char *cmd)
 {
@@ -43,29 +43,6 @@ void	split_command(t_pipe *p, char *cmd)
 	if (space_end == FALSE)
 		i++;
 	p->cmd_args[i] = NULL;
-}
-
-static int	_string_length(char **cmd, char *quote)
-{
-	int		len;
-
-	len = 0;
-	*quote = 0;
-	if (is_quote(**cmd, quote) == TRUE)
-	{
-		while (*(++(*cmd)) != *quote && ++len)
-			if (**cmd == 0)
-				exit (EXIT_FAILURE);
-		(*cmd)++;
-	}
-	else
-	{
-		while (**cmd && is_quote(**cmd, quote) == FALSE && **cmd != ' ' \
-				&& ++len)
-			(*cmd)++;
-		*quote = 0;
-	}
-	return (len);
 }
 
 static char	*_make_string(char **cmd, char *string, int space_end)
@@ -98,4 +75,27 @@ static char	*_join_string(char *string, char *_add)
 	if (new_string == NULL)
 		exit (EXIT_FAILURE);
 	return (new_string);
+}
+
+static int	_string_length(char **cmd, char *quote)
+{
+	int		len;
+
+	len = 0;
+	*quote = 0;
+	if (is_quote(**cmd, quote) == TRUE)
+	{
+		while (*(++(*cmd)) != *quote && ++len)
+			if (**cmd == 0)
+				exit (EXIT_FAILURE);
+		(*cmd)++;
+	}
+	else
+	{
+		while (**cmd && is_quote(**cmd, quote) == FALSE && **cmd != ' ' \
+				&& ++len)
+			(*cmd)++;
+		*quote = 0;
+	}
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 04:53:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 20:58:45 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:50:59 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	error_check_file_fds(int fd, char *filename)
 		return ;
 	ft_putstr_fd("pipex: ", STDERR_FILENO);
 	ft_putstr_fd(filename, STDERR_FILENO);
-	ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
+	ft_putstr_fd(": permission denied\n", STDERR_FILENO);
 	exit (EXIT_FAILURE);
 }
 
