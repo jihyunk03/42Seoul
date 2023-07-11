@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_info.h                                      :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 17:10:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/02/20 15:05:18 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/07/11 18:37:05 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_INFO_H
-# define STRUCT_INFO_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
-typedef struct s_map
+# define TRUE 1
+# define FALSE 0
+
+typedef struct s_mlx
 {
-	int	depth;
-}	t_map;
+	void	*mlx;
+	void	*win;
+}	t_mlx;
 
+typedef struct s_data
+{
+
+}	t_data;
 
 #endif
