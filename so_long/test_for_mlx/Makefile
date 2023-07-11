@@ -21,13 +21,14 @@ libs:
 
 $(NAME) : $(OBJS)
 	$(CC) $(CLIB) $(SRCS) -o $(NAME)
-#	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
+	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 
 clean	:
 	make -C $(MLX_DIR) clean
 	rm -rf $(OBJS)
 
-fclean	: clean
+fclean	:
+	make clean
 	rm -rf	$(NAME)
 
 re		: fclean all
