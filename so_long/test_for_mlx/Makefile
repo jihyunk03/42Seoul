@@ -2,7 +2,7 @@ NAME = so_long
 
 CC = cc
 CFLAGS = -Wextra -Werror -Wall
-CLIB = -L $(MLX_DIR) -lmlx -framework OpenGL -framework Appkit -Imlx
+CLIB = -L $(MLX_DIR) -lmlx -framework Metal -framework Metalkit -Imlx
 
 SRCS = ./main.c
 OBJS = $(SRCS:%.c=%.o)
@@ -14,13 +14,14 @@ MLX_DIR = ./mlx/
 all : libs $(NAME)
 
 libs:
-	make -C ./mlx/
+	make -C $(MLX_DIR)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	$(CC) -Imlx -c $< -o $@
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(CLIB) $(SRCS) -o $(NAME)
+	$(CC) $(CLIB) $(SRCS) -o $(NAME)
+	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 
 clean	:
 	rm -rf $(OBJS)
