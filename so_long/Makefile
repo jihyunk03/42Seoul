@@ -25,6 +25,7 @@ libs		:
 
 $(NAME)	: $(OBJS)
 	@$(CC) -o $(NAME) $(OBJS) -L $(LIB_DIR) -l_jihykim2 $(MLIB)
+	@install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 	@echo $(GREEN) "⚡︎	[ fdf ]		Ready to use fdf" $(RESET)
 
 clean	:
