@@ -1,45 +1,44 @@
-NAME	= fdf
+NAME		= so_long
 
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
-RM		= rm -f
-AR		= ar -rcs
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
+MLIB		= -L $(MLX_DIR) -lmlx -framework Metal -framework Metalkit -Imlx
+RM			= rm -f
 
-SRCS	= $(addprefix ./fdf_files/,
-		  fdf.c \
-		  map_parse.c)
-OBJS	= $(SRCS:.c=.o)
+LIB_DIR		= ./my_libft/
+MLX_DIR		= ./mlx/
+SRCS_DIR	= ./srcs/
 
-LIB		= my_libft/lib_jihykim2.a
-MLX		= mlx/libmlx.a
+SRCS		= so_long.c
+OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
-all		: $(LIB) $(MLX) $(NAME)
 
-$(LIB)	:
-	@$(MAKE) -C $(dir $(LIB))
+all			: libs $(NAME)
 
-$(MLX)	:
-	@$(MAKE) -C $(dir $(MLX))
-
-$(NAME)	: $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	@echo $(GREEN) "⚡︎	[ fdf ]		Ready to use fdf" $(RESET)
+libs		:
+	@$(MAKE) -C $(dir $(LIB_DIR))
+	@$(MAKE) -C $(dir $(MLX_DIR))
+	@echo $(YELLOW) "✭	[ mlx ]		Ready to use MiniLibX" $(RESET)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+$(NAME)	: $(OBJS)
+	@$(CC) -o $(NAME) $(OBJS) -L $(LIB_DIR) -l_jihykim2 $(MLIB)
+	@echo $(GREEN) "⚡︎	[ fdf ]		Ready to use fdf" $(RESET)
+
 clean	:
-	@$(MAKE) -C $(dir $(LIB)) clean
+	@$(MAKE) -C $(dir $(LIB_DIR)) clean
 	@echo $(YELLOW) "✭	[ my_libft ]	Removed Object files" $(RESET)
-	@$(MAKE) -C $(dir $(MLX)) clean
+	@$(MAKE) -C $(dir $(MLX_DIR)) clean
 	@echo $(YELLOW) "✭	[ mlx ]		Removed Object files" $(RESET)
 	@$(RM) $(OBJS)
 	@echo $(GREEN) "⚡︎	[ fdf ]		Removed Object files" $(RESET)
 
-fclean	: clean
-	@$(MAKE) -C $(dir $(LIB)) fclean
+fclean	:
+	@$(MAKE) clean
+	@$(RM) $(LIB_DIR)lib_jihykim2.a
 	@echo $(YELLOW) "✭	[ my_libft ]	Removed lib_jihykim2.a" $(RESET)
-	@$(MAKE) -C $(dir $(MLX)) clean
 	@echo $(YELLOW) "✭	[ mlx ]		Removed mlx" $(RESET)
 	@$(RM) $(NAME)
 	@echo $(GREEN) "⚡︎	[ fdf ]		Removed fdf" $(RESET)
