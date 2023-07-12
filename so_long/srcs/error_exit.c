@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 18:30:36 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/12 17:02:10 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/07/12 16:58:17 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/07/12 18:26:16 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	check_leaks(void);
-
-int	main(int ac, char **av)
+void	error_open(char *filename)
 {
-	if (ac != 2)
-		return (EXIT_FAILURE);	// error: only 1 file exist
-	check_map(av[1]);
-	return (EXIT_SUCCESS);
+	ft_putstr_fd(ERROR, STDERR_FILENO);
+	perror(filename);
+	exit (EXIT_FAILURE);
 }
 
-void	check_leaks(void)
+void	error_map(char *message)
 {
-	system("leaks --quiet so_long");
+	ft_putstr_fd(ERROR, STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	exit (EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/12 16:36:55 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:34:38 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,24 @@
 
 # define TRUE 1
 # define FALSE 0
+# define ERROR "Error\n"
 
-typedef struct s_vars
+typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_vars;
+	void	*mlx;
+	void	*win;
+}	t_mlx;
+
+typedef struct s_maps
+{
+	char	**map;		// width, height가 모두 정해져야 할 수 있음
+	int		width;
+	int		height;
+	int		p;			// count of people
+	int		c;			// count of collector
+	int		e;			// count of exit
+	// int		wall_flag;	// error check for wall
+}	t_maps;
 
 typedef struct s_data
 {
