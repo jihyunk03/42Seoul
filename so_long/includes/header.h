@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 18:30:13 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/13 18:24:44 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/07/13 18:29:41 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/07/13 21:18:48 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#ifndef HEADER_H
+# define HEADER_H
 
-t_maps	*init_maps(void)
-{
-	t_maps	*new_maps;
+# include "../mlx/mlx.h"
+# include "../my_libft/libft/libft.h"
+# include "../my_libft/ft_printf/ft_printf.h"
+# include "../my_libft/get_next_line/get_next_line.h"
+# include <fcntl.h>
+# include <math.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-	new_maps = malloc(sizeof(t_maps));
-	if (new_maps == NULL)
-		exit (EXIT_FAILURE);
-	new_maps->map = NULL;
-	new_maps->width = 0;
-	new_maps->height = 0;
-	new_maps->p = 0;
-	new_maps->c = 0;
-	new_maps->e = 0;
-	return (new_maps);
-}
+#endif

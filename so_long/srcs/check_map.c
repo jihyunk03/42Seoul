@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:01:18 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/13 17:57:52 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:40:26 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_map(t_maps *new_maps, char *filename)
 		error_open(filename);
 	_parse_map_from_file(fd, new_maps);
 	_check_value_from_map(new_maps);
-	check_valid_map(new_maps);
+	// check_valid_map(new_maps);
 }
 
 static void	_parse_map_from_file(int fd, t_maps *new)
@@ -44,7 +44,7 @@ static void	_parse_map_from_file(int fd, t_maps *new)
 		if (line == NULL)	// condition of breaking loop
 			break ;
 		if (string == NULL)
-			new->width = ft_strlen(line);
+			new->width = ft_strlen(line) - 1;	// 개행문자 제외(다시 위치 고려할것)
 		new->height++;
 		string = _join_with_line(string, line);
 		if (string == NULL)
@@ -103,15 +103,19 @@ static void	_check_lines(t_maps *new, int idx)
 {// 벽으로 둘러쌓여 있는지 확인, P-C-E 개수 저장
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (idx == 0 || idx == new->height - 1)
-		while (new->map[idx][i])
-			if (new->map[idx][i++] != '1')
+	{
+		while (new->map[idx][++i])
+			if (new->map[idx][i] != '1')
 				error_map(new, "map: not surrounded by walls\n");
+	}
 	else
-		while (new->map[idx][i])
-			if (_is_valid_value(new, new->map[idx][i], i++) == FALSE)
+	{
+		while (new->map[idx][++i])
+			if (_is_valid_value(new, new->map[idx][i], i) == FALSE)
 				error_map(new, "map: invalid value\n");
+	}
 }
 
 static int	_is_valid_value(t_maps *new, char c, int i)

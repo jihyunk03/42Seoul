@@ -6,12 +6,14 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/13 17:47:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:19:16 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+# include "./header.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -26,8 +28,8 @@ typedef struct s_mlx
 typedef struct s_maps
 {
 	char	**map;		// width, height가 모두 정해져야 할 수 있음
-	int		width;
-	int		height;
+	size_t	width;
+	size_t	height;
 	int		p;			// count of people
 	int		c;			// count of collector
 	int		e;			// count of exit

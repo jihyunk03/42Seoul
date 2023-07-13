@@ -1,7 +1,7 @@
 NAME		= so_long
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+# CFLAGS		= -Wall -Wextra -Werror
 MLIB		= -L $(MLX_DIR) -lmlx -framework Metal -framework Metalkit -Imlx
 RM			= rm -f
 
@@ -9,7 +9,10 @@ LIB_DIR		= ./my_libft/
 MLX_DIR		= ./mlx/
 SRCS_DIR	= ./srcs/
 
-SRCS		= so_long.c
+SRCS		= so_long.c \
+			  init_struct.c \
+			  check_map.c check_valid_map.c \
+			  free_all.c error_exit.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
 
@@ -20,8 +23,9 @@ libs		:
 	@$(MAKE) -C $(dir $(MLX_DIR))
 	@echo $(YELLOW) "✭	[ mlx ]		Ready to use MiniLibX" $(RESET)
 
+# remove CFLAGS for test
 %.o		: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) -c $< -o $@
 
 $(NAME)	: $(OBJS)
 	@$(CC) -o $(NAME) $(OBJS) -L $(LIB_DIR) -l_jihykim2 $(MLIB)

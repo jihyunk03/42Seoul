@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/13 17:41:57 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:20:45 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,7 @@
 # define SO_LONG_H
 
 # include "./struct.h"
-# include "../mlx/mlx.h"
-# include "../my_libft/libft/libft.h"
-# include "../my_libft/ft_printf/ft_printf.h"
-# include "../my_libft/get_next_line/get_next_line.h"
-# include <fcntl.h>
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
 
-/* functions */
 /* init_struct.c */
 t_maps	*init_maps(void);
 
