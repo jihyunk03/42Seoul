@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/12 18:34:38 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:47:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_maps
 	int		p;			// count of people
 	int		c;			// count of collector
 	int		e;			// count of exit
-	// int		wall_flag;	// error check for wall
 }	t_maps;
 
 typedef struct s_data

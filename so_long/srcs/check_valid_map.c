@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   check_valid_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 18:30:36 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/13 17:42:22 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/07/13 17:49:44 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/07/13 17:58:51 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	check_leaks(void);
-
-int	main(int ac, char **av)
+void	check_valid_map(t_maps *maps)
 {
-	t_maps	*maps;
-
-	if (ac != 2)
-		return (EXIT_FAILURE);	// error: only 1 file exist
-	maps = init_maps();
-	check_map(maps, av[1]);
-	return (EXIT_SUCCESS);
+// dfs
 }
 
-void	check_leaks(void)
+void	dfs(t_maps *maps)
 {
-	system("leaks --quiet so_long");
+
 }

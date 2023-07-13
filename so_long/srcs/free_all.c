@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 18:30:36 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/13 17:42:22 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/07/13 17:11:48 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/07/13 17:14:52 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	check_leaks(void);
-
-int	main(int ac, char **av)
+void	free_maps(t_maps *maps)
 {
-	t_maps	*maps;
+	int	i;
 
-	if (ac != 2)
-		return (EXIT_FAILURE);	// error: only 1 file exist
-	maps = init_maps();
-	check_map(maps, av[1]);
-	return (EXIT_SUCCESS);
-}
-
-void	check_leaks(void)
-{
-	system("leaks --quiet so_long");
+	if (maps->map != NULL)
+	{
+		i = 0;
+		while (maps->map[i])
+			free (maps->map[i++]);
+		free (maps->map);
+	}
+	free (maps);
 }

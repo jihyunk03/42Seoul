@@ -1,0 +1,29 @@
+/* ************************************************************************** */
+[ check_map.c ]: _check_lines()
+
+// case 1
+	i = 0;
+	while (new->map[idx][i])
+	{
+		if (idx == 0 || idx == new->height - 1)
+			if (new->map[idx][i] != '1')
+				error_map("map: not surrounded by walls\n");
+		else
+			if (_is_valid_value(new, new->map[idx][i], i) == FALSE)
+				error_map("map: invalid value\n");
+		i++;
+	}
+
+// case 2
+	i = -1;
+	if (idx == 0 || idx == new->height - 1)
+		while (new->map[idx][++i])
+			if (new->map[idx][i] != '1')
+				error_map("map: not surrounded by walls\n");
+	else
+		while (new->map[idx][++i])
+			if (_is_valid_value(new, new->map[idx][i], i) == FALSE)
+				error_map("map: invalid value\n");
+
+/* ************************************************************************** */
+
