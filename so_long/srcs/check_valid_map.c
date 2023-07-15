@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:49:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/13 17:58:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/15 22:42:30 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_valid_map(t_maps *maps)
 // dfs
 }
 
-void	dfs(t_maps *maps)
+static void	dfs(t_maps *maps)
 {
 
 }

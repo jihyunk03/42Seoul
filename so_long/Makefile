@@ -10,7 +10,7 @@ MLX_DIR		= ./mlx/
 SRCS_DIR	= ./srcs/
 
 SRCS		= so_long.c \
-			  init_struct.c \
+			  init_struct.c get_map.c \
 			  check_map.c check_valid_map.c \
 			  free_all.c error_exit.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
