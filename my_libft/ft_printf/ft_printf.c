@@ -6,11 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:35:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2022/12/28 13:05:37 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/15 23:15:55 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	find_type(char c, va_list *ap);
 
 int	ft_printf(const char *str, ...)
 {
@@ -31,7 +33,7 @@ int	ft_printf(const char *str, ...)
 	return (len);
 }
 
-int	find_type(char c, va_list *ap)
+static int	find_type(char c, va_list *ap)
 {
 	int	len;
 
