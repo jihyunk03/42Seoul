@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:30:36 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/15 23:05:43 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/17 22:26:49 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ int	main(int ac, char **av)
 
 	atexit(check_leaks);	// check leaks in so_long
 	if (ac != 2)
+	{
+		ft_putstr_fd(ERROR, STDERR_FILENO);
 		return (EXIT_FAILURE);	// error: only 1 file exist
+	}
 	maps = init_maps();
 	maps->map = get_map(av[1]);
 	check_map(maps);
 
-	// print_maps(maps);
-	// free_maps(maps);
+	print_maps(maps);
+	free_maps(maps);
 	return (EXIT_SUCCESS);
 }
 
@@ -55,5 +58,9 @@ void	print_maps(t_maps *maps)
 	ft_printf("=================\n");
 	ft_printf("width: %d\n", maps->width);
 	ft_printf("height: %d\n", maps->height);
+	ft_printf("=================\n");
+	ft_printf("P: (%d, %d)\n", maps->x, maps->y);
+	ft_printf("C: %d\n", maps->c);
+	ft_printf("E: %d\n", maps->e);
 	ft_printf("=================\n");
 }

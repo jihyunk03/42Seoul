@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:01:18 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/15 22:56:22 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/17 23:02:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	_check_value_from_map(t_maps *maps);
 static void	_check_lines(t_maps *maps, int idx);
-static int	_is_valid_value(t_maps *maps, char c, int i);
+static int	_is_valid_value(t_maps *maps, char c, int x, int y);
 
 void	check_map(t_maps *maps)
 {
@@ -42,8 +42,8 @@ static void	_check_value_from_map(t_maps *maps)
 		_check_lines(maps, idx);
 		idx++;
 	}
-	if (idx != maps->height)		// check height
-		error_map(maps, "map: not equal in height\n");
+	// if (idx != maps->height)		// check height
+	// 	error_map(maps, "map: not equal in height\n");
 	if (maps->p != 1)		// check P == 1
 		error_map(maps, "map: 'P' must be one\n");
 	else if (maps->c < 1)	// check C > 0
@@ -64,19 +64,21 @@ static void	_check_lines(t_maps *maps, int idx)
 				error_map(maps, "map: must be surrounded by walls\n");
 	}
 	else
-	{
 		while (maps->map[idx][++i])
-			if (_is_valid_value(maps, maps->map[idx][i], i) == FALSE)
+			if (_is_valid_value(maps, maps->map[idx][i], i, idx) == FALSE)
 				error_map(maps, "map: invalid value\n");
-	}
 }
 
-static int	_is_valid_value(t_maps *maps, char c, int i)
+static int	_is_valid_value(t_maps *maps, char c, int x, int y)
 {
-	if ((i == 0 || i == maps->width - 1) && c != '1')
+	if ((x == 0 || x == maps->width - 1) && c != '1')
 		error_map(maps, "map: must be surrounded by walls\n");
 	if (c == 'P')
+	{
 		maps->p++;
+		maps->x = x;
+		maps->y = y;
+	}
 	else if (c == 'C')
 		maps->c++;
 	else if (c == 'E')

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:58:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/15 22:26:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/15 23:20:05 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,8 @@ void	error_system_call(char *error)
 void	error_file(char *filename, char *message)
 {
 	ft_putstr_fd(ERROR, STDERR_FILENO);
-	if (message == NULL)
-		perror(filename);
-	else
-	{
-		ft_putstr_fd(filename, STDERR_FILENO);
-		ft_putstr_fd(message, STDERR_FILENO);
-	}
+	ft_putstr_fd(filename, STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
 	exit (EXIT_FAILURE);
 }
 
