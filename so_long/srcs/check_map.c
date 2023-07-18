@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:01:18 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/18 17:47:34 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/18 22:34:04 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	_check_value_from_map(t_maps *maps)
 	while (maps->map[idx])
 	{
 		if (ft_strlen(maps->map[idx]) != maps->width)	// check width
-			error_map(maps, "map: not equal in width\n");
+			error_map(maps, "map: must be rectanglular\n");
 		_check_lines(maps, idx);
 		idx++;
 	}

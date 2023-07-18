@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/18 16:52:23 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/18 21:57:06 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 typedef struct s_maps
 {
 	char	**map;
-	size_t	width;
-	size_t	height;
+	size_t	width;		// 타입 다시 고려
+	size_t	height;		// size_t -> int ??
 	int		p;			// count of people
 	int		c;			// count of collector
 	int		e;			// count of exit
@@ -29,11 +29,16 @@ typedef struct s_maps
 	int		e_flag;		// flag for exit by E
 }	t_maps;
 
-typedef struct s_mlx
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-}	t_mlx;
+	void	*img_0;		// Grass
+	void	*img_1;		// Wall
+	void	*img_p;		// Nick
+	void	*img_c;		// Blueberry
+	void	*img_e;		// Judy
+}	t_game;
 
 typedef struct s_data
 {
