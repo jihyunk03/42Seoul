@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/17 22:38:27 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:03:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_maps
 	int		**visited;	// for check valid maps(flag)
 	int		x;	// P's x (< width)
 	int		y;	// P's y (< height)
-	int		flag;	// flag for exit by E >> 아직 초기화 안함!!!!!!!!
+	int		flag;	// flag for exit by E
 }	t_maps;
 
 typedef struct s_mlx
