@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/15 22:43:00 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:48:04 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "./struct.h"
+# include "./define.h"
 
 /* init_struct.c */
 t_maps	*init_maps(void);

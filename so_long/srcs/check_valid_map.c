@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:49:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/18 15:02:46 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:03:01 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	check_valid_map(t_maps *maps)
 	_init_visited(maps);
 	cnt = 0;
 	_dfs(maps, maps->x, maps->y, &cnt);
-	printf("----colleted c: %d----\n", cnt);
-	printf("----flag: %d----\n", maps->flag);
-	if (cnt != maps->c || maps->flag == FALSE)
+	if (cnt != maps->c || maps->e_flag == FALSE)
 		error_map(maps, "map: no valid path on the map\n");
 }
 
@@ -33,7 +31,6 @@ static void	_init_visited(t_maps *maps)
 {
 	int	i;
 
-	maps->flag = FALSE;
 	maps->visited = malloc(sizeof(int *) * maps->height);
 	if (maps->visited == NULL)
 		exit (EXIT_FAILURE);
@@ -51,13 +48,12 @@ static void	_dfs(t_maps *maps, int x, int y, int *cnt)
 {
 	if (maps->map[y][x] == '1' || maps->visited[y][x] == TRUE)
 		return ;
-	// else if (maps->map[y][x] != 'E')
 	maps->visited[y][x] = TRUE;
 	if (maps->map[y][x] == 'C')
 		(*cnt)++;
 	else if (maps->map[y][x] == 'E')
 	{
-		maps->flag = TRUE;
+		maps->e_flag = TRUE;
 		return ;
 	}
 	_dfs(maps, x + 1, y, cnt);

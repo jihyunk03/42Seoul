@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:30:13 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/17 17:21:27 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:50:15 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ t_maps	*init_maps(void)
 	new_maps->visited = NULL;
 	new_maps->x = 0;	// 굳이..?
 	new_maps->y = 0;	// same as x
+	new_maps->e_flag = FALSE;
 	return (new_maps);
 }
