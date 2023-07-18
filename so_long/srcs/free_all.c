@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:11:48 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/18 17:25:23 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:42:38 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 void	free_maps(t_maps *maps)
 {
-	int	i;
-
-	i = 0;
-	free_map(maps->map);
+	free_map(maps);
 	free_visited(maps);
 	free (maps);
 }
@@ -32,16 +29,18 @@ void	free_visited(t_maps *maps)
 	while (i < maps->height)
 		free (maps->visited[i++]);
 	free (maps->visited);
+	maps->visited = NULL;
 }
 
-void	free_map(char **map)
+void	free_map(t_maps *maps)
 {
 	int	i;
 
-	i = 0;
-	if (map == NULL)
+	if (maps->map == NULL)
 		return ;
-	while (map[i])
-		free (map[i++]);
-	free (map);
+	i = 0;
+	while (maps->map[i])
+		free (maps->map[i++]);
+	free (maps->map);
+	maps->map = NULL;
 }
