@@ -1,5 +1,50 @@
 #include "./main.h"
 
+int	main(void)
+{
+	void	*mlx;
+	void	*win;
+	void	*img1;
+	void	*img2;
+	void	*img3;
+	void	*img4;
+	void	*img5;
+	void	*img6;
+	void	*img7;
+	int		img_width;
+	int		img_height;
+
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 500, 500, "my_mlx");
+	img1 = mlx_xpm_file_to_image(mlx, "../images/Blueberry.xpm", &img_width, &img_height);
+	img2 = mlx_xpm_file_to_image(mlx, "../images/Grass.xpm", &img_width, &img_height);
+	img3 = mlx_xpm_file_to_image(mlx, "../images/Judy_NO.xpm", &img_width, &img_height);
+	img4 = mlx_xpm_file_to_image(mlx, "../images/Judy_OK.xpm", &img_width, &img_height);
+	img5 = mlx_xpm_file_to_image(mlx, "../images/Nick.xpm", &img_width, &img_height);
+	img6 = mlx_xpm_file_to_image(mlx, "../images/Wall.xpm", &img_width, &img_height);
+	img7 = mlx_xpm_file_to_image(mlx, "../images/Nick.xpm", &img_width, &img_height);
+
+	mlx_put_image_to_window(mlx, win, img1, 0, 0);
+	mlx_put_image_to_window(mlx, win, img2, 64, 0);
+	mlx_put_image_to_window(mlx, win, img3, 128, 0);
+	mlx_put_image_to_window(mlx, win, img4, 192, 0);
+	mlx_put_image_to_window(mlx, win, img5, 0, 64);
+	mlx_put_image_to_window(mlx, win, img6, 128, 64);
+	mlx_put_image_to_window(mlx, win, img7, 128, 64);
+
+	mlx_loop(mlx);
+	return (0);
+}
+
+
+
+
+
+
+
+
+
+/*
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		key_hook(int keycode, t_vars *vars);
 void	print_values(t_data *image);
@@ -50,3 +95,4 @@ void	print_values(t_data *image)
 	printf("[line_length]: %d\n", image->line_length);
 	printf("[endian]: %d\n", image->endian);
 }
+*/
