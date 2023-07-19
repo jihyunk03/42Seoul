@@ -24,6 +24,8 @@ int	main(void)
 	img6 = mlx_xpm_file_to_image(mlx, "../images/Wall.xpm", &img_width, &img_height);
 	img7 = mlx_xpm_file_to_image(mlx, "../images/Nick.xpm", &img_width, &img_height);
 
+	printf("void *: %p\n", img1);
+
 	mlx_put_image_to_window(mlx, win, img1, 0, 0);
 	mlx_put_image_to_window(mlx, win, img2, 64, 0);
 	mlx_put_image_to_window(mlx, win, img3, 128, 0);

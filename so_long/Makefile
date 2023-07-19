@@ -11,6 +11,7 @@ SRCS_DIR	= ./srcs/
 
 SRCS		= so_long.c \
 			  init_struct.c get_map.c \
+			  start_game.c play_game.c \
 			  check_map.c check_valid_map.c \
 			  free_all.c error_exit.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
@@ -23,12 +24,12 @@ libs		:
 	@$(MAKE) -C $(dir $(MLX_DIR))
 	@echo $(YELLOW) "✭	[ mlx ]		Ready to use MiniLibX" $(RESET)
 
-# remove CFLAGS for test
+# remove CFLAGS for test, ( -c $< -o $@)
 %.o		: %.c
-	@$(CC) -c $< -o $@
+	@$(CC) -Imlx -c -o $@ $<
 
 $(NAME)	: $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) -L $(LIB_DIR) -l_jihykim2 $(MLIB)
+	@$(CC) $(MLIB) -L $(LIB_DIR) -l_jihykim2 $(OBJS) -o $(NAME)
 	@install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 	@echo $(GREEN) "⚡︎	[ fdf ]		Ready to use fdf" $(RESET)
 
@@ -62,4 +63,4 @@ PURPLE	= "\x1b[35m"
 CYAN	= "\x1b[36m"
 WHITE	= "\x1b[37m"
 
-.PHONY	: all clean fclean re
+.PHONY	: all clean fclean re libs

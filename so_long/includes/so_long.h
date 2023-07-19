@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/18 22:15:59 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 04:53:59 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # include "./struct.h"
 # include "./define.h"
+# include "./header.h"
 
 /* init_struct.c */
 t_maps	*init_maps(void);
 void	init_visited(t_maps *maps);
-
+t_game	*init_game(t_maps *maps);
 
 /* get_map.c */
 char	**get_map(char *filename);
