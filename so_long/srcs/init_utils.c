@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:14:47 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 09:17:56 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:09:46 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	init_visited(t_maps *maps)
 t_game	*init_game(t_maps *maps)
 {
 	t_game	*new_game;
-	int	width;
-	int	height;
 
 	new_game = malloc(sizeof(t_game));
 	if (new_game == NULL)

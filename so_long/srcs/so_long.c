@@ -6,13 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:30:36 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 09:16:25 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:07:18 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void			check_leaks(void);
+void	check_leaks(void);
 
 int	main(int ac, char **av)
 {

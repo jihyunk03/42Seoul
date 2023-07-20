@@ -1,8 +1,8 @@
 NAME		= so_long
 
 CC			= cc
-CFLAGS		= -g3 -Wall -Wextra -Werror
-MLIB		= -L$(MLX_DIR) -lmlx -framework Metal -framework Metalkit -Imlx
+CFLAGS		= -Wall -Wextra -Werror
+MLIB		= -L$(MLX_DIR) -lmlx -Imlx -framework Metal -framework Metalkit
 RM			= rm -f
 
 LIB_DIR		= ./my_libft/
@@ -27,12 +27,12 @@ libs		:
 	@echo $(YELLOW) "✭	[ mlx ]		Ready to use MiniLibX" $(RESET)
 
 %.o		: %.c
-	@$(CC) $(CFLAGS)-Imlx -c $< -o $@
+	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME)	: $(OBJS)
 	@$(CC) -o $(NAME) $(OBJS) -L$(LIB_DIR) -l_jihykim2 $(MLIB)
 	@install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
-	@echo $(GREEN) "⚡︎	[ fdf ]		Ready to use so_long" $(RESET)
+	@echo $(GREEN) "⚡︎	[ so_long ]	Ready to use so_long" $(RESET)
 
 clean	:
 	@$(MAKE) -C $(dir $(LIB_DIR)) clean
@@ -40,7 +40,7 @@ clean	:
 	@$(MAKE) -C $(dir $(MLX_DIR)) clean
 	@echo $(YELLOW) "✭	[ mlx ]		Removed Object files" $(RESET)
 	@$(RM) $(OBJS)
-	@echo $(GREEN) "⚡︎	[ fdf ]		Removed Object files" $(RESET)
+	@echo $(GREEN) "⚡︎	[ so_long ]	Removed Object files" $(RESET)
 
 fclean	:
 	@$(MAKE) clean
@@ -48,7 +48,7 @@ fclean	:
 	@echo $(YELLOW) "✭	[ my_libft ]	Removed lib_jihykim2.a" $(RESET)
 	@echo $(YELLOW) "✭	[ mlx ]		Removed mlx" $(RESET)
 	@$(RM) $(NAME)
-	@echo $(GREEN) "⚡︎	[ fdf ]		Removed fdf" $(RESET)
+	@echo $(GREEN) "⚡︎	[ so_long ]	Removed so_long" $(RESET)
 
 re		:
 	@$(MAKE) fclean
