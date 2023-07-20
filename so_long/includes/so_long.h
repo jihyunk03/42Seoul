@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 09:41:13 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:34:43 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "./define.h"
 # include "./header.h"
 
-/* init_utils.c */
 t_maps	*init_maps(void);
 void	init_visited(t_maps *maps);
 t_game	*init_game(t_maps *maps);
@@ -43,7 +42,6 @@ void	press_d(t_game *game, t_maps *maps);
 void	init_images(t_game *game);
 void	put_image_to_map(t_game *game, t_maps *maps);
 void	modify_image(t_game *game, int position, int x, int y);
-
 
 /* error_exit.c */
 void	error_message(char *message);

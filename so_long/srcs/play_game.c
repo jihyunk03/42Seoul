@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:31:52 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 16:10:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:38:29 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static int	_key_press(int keycode, t_vars *vars)
 
 static int	_exit_game(t_vars *vars, int mode)
 {
-	// mlx_destroy_image(vars->game->mlx, vars->game->img_Grass);
-	// mlx_destroy_image(vars->game->mlx, vars->game->img_Wall);
-	// mlx_destroy_image(vars->game->mlx, vars->game->img_Nick);
-	// mlx_destroy_image(vars->game->mlx, vars->game->img_Bluederry);
-	// mlx_destroy_image(vars->game->mlx, vars->game->img_Judy_OK);
-	// mlx_destroy_image(vars->game->mlx, vars->game->img_Judy_NO);
-	// mlx_destroy_window(vars->game->mlx, vars->game->win);
+	mlx_destroy_image(vars->game->mlx, vars->game->img_grass);
+	mlx_destroy_image(vars->game->mlx, vars->game->img_wall);
+	mlx_destroy_image(vars->game->mlx, vars->game->img_nick);
+	mlx_destroy_image(vars->game->mlx, vars->game->img_bluederry);
+	mlx_destroy_image(vars->game->mlx, vars->game->img_judy_ok);
+	mlx_destroy_image(vars->game->mlx, vars->game->img_judy_no);
+	mlx_destroy_window(vars->game->mlx, vars->game->win);
 	if (mode == TRUE)
 		ft_printf("Game is Over!! The total number of moves is %d\n", \
 					vars->maps->move);

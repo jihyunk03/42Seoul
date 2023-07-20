@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 21:51:09 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/15 22:59:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:20:58 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ static char	**_read_and_parse_map(char *filename, size_t size)
 	map = ft_split(string, '\n');
 	free(string);
 	if (map == NULL)
-		exit (EXIT_FAILURE);	// fail to split
+		exit (EXIT_FAILURE);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 09:58:39 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:27:52 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,29 @@
 typedef struct s_maps
 {
 	char	**map;
-	int		width;		// 타입 다시 고려
-	int		height;		// size_t -> int ??
-	int		p;			// count of people
-	int		c;			// count of collector
-	int		e;			// count of exit
-	int		move;		// count of moving
-	int		x;			// P's x (< width)
-	int		y;			// P's y (< height)
-	int		end[2];		// locate of end(E)
-	int		**visited;	// for check valid maps(flags)
-	int		e_flag;		// flag for exit by E
+	int		width;
+	int		height;
+	int		p;
+	int		c;
+	int		e;
+	int		move;
+	int		x;
+	int		y;
+	int		end[2];
+	int		**visited;
+	int		e_flag;
 }	t_maps;
 
 typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	void	*img_Grass;			// Grass
-	void	*img_Wall;			// Wall
-	void	*img_Nick;			// Nick
-	void	*img_Bluederry;		// Blueberry
-	void	*img_Judy_OK;		// Judy
-	void	*img_Judy_NO;		// Judy: if 'cnt of c' == 'collected c'
+	void	*img_grass;
+	void	*img_wall;
+	void	*img_nick;
+	void	*img_bluederry;
+	void	*img_judy_ok;
+	void	*img_judy_no;
 }	t_game;
 
 typedef struct s_vars

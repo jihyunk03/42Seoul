@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 06:57:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 09:15:24 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:50:51 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ void	press_d(t_game *game, t_maps *maps)
 
 static void	_identify_values(t_game *game, t_maps *maps)
 {
+	ft_printf("moves: %d\n", maps->move);
 	if (maps->map[maps->y][maps->x] == 'E')
 	{
 		maps->e_flag = TRUE;
+		modify_image(game, MOVE, maps->x, maps->y);
 		return ;
 	}
 	else if (maps->map[maps->y][maps->x] == '0')

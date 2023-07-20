@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:01:18 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 18:11:39 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:20:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_map(t_maps *maps)
 	maps->width = ft_strlen(maps->map[0]);
 	while (maps->map[i++])
 		maps->height++;
-	if (maps->width < 4 && maps->height < 4)	// 유효하지 않은 map, 큰 map도 처리하기
+	if (maps->width < 4 && maps->height < 4)
 		error_map(maps, "map: too small\n");
 	if (maps->width * maps->height > 1000)
 		error_map(maps, "map: too big\n");

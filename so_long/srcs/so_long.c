@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:30:36 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 18:07:18 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:22:11 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 {
 	t_maps	*maps;
 
-	atexit(check_leaks);	// check leaks in so_long
+	atexit(check_leaks);
 	if (ac != 2)
 		error_message("arguments: must be only one file\n");
 	maps = init_maps();
@@ -27,14 +27,6 @@ int	main(int ac, char **av)
 	play_game(maps);
 	return (EXIT_SUCCESS);
 }
-
-
-
-
-
-
-
-
 
 void	check_leaks(void)
 {
