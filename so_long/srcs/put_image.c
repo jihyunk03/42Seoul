@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 04:02:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 13:42:06 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:07:52 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	init_images(t_game *game)
 	int	height;
 
 	game->img_Grass = mlx_xpm_file_to_image(game->mlx, \
-					"/Users/jihyun/42Seoul/so_long/images/Grass.xpm", &width, &height);
+					"./images/Grass.xpm", &width, &height);
 	game->img_Wall = mlx_xpm_file_to_image(game->mlx, \
-					"/Users/jihyun/42Seoul/so_long/images/Wall.xpm", &width, &height);
+					"./images/Wall.xpm", &width, &height);
 	game->img_Nick = mlx_xpm_file_to_image(game->mlx, \
-					"/Users/jihyun/42Seoul/so_long/images/Nick.xpm", &width, &height);
+					"./images/Nick.xpm", &width, &height);
 	game->img_Bluederry = mlx_xpm_file_to_image(game->mlx, \
-					"/Users/jihyun/42Seoul/so_long/images/Blueberry.xpm", &width, &height);
+					"./images/Blueberry.xpm", &width, &height);
 	game->img_Judy_OK = mlx_xpm_file_to_image(game->mlx, \
-					"/Users/jihyun/42Seoul/so_long/images/Judy_OK.xpm", &width, &height);
+					"./images/Judy_OK.xpm", &width, &height);
 	game->img_Judy_NO = mlx_xpm_file_to_image(game->mlx, \
-					"/Users/jihyun/42Seoul/so_long/images/Judy_NO.xpm", &width, &height);
+					"./images/Judy_NO.xpm", &width, &height);
 }
 
 void	put_image_to_map(t_game *game, t_maps *maps)
