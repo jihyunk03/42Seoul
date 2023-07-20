@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:58:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/18 22:15:46 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:30:54 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,13 @@ void	error_file(char *filename, char *message)
 }
 
 void	error_map(t_maps *maps, char *message)
-{// map도 free 안해줘?? -> 조건 따라서 해야할듯~
+{
 	if (maps != NULL)
-		free_maps(maps);
+	{
+		free_map(maps);
+		free_visited(maps);
+		free (maps);
+	}
 	ft_putstr_fd(ERROR, STDERR_FILENO);
 	ft_putstr_fd(message, STDERR_FILENO);
 	exit (EXIT_FAILURE);
