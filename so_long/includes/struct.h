@@ -6,18 +6,20 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 07:51:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:58:39 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include "./header.h"
+
 typedef struct s_maps
 {
 	char	**map;
-	int	width;		// 타입 다시 고려
-	int	height;		// size_t -> int ??
+	int		width;		// 타입 다시 고려
+	int		height;		// size_t -> int ??
 	int		p;			// count of people
 	int		c;			// count of collector
 	int		e;			// count of exit

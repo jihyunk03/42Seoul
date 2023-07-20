@@ -1,7 +1,7 @@
 NAME		= so_long
 
 CC			= cc
-# CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 MLIB		= -L$(MLX_DIR) -lmlx -framework Metal -framework Metalkit -Imlx
 RM			= rm -f
 
@@ -26,9 +26,8 @@ libs		:
 	@$(MAKE) -C $(dir $(MLX_DIR))
 	@echo $(YELLOW) "✭	[ mlx ]		Ready to use MiniLibX" $(RESET)
 
-# remove CFLAGS for test
 %.o		: %.c
-	@$(CC) -Imlx -c $< -o $@
+	@$(CC) $(CFLAGS)-Imlx -c $< -o $@
 
 $(NAME)	: $(OBJS)
 	@$(CC) -o $(NAME) $(OBJS) -L$(LIB_DIR) -l_jihykim2 $(MLIB)
