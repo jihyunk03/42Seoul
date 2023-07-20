@@ -2,7 +2,7 @@ NAME		= so_long
 
 CC			= cc
 # CFLAGS		= -Wall -Wextra -Werror
-MLIB		= -L $(MLX_DIR) -lmlx -framework Metal -framework Metalkit -Imlx
+MLIB		= -L$(MLX_DIR) -lmlx -framework Metal -framework Metalkit -Imlx
 RM			= rm -f
 
 LIB_DIR		= ./my_libft/
@@ -10,9 +10,11 @@ MLX_DIR		= ./mlx/
 SRCS_DIR	= ./srcs/
 
 SRCS		= so_long.c \
-			  init_struct.c get_map.c \
-			  start_game.c play_game.c \
+			  init_utils.c \
+			  get_map.c \
 			  check_map.c check_valid_map.c \
+			  play_game.c \
+			  put_image.c press_utils.c \
 			  free_all.c error_exit.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
@@ -24,12 +26,12 @@ libs		:
 	@$(MAKE) -C $(dir $(MLX_DIR))
 	@echo $(YELLOW) "✭	[ mlx ]		Ready to use MiniLibX" $(RESET)
 
-# remove CFLAGS for test, ( -c $< -o $@)
+# remove CFLAGS for test
 %.o		: %.c
-	@$(CC) -Imlx -c -o $@ $<
+	@$(CC) -Imlx -c $< -o $@
 
 $(NAME)	: $(OBJS)
-	@$(CC) $(MLIB) -L $(LIB_DIR) -l_jihykim2 $(OBJS) -o $(NAME)
+	@$(CC) -o $(NAME) $(OBJS) -L$(LIB_DIR) -l_jihykim2 $(MLIB)
 	@install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 	@echo $(GREEN) "⚡︎	[ fdf ]		Ready to use fdf" $(RESET)
 
