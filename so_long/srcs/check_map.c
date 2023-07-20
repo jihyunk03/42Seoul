@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:01:18 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 06:16:47 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 07:53:22 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,11 @@ static int	_is_valid_value(t_maps *maps, char c, int x, int y)
 	else if (c == 'C')
 		maps->c++;
 	else if (c == 'E')
+	{
 		maps->e++;
+		maps->end[0] = x;
+		maps->end[1] = y;
+	}
 	else if (c != '0' && c != '1')
 		return (FALSE);
 	return (TRUE);
