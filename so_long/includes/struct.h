@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:31:39 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 04:53:44 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 07:51:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ typedef struct s_maps
 	int		p;			// count of people
 	int		c;			// count of collector
 	int		e;			// count of exit
-	int		**visited;	// for check valid maps(flags)
+	int		move;		// count of moving
 	int		x;			// P's x (< width)
 	int		y;			// P's y (< height)
+	int		end[2];		// locate of end(E)
+	int		**visited;	// for check valid maps(flags)
 	int		e_flag;		// flag for exit by E
 }	t_maps;
 
@@ -38,5 +40,11 @@ typedef struct s_game
 	void	*img_Judy_OK;		// Judy
 	void	*img_Judy_NO;		// Judy: if 'cnt of c' == 'collected c'
 }	t_game;
+
+typedef struct s_vars
+{
+	struct s_game	*game;
+	struct s_maps	*maps;
+}	t_vars;
 
 #endif

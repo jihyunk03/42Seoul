@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:46:00 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/18 21:55:16 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/20 07:59:23 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@
 # define FALSE	0
 # define ERROR	"Error\n"
 
+# define KEY_EXIT	17
 # define KEY_ESC	53
 # define KEY_W		13
 # define KEY_A		0
 # define KEY_S		1
 # define KEY_D		2
+
+# define GROUD	0
+# define MOVE	1
+# define DONE	2
+# define GET	3
 
 #endif
