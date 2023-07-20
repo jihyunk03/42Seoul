@@ -1,7 +1,7 @@
 NAME		= so_long
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -g3 -Wall -Wextra -Werror
 MLIB		= -L$(MLX_DIR) -lmlx -framework Metal -framework Metalkit -Imlx
 RM			= rm -f
 
