@@ -2,7 +2,7 @@ NAME		= so_long
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-MLIB		= -L$(MLX_DIR) -lmlx -Imlx -framework Metal -framework Metalkit
+MLIB		= -L$(MLX_DIR) -lmlx -Imlx -framework Metal -framework MetalKit
 RM			= rm -f
 
 LIB_DIR		= ./my_libft/
