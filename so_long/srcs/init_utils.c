@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 09:14:47 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/20 18:09:46 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/21 22:04:55 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_visited(t_maps *maps)
 	i = 0;
 	while (i < maps->height)
 	{
-		maps->visited[i] = calloc(maps->width, sizeof(int));
+		maps->visited[i] = ft_calloc(maps->width, sizeof(int));
 		if (maps->visited[i] == NULL)
 			exit (EXIT_FAILURE);
 		i++;
