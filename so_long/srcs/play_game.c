@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:31:52 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/24 22:14:46 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:19:25 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	play_game(t_maps *maps)
 	game = init_game(maps);
 	vars = init_vars(game, maps);
 	// mlx_key_hook(vars->game->win, _key_press, vars);
-	mlx_hook(vars->game->win, 2, 0, _key_press, vars);
+	mlx_hook(vars->game->win, KEY_ACT, 0, _key_press, vars);
 	mlx_hook(vars->game->win, KEY_EXIT, 0, _exit_game, vars);
 	mlx_loop(game->mlx);
 }
