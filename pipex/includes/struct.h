@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 21:00:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 06:44:11 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:30:13 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define P_READ		0
 # define P_WRITE	1
 
-typedef struct s_pipex
+typedef struct s_pipe
 {
 	int		here_doc;
 	int		in_fd;
