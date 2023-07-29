@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 03:42:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/28 17:29:15 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/07/28 17:37:58 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/07/28 17:40:51 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+#include "../includes/philo.h"
 
-# define TRUE	1;
-# define FALSE	0;
-
-#endif
+int	error_message(char *message)
+{
+	ft_putstr_fd(message, STDERR_FILENO);
+	return (EXIT_FAILURE);
+}

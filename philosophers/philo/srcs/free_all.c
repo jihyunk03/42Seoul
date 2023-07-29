@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 03:42:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/28 17:29:15 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/07/28 19:29:52 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/07/28 19:49:04 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+#include "../includes/philo.h"
 
-# define TRUE	1;
-# define FALSE	0;
+void	free_data(t_data *s_data)
+{
 
-#endif
+}
