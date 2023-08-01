@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:56 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/07/28 17:39:49 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:57:48 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, s++, 1);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str)		// atoi: overflow 처리, 정수값 확인 처리
 {
 	int		sign;
 	long	res;
