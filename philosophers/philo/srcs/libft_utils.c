@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:56 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/01 16:57:48 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/03 12:04:41 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,17 @@ int	ft_atoi(const char *str)		// atoi: overflow 처리, 정수값 확인 처리
 	while (*str >= '0' && *str <= '9')
 		res = res * 10 + (*str++ - '0');
 	return (sign * res);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	unsigned char	*res;
+
+	if (size != 0 && count > SIZE_MAX / size)
+		return (NULL);
+	res = malloc(count * size);
+	if (res == NULL)
+		return (NULL);
+	ft_bzero(res, count * size);
+	return (res);
 }
