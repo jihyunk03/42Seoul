@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:16:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/01 15:26:47 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:58:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_data	*data;
+	t_philo	*philo;
 	int		errno;
 
 	if (ac < 5 || ac > 7)
@@ -27,6 +28,28 @@ int	main(int ac, char **av)
 	errno = init_data(data, ac, av);
 	if (errno != SUCCESS)
 		return (error_message("Error: fail to init struct(data)\n"));
+	philo = init_philo(data);
+	if (philo == NULL)
+		return (error_message("Error: fail to init_philo\n"));
 
+	_make_thread(philo, data->philosophers);
 	return (EXIT_SUCCESS);
+}
+
+static int	_make_thread(t_philo *philo, int philosophers)
+{
+	int		i;
+
+	i = 0;
+	while (i < philosophers)
+	{
+		if (pthread_create(&philo[i].tid, NULL, start_philo, &philo[i]) != 0)
+			return (PHILO_ERR);
+		i++;
+	}
+}
+
+int	start_philo(t_philo *philo)
+{
+
 }

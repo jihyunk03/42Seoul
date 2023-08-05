@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:44:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/01 17:42:17 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:32:39 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_philo	*init_philo(t_data *data)
 		philo[i].left = i;
 		philo[i].right = (i + 1) % data->philosophers;
 		philo[i].eat_cnt = 0;
+		i++;
 	}
 	return (philo);
 }
