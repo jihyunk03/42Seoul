@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:44:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/05 16:32:39 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:11:08 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	_init_mutex_data(t_data *new);
 
 int	init_data(t_data *new, int ac, char **av)
 {	// ft_atoi의 결과가 이상한 경우(숫자가 아닌 것이 들어간 경우) 에러 처리?
+	memset(new, 0, sizeof(t_data));
 	new->philosophers = ft_atoi(av[1]);
 	new->die_t = ft_atoi(av[2]);
 	new->eat_t = ft_atoi(av[3]);
@@ -26,10 +27,11 @@ int	init_data(t_data *new, int ac, char **av)
 	if (new->philosophers < 1 || new->die_t < 0 || new->eat_t < 0 \
 	|| new->sleep_t < 0 || (ac == 6 && new->must_eat < 0))
 		return (ARG_ERR);
-	new->fork = ft_calloc(new->philosophers, sizeof(int));
-	if (new->fork == NULL)
+	new->forks = ft_calloc(new->philosophers, sizeof(int));
+	if (new->forks == NULL)
 		return (ARG_ERR);
-	return (_init_mutex(new));
+// someone_die reset? >> 굳이 필요한지 다시 고민할 것
+	return (_init_mutex_data(new));
 }
 
 static int	_init_mutex_data(t_data *new)
@@ -43,7 +45,7 @@ static int	_init_mutex_data(t_data *new)
 	while (i < new->philosophers)
 		if (pthread_mutex_init(&new->f_state[i++], NULL))
 			return (MUTEX_ERR);
-	if (pthread_mutex_init(&new->time, NULL) \
+	if (pthread_mutex_init(&new->print, NULL) \
 	|| pthread_mutex_init(&new->die_philo, NULL) \
 	|| pthread_mutex_init(&new->end_philo, NULL))
 		return (MUTEX_ERR);
