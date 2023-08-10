@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:42:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/09 09:16:48 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:34:31 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define MUTEX_ERR	3
 # define PHILO_ERR	4
 
-# define PHILO_END	5	// option 만족 시 끝내기
-# define PHILO_DEAD	6
+# define CONTINUE	1	// for identify function's state
+# define END		0
 
 # define FORK	"has taken a fork"
 # define EAT	"is eating"
