@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:43:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/08 18:41:48 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:30:16 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ typedef struct s_philo
 	int				left;
 	int				right;
 	int				eat_cnt;	// option!
-	long long		last_eat_time;
+	long long		last_eat;
+	int				full;
 }	t_philo;
 
 typedef struct s_data	// [shared memory]
@@ -32,11 +33,13 @@ typedef struct s_data	// [shared memory]
 	int				sleep_t;			// time to sleep
 	int				must_eat;			// count of must eat -> option! not must arg
 	int				*forks;
+	long long		start;
 	pthread_mutex_t	*f_state;
 	pthread_mutex_t	print;			// mutex for printing messages
-	pthread_mutex_t	end_philo;		// 굳이? -> 이건 그닥,,ㅋ (full_philo)
-	pthread_mutex_t	die_philo;		// 굳이? -> 응 필요해~ someone_die 보호할거야
-	int				someone_die;
+	pthread_mutex_t	end_philo;		// 굳이? -> 이건 그닥,,ㅋ (full_philo) 필요한듯?
+	int				end;
+	pthread_mutex_t	die_philo;		// 굳이? -> 응 필요해~ dead 보호할거야
+	int				dead;
 }	t_data;
 
 #endif

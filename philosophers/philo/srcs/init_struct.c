@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:44:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/08 18:11:08 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/09 09:20:18 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ int	init_data(t_data *new, int ac, char **av)
 	new->forks = ft_calloc(new->philosophers, sizeof(int));
 	if (new->forks == NULL)
 		return (ARG_ERR);
-// someone_die reset? >> 굳이 필요한지 다시 고민할 것
+
+// dead reset? >> 굳이 필요한지 다시 고민할 것, memset으로 했으면 밑에는 안해도 될듯?
+	new->start = 0;
+	new->end = 0;
+	new->dead = 0;
+
 	return (_init_mutex_data(new));
 }
 
@@ -68,6 +73,7 @@ t_philo	*init_philo(t_data *data)
 		philo[i].left = i;
 		philo[i].right = (i + 1) % data->philosophers;
 		philo[i].eat_cnt = 0;
+		philo[i].full = FALSE;
 		i++;
 	}
 	return (philo);
