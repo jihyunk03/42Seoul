@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:16:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/08 18:25:24 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 02:47:23 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_data	*data;
+	t_philo	*philo;
 	int		errno;
 
 	if (ac < 5 || ac > 6)
@@ -25,11 +26,9 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	errno = init_data(data, ac, av);
 	if (errno != SUCCESS)
-		return (error_message("Error: fail to init struct(data)\n"));
-
-	errno = start_philo(data);
-	if (errno != SUCCESS)
-		return (error_message("Error: fail to threading\n"));
-
-	return (EXIT_SUCCESS);
+		return (error_exit(NULL, data, errno));
+	philo = init_philo(data);
+	if (philo == NULL)
+		return (error_exit(NULL, data, ALLOC_FAIL));
+	return (start_philo(philo, data));
 }

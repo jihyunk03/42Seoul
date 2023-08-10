@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:44:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/10 14:38:50 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 02:29:43 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_data(t_data *new, int ac, char **av)
 		return (ARG_ERR);
 	new->forks = ft_calloc(new->philosophers, sizeof(int));
 	if (new->forks == NULL)
-		return (ARG_ERR);
+		return (ALLOC_FAIL);
 	return (_init_mutex_data(new));
 }
 
@@ -39,7 +39,7 @@ static int	_init_mutex_data(t_data *new)
 
 	new->f_state = malloc(sizeof(pthread_mutex_t) * new->philosophers);
 	if (new->f_state == NULL)
-		return (MUTEX_ERR);
+		return (ALLOC_FAIL);	// allocation error
 	i = 0;
 	while (i < new->philosophers)
 		if (pthread_mutex_init(&new->f_state[i++], NULL))

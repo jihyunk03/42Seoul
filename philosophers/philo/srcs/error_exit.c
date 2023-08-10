@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:37:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/01 17:02:58 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 02:46:53 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,16 @@ int	error_message(char *message)
 
 int	error_exit(t_philo *philo, t_data *data, int errno)
 {
-	if (errno == ARG_ERR || errno == MUTEX_ERR)
-		free_data(data);		// mutex_free도 안에서 해줄것(NULL 제외) >> memset사용했기 때문에 조건만 주면 이들이 알아서 처리 가능
+	if (philo != NULL && data != NULL)
+		free_philo(philo, data->philosophers);
+	free_data(data);
+	if (errno == ALLOC_FAIL)
+		return (EXIT_FAILURE);
+	else if (errno == ARG_ERR)
+		return (error_message("Error: invalid arguments\n"));
+	else if (errno == MUTEX_ERR)
+		return (error_message("Error: failed to initialize mutex\n"));
 	else if (errno == PHILO_ERR)
-		free_philo(philo);		// 이 안에서 data 한번만 free 해줄 것
+		return (error_message("Error: failed to create philo\n"));
+	return (EXIT_FAILURE);
 }
