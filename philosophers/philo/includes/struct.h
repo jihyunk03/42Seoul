@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:43:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 00:54:53 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 03:29:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_data	// [shared memory]
 	int				eat_t;				// time to eat
 	int				sleep_t;			// time to sleep
 	int				must_eat;			// count of must eat -> option! not must arg
-	long long		start;
+	long long		start_t;
 	pthread_mutex_t	*f_state;
 	int				*forks;
 	pthread_mutex_t	end_philo;		// 굳이? -> 이건 그닥,,ㅋ (full_philo) 필요한듯?

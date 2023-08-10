@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:15:51 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 02:46:45 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 03:42:12 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	finish_philo(t_philo *philo, t_data *data);
 long long	current_time(void);
 void	print_message(t_philo *philo, char *message);
 int		check_dead(t_data *data);
+int		is_full(t_philo *philo);
 
 /* error_exit.c */
 int		error_message(char *message);

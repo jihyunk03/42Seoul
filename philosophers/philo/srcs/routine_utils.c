@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:52:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 02:24:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 03:42:56 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*start_routine(void *ph)
 		usleep(100);	// die_t 고려해서 다시 시간 정할 것
 	while (TRUE)
 	{
-		if (_ph_eat(philo) == END || philo->full == TRUE)
+		if (_ph_eat(philo) == END)
 			return (NULL);
 		if (_ph_sleep(philo) == END)
 			return (NULL);
@@ -70,9 +70,9 @@ static int	_ph_is_eating(t_philo *philo, long long eat_start)
 			return (END);	// return 값이 없어서 그냥 종료하고 monitoring에서 잡힐 것이라 예상중 ^^ >> 응 잡아써~
 		}
 	}
-	if (++(philo->eat_cnt) == philo->data->must_eat)
-		philo->full = TRUE;
 	philo->last_eat = current_time();
+	if (++(philo->eat_cnt) == philo->data->must_eat)
+		return (is_full(philo));
 	return (CONTINUE);
 }
 
