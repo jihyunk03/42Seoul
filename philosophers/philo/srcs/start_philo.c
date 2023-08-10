@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:13:56 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 04:15:35 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 05:45:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,21 @@ static int	_is_ph_died(t_philo *philo, t_data *data)
 	int	i;
 
 	i = 0;
+	// pthread_mutex_lock(&data->dead_philo);
 	while (i < data->philosophers)
 	{
-		if (philo[i].full == FALSE && current_time() - philo[i].last_eat > data->die_t)
+		if (philo[i].last_eat && philo[i].full == FALSE \
+			&& current_time() - philo[i].last_eat > data->die_t)
 		{
 			print_message(&philo[i], DEAD);
-			pthread_mutex_lock(&data->die_philo);
+			pthread_mutex_lock(&data->dead_philo);
 			data->dead = TRUE;
-			pthread_mutex_unlock(&data->die_philo);
+			pthread_mutex_unlock(&data->dead_philo);
 			return (TRUE);
 		}
 		i++;
 	}
+	// pthread_mutex_unlock(&data->dead_philo);
 	return (FALSE);
 }
 

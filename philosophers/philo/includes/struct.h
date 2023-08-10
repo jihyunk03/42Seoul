@@ -6,13 +6,14 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:43:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 03:29:27 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 05:33:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include "./header.h"
 /* Questions */
 /*
  * 1. forks를 보호하라고 subject에 명시되어 있는데 forks를 뮤텍스로 사용하는 것 자체가
@@ -45,7 +46,7 @@ typedef struct s_data	// [shared memory]
 	int				*forks;
 	pthread_mutex_t	end_philo;		// 굳이? -> 이건 그닥,,ㅋ (full_philo) 필요한듯?
 	int				end;
-	pthread_mutex_t	die_philo;		// 굳이? -> 응 필요해~ dead 보호할거야
+	pthread_mutex_t	dead_philo;		// 굳이? -> 응 필요해~ dead 보호할거야
 	int				dead;
 	pthread_mutex_t	print;			// mutex for printing messages
 }	t_data;

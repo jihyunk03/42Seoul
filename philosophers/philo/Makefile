@@ -5,7 +5,11 @@ CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
 SRCS_DIR	= ./srcs/
-SRCS		= philo.c
+SRCS		= philo.c \
+			  init_struct.c \
+			  start_philo.c routine_utils.c \
+			  philo_utils.c libft_utils.c \
+			  free_all.c error_exit.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
 all		: $(NAME)
@@ -13,7 +17,7 @@ all		: $(NAME)
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME)	: $(OBJ)
+$(NAME)	: $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@echo $(GREEN) "⚡︎	[ philo ]	Ready to use philo" $(RESET)
 

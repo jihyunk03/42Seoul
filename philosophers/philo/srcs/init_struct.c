@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:44:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 02:29:43 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 05:33:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	_init_mutex_data(t_data *new)
 		if (pthread_mutex_init(&new->f_state[i++], NULL))
 			return (MUTEX_ERR);
 	if (pthread_mutex_init(&new->print, NULL) \
-	|| pthread_mutex_init(&new->die_philo, NULL) \
+	|| pthread_mutex_init(&new->dead_philo, NULL) \
 	|| pthread_mutex_init(&new->end_philo, NULL))
 		return (MUTEX_ERR);
 	return (SUCCESS);
@@ -59,6 +59,7 @@ t_philo	*init_philo(t_data *data)
 	philo = malloc(sizeof(t_philo) * data->philosophers);
 	if (philo == NULL)
 		return (NULL);		// because of return value is ptr*
+	memset(philo, 0, sizeof(t_philo) * data->philosophers);
 	i = 0;
 	while (i < data->philosophers)
 	{

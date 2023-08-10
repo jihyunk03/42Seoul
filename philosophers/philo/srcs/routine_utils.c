@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:52:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 03:42:56 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 05:42:04 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	*start_routine(void *ph)
 	philo = (t_philo *)ph;
 	philo->last_eat = current_time();
 	if (philo->eat_cnt == 0 && philo->id % 2 == 0)
-		usleep(100);	// die_t 고려해서 다시 시간 정할 것
+		usleep(50);	// die_t 고려해서 다시 시간 정할 것
 	while (TRUE)
 	{
 		if (_ph_eat(philo) == END)
-			return (NULL);
+			break ;
 		if (_ph_sleep(philo) == END)
-			return (NULL);
+			break ;
 		if (_ph_think(philo) == END)
-			return (NULL);
+			break ;
 	}
-	// return (NULL);
+	return (NULL);
 }
 
 static int	_ph_eat(t_philo *philo)
@@ -88,7 +88,7 @@ static int	_ph_sleep(t_philo *philo)
 static int	_ph_think(t_philo *philo)
 {
 	print_message(philo, THINK);	// 위치 다시 고려
-	if (check_dead(philo->data == TRUE))
+	if (check_dead(philo->data) == TRUE)
 		return (END);
 	return (CONTINUE);
 }

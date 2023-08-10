@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:15:51 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 03:42:12 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 04:41:51 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 void	ft_putstr_fd(char *s, int fd);
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t count, size_t size);
+void	ft_bzero(void *s, size_t n);
 
 /* init_struct.c */
 int		init_data(t_data *new, int ac, char **av);
@@ -34,9 +35,6 @@ int		start_philo(t_philo *philo, t_data *data);
 void	*start_routine(void *ph);
 
 
-/* finish_philo.c */
-void	finish_philo(t_philo *philo, t_data *data);
-
 /* philo_utils.c */
 long long	current_time(void);
 void	print_message(t_philo *philo, char *message);
@@ -48,7 +46,7 @@ int		error_message(char *message);
 int		error_exit(t_philo *philo, t_data *data, int errno);
 
 /* free_all.c */
-void	free_data(t_data *data);
 void	free_philo(t_philo *philo, int philosophers);
+void	free_data(t_data *data);
 
 #endif

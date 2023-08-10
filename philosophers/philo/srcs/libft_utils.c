@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:56 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/03 12:04:41 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 04:41:39 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,15 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	ft_bzero(res, count * size);
 	return (res);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*res;
+
+	i = 0;
+	res = (unsigned char *)s;
+	while (i < n)
+		res[i++] = 0;
 }
