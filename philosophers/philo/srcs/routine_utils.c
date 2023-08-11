@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:52:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 05:42:04 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 15:40:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,37 @@ void	*start_routine(void *ph)
 
 static int	_ph_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->f_state[philo->left]);
-	print_message(philo, FORK);
-	philo->data->forks[philo->left] = TRUE;
-	pthread_mutex_lock(&philo->data->f_state[philo->right]);
-	print_message(philo, FORK);
-	philo->data->forks[philo->right] = TRUE;
+	while (1)
+	{
+		if (check_dead(philo->data) == TRUE)
+			return (END);
+		pthread_mutex_lock(&philo->data->f_state[philo->left]);
+		pthread_mutex_lock(&philo->data->f_state[philo->right]);
+		if (philo->data->forks[philo->left] == FALSE && philo->data->forks[philo->right] == FALSE)
+		{
+			philo->data->forks[philo->left] = TRUE;
+			philo->data->forks[philo->right] = TRUE;
+			print_message(philo, FORK);
+			print_message(philo, FORK);
+			pthread_mutex_unlock(&philo->data->f_state[philo->left]);
+			pthread_mutex_unlock(&philo->data->f_state[philo->right]);
+			break;
+		}
+		pthread_mutex_unlock(&philo->data->f_state[philo->left]);
+		pthread_mutex_unlock(&philo->data->f_state[philo->right]);
+	}
 
 	if (_ph_is_eating(philo, current_time()) == END)
 		return (END);
 
+	pthread_mutex_lock(&philo->data->f_state[philo->left]);
 	philo->data->forks[philo->left] = FALSE;
 	pthread_mutex_unlock(&philo->data->f_state[philo->left]);
+
+	pthread_mutex_lock(&philo->data->f_state[philo->right]);
 	philo->data->forks[philo->right] = FALSE;
 	pthread_mutex_unlock(&philo->data->f_state[philo->right]);
+
 	return (CONTINUE);
 }
 
