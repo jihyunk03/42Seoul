@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:52:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 20:30:18 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:56:49 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,25 @@ void	*start_routine(void *ph)
 
 static int	_ph_eat(t_philo *philo, t_data *data)
 {
+	if (data->philosophers == 1)
+	{
+		pthread_mutex_lock(&data->f_state[philo->left]);
+		print_message(philo, FORK);
+		pthread_mutex_unlock(&data->f_state[philo->right]);
+		while (check_ph_dead(philo, data) == FALSE)
+			;
+		return (END);
+	}
 	if (_ph_pick_fork(philo, data) == END)
 		return (END);
 	if (_ph_is_eating(philo, data, current_time()) == END)
 		return (END);
-
 	pthread_mutex_lock(&data->f_state[philo->left]);
 	data->forks[philo->left] = FALSE;
 	pthread_mutex_unlock(&data->f_state[philo->left]);
-
 	pthread_mutex_lock(&data->f_state[philo->right]);
 	data->forks[philo->right] = FALSE;
 	pthread_mutex_unlock(&data->f_state[philo->right]);
-
 	return (CONTINUE);
 }
 
