@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:16:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 15:40:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:28:13 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	t_philo	*philo;
 	int		errno;
 
-	atexit(check_leaks);
+	// atexit(check_leaks);
 
 	if (ac < 5 || ac > 6)
 		return (error_message("Error: invalid arguments\n"));

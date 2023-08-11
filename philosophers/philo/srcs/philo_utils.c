@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:38:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 18:20:33 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:39:23 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ void	print_message(t_philo *philo, char *message)
 	pthread_mutex_unlock(&philo->data->print);
 }
 
-int	is_full(t_philo *philo)
-{
-	printf("[%d] haha\n", philo->id);
-	pthread_mutex_lock(&philo->data->end_philo);
-	philo->full = TRUE;
-	philo->data->end++;
-	pthread_mutex_unlock(&philo->data->end_philo);
-	return (END);
-}
+// int	is_full(t_philo *philo)
+// {
+// 	printf("[%d] haha\n", philo->id);
+// 	pthread_mutex_lock(&philo->data->end_philo);
+// 	philo->full = TRUE;
+// 	philo->data->end++;
+// 	pthread_mutex_unlock(&philo->data->end_philo);
+// 	return (END);
+// }
 
 // int	is_dead(t_data *data)
 // {

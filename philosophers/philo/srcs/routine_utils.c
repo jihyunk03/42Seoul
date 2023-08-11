@@ -6,106 +6,107 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:52:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 15:40:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:30:18 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	_ph_eat(t_philo *philo);
-static int	_ph_is_eating(t_philo *philo, long long eat_start);
-static int	_ph_sleep(t_philo *philo);
-static int	_ph_think(t_philo *philo);
+static int	_ph_eat(t_philo *philo, t_data *data);
+static int	_ph_pick_fork(t_philo *philo, t_data *data);
+static int	_ph_is_eating(t_philo *philo, t_data *data, long long eat_start);
+static int	_ph_sleep_and_think(t_philo *philo, t_data *data);
 
 void	*start_routine(void *ph)
 {
 	t_philo	*philo;
+	t_data	*data;
 
 	philo = (t_philo *)ph;
+	data = philo->data;
 	philo->last_eat = current_time();
 	if (philo->eat_cnt == 0 && philo->id % 2 == 0)
-		usleep(50);	// die_t 고려해서 다시 시간 정할 것
-	while (TRUE)
+		usleep(500);	// die_t 고려해서 다시 시간 정할 것
+	while (someone_dead(data) == FALSE)
 	{
-		if (_ph_eat(philo) == END)
+		if (_ph_eat(philo, data) == END)
 			break ;
-		if (_ph_sleep(philo) == END)
+		if (data->must_eat > -1 && philo->eat_cnt == data->must_eat)
 			break ;
-		if (_ph_think(philo) == END)
+		if (_ph_sleep_and_think(philo, data) == END)
 			break ;
+		usleep(500);
 	}
 	return (NULL);
 }
 
-static int	_ph_eat(t_philo *philo)
+static int	_ph_eat(t_philo *philo, t_data *data)
 {
-	while (1)
-	{
-		if (check_dead(philo->data) == TRUE)
-			return (END);
-		pthread_mutex_lock(&philo->data->f_state[philo->left]);
-		pthread_mutex_lock(&philo->data->f_state[philo->right]);
-		if (philo->data->forks[philo->left] == FALSE && philo->data->forks[philo->right] == FALSE)
-		{
-			philo->data->forks[philo->left] = TRUE;
-			philo->data->forks[philo->right] = TRUE;
-			print_message(philo, FORK);
-			print_message(philo, FORK);
-			pthread_mutex_unlock(&philo->data->f_state[philo->left]);
-			pthread_mutex_unlock(&philo->data->f_state[philo->right]);
-			break;
-		}
-		pthread_mutex_unlock(&philo->data->f_state[philo->left]);
-		pthread_mutex_unlock(&philo->data->f_state[philo->right]);
-	}
-
-	if (_ph_is_eating(philo, current_time()) == END)
+	if (_ph_pick_fork(philo, data) == END)
+		return (END);
+	if (_ph_is_eating(philo, data, current_time()) == END)
 		return (END);
 
-	pthread_mutex_lock(&philo->data->f_state[philo->left]);
-	philo->data->forks[philo->left] = FALSE;
-	pthread_mutex_unlock(&philo->data->f_state[philo->left]);
+	pthread_mutex_lock(&data->f_state[philo->left]);
+	data->forks[philo->left] = FALSE;
+	pthread_mutex_unlock(&data->f_state[philo->left]);
 
-	pthread_mutex_lock(&philo->data->f_state[philo->right]);
-	philo->data->forks[philo->right] = FALSE;
-	pthread_mutex_unlock(&philo->data->f_state[philo->right]);
+	pthread_mutex_lock(&data->f_state[philo->right]);
+	data->forks[philo->right] = FALSE;
+	pthread_mutex_unlock(&data->f_state[philo->right]);
 
 	return (CONTINUE);
 }
 
-static int	_ph_is_eating(t_philo *philo, long long eat_start)
+static int	_ph_pick_fork(t_philo *philo, t_data *data)
 {
-	print_message(philo, EAT);		// 위치 다시 고려할 것
-	while (current_time() - eat_start < philo->data->eat_t)
+	while (check_ph_dead(philo, data) == FALSE)
 	{
-		if (check_dead(philo->data) == TRUE)
+		pthread_mutex_lock(&data->f_state[philo->left]);
+		pthread_mutex_lock(&data->f_state[philo->right]);
+		if (data->forks[philo->left] == FALSE && data->forks[philo->right] == FALSE)
 		{
-			philo->data->forks[philo->left] = FALSE;
-			pthread_mutex_unlock(&philo->data->f_state[philo->left]);
-			philo->data->forks[philo->right] = FALSE;
-			pthread_mutex_unlock(&philo->data->f_state[philo->right]);
-			return (END);	// return 값이 없어서 그냥 종료하고 monitoring에서 잡힐 것이라 예상중 ^^ >> 응 잡아써~
+			data->forks[philo->left] = TRUE;
+			data->forks[philo->right] = TRUE;
+			print_message(philo, FORK);
+			print_message(philo, FORK);
+			pthread_mutex_unlock(&data->f_state[philo->left]);
+			pthread_mutex_unlock(&data->f_state[philo->right]);
+			return (CONTINUE);
+		}
+		pthread_mutex_unlock(&data->f_state[philo->left]);
+		pthread_mutex_unlock(&data->f_state[philo->right]);
+	}
+	return (END);
+}
+
+static int	_ph_is_eating(t_philo *philo, t_data *data, long long eat_start)
+{
+	print_message(philo, EAT);
+	while (current_time() - eat_start < data->eat_t)
+	{
+		if (check_ph_dead(philo, data) == TRUE)
+		{
+			data->forks[philo->left] = FALSE;
+			pthread_mutex_unlock(&data->f_state[philo->left]);
+			data->forks[philo->right] = FALSE;
+			pthread_mutex_unlock(&data->f_state[philo->right]);
+			return (END);
 		}
 	}
 	philo->last_eat = current_time();
-	if (++(philo->eat_cnt) == philo->data->must_eat)
-		return (is_full(philo));
+	++philo->eat_cnt;
 	return (CONTINUE);
 }
 
-static int	_ph_sleep(t_philo *philo)
+static int	_ph_sleep_and_think(t_philo *philo, t_data *data)
 {
-	print_message(philo, SLEEP);	// 위치 다시 고려
-	while (current_time() - philo->last_eat < philo->data->sleep_t)
-		if (check_dead(philo->data) == TRUE)
+	print_message(philo, SLEEP);
+	while (current_time() - philo->last_eat < data->sleep_t)
+		if (check_ph_dead(philo, data) == TRUE)
 			return (END);
-	return (CONTINUE);
-}
-
-static int	_ph_think(t_philo *philo)
-{
-	print_message(philo, THINK);	// 위치 다시 고려
-	if (check_dead(philo->data) == TRUE)
-		return (END);
+	print_message(philo, THINK);
+	if (check_ph_dead(philo, data) == TRUE)
+			return (END);
 	return (CONTINUE);
 }

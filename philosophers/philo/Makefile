@@ -1,14 +1,14 @@
 NAME		= philo
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror #-fsanitize=thread -g3
+CFLAGS		= -Wall -Wextra -Werror -fsanitize=thread -g3
 RM			= rm -f
 
 SRCS_DIR	= ./srcs/
 SRCS		= philo.c \
 			  init_struct.c \
 			  start_philo.c routine_utils.c \
-			  philo_utils.c libft_utils.c \
+			  philo_utils.c libft_utils.c check_utils.c \
 			  free_all.c error_exit.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
