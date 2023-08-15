@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:52:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 20:56:49 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/14 21:37:26 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,20 @@ static int	_ph_pick_fork(t_philo *philo, t_data *data)
 	while (check_ph_dead(philo, data) == FALSE)
 	{
 		pthread_mutex_lock(&data->f_state[philo->left]);
+		if (data->forks[philo->left] == TRUE)
+		{
+			pthread_mutex_unlock(&data->f_state[philo->left]);
+			continue ;
+		}
 		pthread_mutex_lock(&data->f_state[philo->right]);
-		if (data->forks[philo->left] == FALSE && data->forks[philo->right] == FALSE)
+		if (data->forks[philo->right] == FALSE)
 		{
 			data->forks[philo->left] = TRUE;
-			data->forks[philo->right] = TRUE;
-			print_message(philo, FORK);
-			print_message(philo, FORK);
 			pthread_mutex_unlock(&data->f_state[philo->left]);
+			data->forks[philo->right] = TRUE;
 			pthread_mutex_unlock(&data->f_state[philo->right]);
+			print_message(philo, FORK);
+			print_message(philo, FORK);
 			return (CONTINUE);
 		}
 		pthread_mutex_unlock(&data->f_state[philo->left]);
@@ -93,12 +98,15 @@ static int	_ph_is_eating(t_philo *philo, t_data *data, long long eat_start)
 	{
 		if (check_ph_dead(philo, data) == TRUE)
 		{
-			data->forks[philo->left] = FALSE;
-			pthread_mutex_unlock(&data->f_state[philo->left]);
+			pthread_mutex_lock(&data->f_state[philo->right]);
 			data->forks[philo->right] = FALSE;
 			pthread_mutex_unlock(&data->f_state[philo->right]);
+			pthread_mutex_lock(&data->f_state[philo->left]);
+			data->forks[philo->left] = FALSE;
+			pthread_mutex_unlock(&data->f_state[philo->left]);
 			return (END);
 		}
+		usleep(100);
 	}
 	philo->last_eat = current_time();
 	++philo->eat_cnt;
