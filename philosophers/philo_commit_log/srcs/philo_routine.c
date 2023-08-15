@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:52:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/14 21:18:45 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 08:21:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static int	_ph_pick_fork(t_philo *philo, t_data *data)
 static int	_ph_is_eating(t_philo *philo, t_data *data, long long eat_start)
 {
 	print_message(philo, EAT);
+	philo->last_eat = current_time();
 	++philo->eat_cnt;
 	while (current_time() - eat_start < data->eat_t)
 	{
@@ -110,7 +111,6 @@ static int	_ph_is_eating(t_philo *philo, t_data *data, long long eat_start)
 		}
 		usleep(200);
 	}
-	philo->last_eat = current_time();
 	return (CONTINUE);
 }
 
