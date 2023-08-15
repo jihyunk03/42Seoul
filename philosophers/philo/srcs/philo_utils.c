@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:38:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/14 21:26:03 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 05:39:54 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ long long	current_time(void)
 void	print_message(t_philo *philo, char *message)
 {
 	pthread_mutex_lock(&philo->data->print);
-	// if (someone_dead(philo->data) == TRUE)
-	// {
-	// 	pthread_mutex_unlock(&philo->data->print);
-	// 	return ;
-	// }
+	if (someone_dead(philo->data) == TRUE)
+	{
+		pthread_mutex_unlock(&philo->data->print);
+		return ;
+	}
 	printf("%lld %d %s\n", current_time() - philo->data->start_t, \
 		philo->id, message);
 	pthread_mutex_unlock(&philo->data->print);
