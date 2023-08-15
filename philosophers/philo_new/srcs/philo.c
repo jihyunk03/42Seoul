@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:56:37 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 03:32:58 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 06:04:47 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ int	main(int ac, char **av)
 	errno = init_data(data, ac, av);
 	if (errno != SUCCESS)
 		return (error_exit(NULL, data, errno));
-
 	philo = init_philo(data);
 	if (philo == NULL)
 		return (error_exit(NULL, data, ALLOC_FAIL));
-
 	return (start_philo(philo, data));
 }

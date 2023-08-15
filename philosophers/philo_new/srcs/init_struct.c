@@ -6,20 +6,20 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:04:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 03:26:43 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 06:02:27 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	_check_is_digit(char **arg);
+// static int	_check_is_digit(char **arg);
 static int	_init_mutex(t_data *data);
 
 int	init_data(t_data *data, int ac, char **av)
 {
 	memset(data, 0, sizeof(t_data));
-	if (_check_is_digit(av) == FALSE)
-		return (ARG_ERR);
+	// if (_check_is_digit(av) == FALSE)
+	// 	return (ARG_ERR);
 	data->philosophers = ft_atoi(av[1]);
 	data->die_t = ft_atoi(av[2]);
 	data->eat_t = ft_atoi(av[3]);
@@ -36,19 +36,19 @@ int	init_data(t_data *data, int ac, char **av)
 	return (_init_mutex(data));
 }
 
-static int	_check_is_digit(char **arg)
-{
-	int	i;
-	int	j;
+// static int	_check_is_digit(char **arg)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	while (arg[i++])
-		while (arg[i][j])
-			if (ft_isdigit(arg[i][j++]) != TRUE)
-				return (FALSE);
-	return (TRUE);
-}
+// 	i = 0;
+// 	j = 0;
+// 	while (arg[i++])
+// 		while (arg[i][j])
+// 			if (ft_isdigit(arg[i][j++]) != TRUE)
+// 				return (FALSE);
+// 	return (TRUE);
+// }
 
 static int	_init_mutex(t_data *data)
 {
@@ -59,7 +59,7 @@ static int	_init_mutex(t_data *data)
 		return (ALLOC_FAIL);
 	i = 0;
 	while (i < data->philosophers)
-		if (pthread_mutex_init(&data->f_state[i], NULL) != 0)
+		if (pthread_mutex_init(&data->f_state[i++], NULL) != 0)
 			return (MUTEX_ERR);
 	if (pthread_mutex_init(&data->dead_philo, NULL) != 0 \
 	|| pthread_mutex_init(&data->print, NULL) != 0)

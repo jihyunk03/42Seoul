@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:15:51 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 04:52:34 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 05:58:46 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,10 @@ int		start_philo(t_philo *philo, t_data *data);
 int		ph_eat(t_philo *philo, t_data *data);
 int		ph_sleep_and_think(t_philo *philo, t_data *data);
 
-
-
 /* philo_routine_utils.c */
 long long	current_time(void);
 void	print_message(t_philo *philo, char *message);
 void	print_dead(t_philo *philo, t_data *data);
-
 
 /* check_dead.c */
 int		check_dead(t_philo *philo, t_data *data);
