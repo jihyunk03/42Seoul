@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:38:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 05:43:23 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 06:36:21 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ long long	current_time(void)
 void	print_message(t_philo *philo, char *message)
 {
 	pthread_mutex_lock(&philo->data->print);
-	if (philo->data->print_dead_flag == TRUE)
+	if (philo->data->print_dead_flag == TRUE \
+	|| check_dead(philo, philo->data) == TRUE)
 	{
 		pthread_mutex_unlock(&philo->data->print);
 		return ;

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:58:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 06:04:37 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 08:01:10 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	ph_eat(t_philo *philo, t_data *data)
 	ret = CONTINUE;
 	if (_ph_pick_up_forks(philo, data) == FALSE)
 		return (END);
-	if (check_dead(philo, data) == TRUE)
-		ret = END;
-	else if (_ph_eating(philo, data, current_time()) == FALSE)
+	if (_ph_eating(philo, data, current_time()) == FALSE)
 		ret = END;
 	_ph_put_down_forks(philo, data);
+	if (data->must_eat > 0 && philo->eat_cnt == data->must_eat)
+		return (END);
 	return (ret);
 }
 
@@ -62,14 +62,21 @@ static int	_ph_pick_up_forks(t_philo *philo, t_data *data)
 
 static int	_ph_eating(t_philo *philo, t_data *data, long long start_time)
 {
+	if (check_dead(philo, data) == TRUE)
+		return (FALSE);
 	print_message(philo, EAT);
+	philo->last_eat = current_time();
 	usleep(data->eat_t * 800);
 	while (current_time() - start_time < data->eat_t)
+	{
+		if (someone_dead(data) == TRUE)
+			return (FALSE);
 		usleep(200);
-	philo->last_eat = current_time();
+	}
+	philo->eat_cnt++;
 	if (check_dead(philo, data) == TRUE)
-		return (END);
-	return (CONTINUE);
+		return (FALSE);
+	return (TRUE);
 }
 
 static void	_ph_put_down_forks(t_philo *philo, t_data *data)
@@ -84,10 +91,12 @@ static void	_ph_put_down_forks(t_philo *philo, t_data *data)
 
 int	ph_sleep_and_think(t_philo *philo, t_data *data)
 {
-	if (philo_dead(philo, data) == TRUE)
+	long long	time;
+	if (check_dead(philo, data) == TRUE)
 		return (END);
 	print_message(philo, SLEEP);
-	while (current_time() - philo->last_eat < data->sleep_t)
+	time = current_time();
+	while (current_time() - time < data->sleep_t)
 		usleep(200);
 	if (check_dead(philo, data) == TRUE)
 		return (END);

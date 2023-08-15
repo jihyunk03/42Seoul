@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 03:32:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 06:01:37 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 08:17:19 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	*start_routine(void *ph);
 static void	*_one_philo_routine(t_philo *philo, t_data *data);
-// static void	_monitoring_dead(t_data *data);
 
 int	start_philo(t_philo *philo, t_data *data)
 {
@@ -35,7 +34,6 @@ int	start_philo(t_philo *philo, t_data *data)
 		usleep(data->eat_t * 500);
 		i++;
 	}
-	// _monitoring_dead(data);
 	free_philo(philo, data->philosophers);
 	free_data(data);
 	return (EXIT_SUCCESS);
@@ -50,7 +48,7 @@ static void	*start_routine(void *ph)
 	data = philo->data;
 	if (data->philosophers == 1)
 		return (_one_philo_routine(philo, data));
-	philo->last_eat = data->start_t;	// current_time() 대신에 작성한 시간
+	philo->last_eat = current_time();	// data->start_t; 해야 하나..?
 	while (TRUE)
 	{
 		if (ph_eat(philo, data) == END)
@@ -76,13 +74,3 @@ static void	*_one_philo_routine(t_philo *philo, t_data *data)
 	pthread_mutex_unlock(&data->f_state[philo->left]);
 	return (NULL);
 }
-
-// static void	_monitoring_dead(t_data *data)
-// {
-// 	while (TRUE)
-// 	{
-// 		if (someone_dead(data) == TRUE)
-// 			return ;
-// 		usleep(200);
-// 	}
-// }
