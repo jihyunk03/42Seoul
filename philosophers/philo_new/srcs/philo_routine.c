@@ -6,14 +6,14 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:58:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 08:01:10 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 08:50:46 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
 static int	_ph_pick_up_forks(t_philo *philo, t_data *data);
-static int	_ph_eating(t_philo *philo, t_data *data, long long start_time);
+static int	_ph_eating(t_philo *philo, t_data *data);
 static void	_ph_put_down_forks(t_philo *philo, t_data *data);
 
 int	ph_eat(t_philo *philo, t_data *data)
@@ -23,7 +23,7 @@ int	ph_eat(t_philo *philo, t_data *data)
 	ret = CONTINUE;
 	if (_ph_pick_up_forks(philo, data) == FALSE)
 		return (END);
-	if (_ph_eating(philo, data, current_time()) == FALSE)
+	if (_ph_eating(philo, data) == FALSE)
 		ret = END;
 	_ph_put_down_forks(philo, data);
 	if (data->must_eat > 0 && philo->eat_cnt == data->must_eat)
@@ -32,7 +32,7 @@ int	ph_eat(t_philo *philo, t_data *data)
 }
 
 static int	_ph_pick_up_forks(t_philo *philo, t_data *data)
-{// 짝수 홀수번째 포크 순서를 init에서 바꿔버릴까...?
+{
 	while (check_dead(philo, data) == FALSE)
 	{
 		pthread_mutex_lock(&data->f_state[philo->left]);
@@ -60,16 +60,16 @@ static int	_ph_pick_up_forks(t_philo *philo, t_data *data)
 	return (FALSE);
 }
 
-static int	_ph_eating(t_philo *philo, t_data *data, long long start_time)
+static int	_ph_eating(t_philo *philo, t_data *data)
 {
 	if (check_dead(philo, data) == TRUE)
 		return (FALSE);
 	print_message(philo, EAT);
 	philo->last_eat = current_time();
 	usleep(data->eat_t * 800);
-	while (current_time() - start_time < data->eat_t)
+	while (current_time() - philo->last_eat <= data->eat_t)
 	{
-		if (someone_dead(data) == TRUE)
+		if (check_dead(philo, data) == TRUE)
 			return (FALSE);
 		usleep(200);
 	}
@@ -92,14 +92,17 @@ static void	_ph_put_down_forks(t_philo *philo, t_data *data)
 int	ph_sleep_and_think(t_philo *philo, t_data *data)
 {
 	long long	time;
+
 	if (check_dead(philo, data) == TRUE)
 		return (END);
 	print_message(philo, SLEEP);
 	time = current_time();
-	while (current_time() - time < data->sleep_t)
+	while (current_time() - time <= data->sleep_t)
+	{
+		if (check_dead(philo, data) == TRUE)
+			return (END);
 		usleep(200);
-	if (check_dead(philo, data) == TRUE)
-		return (END);
+	}
 	print_message(philo, THINK);
 	return (CONTINUE);
 }

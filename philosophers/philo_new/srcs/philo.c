@@ -6,16 +6,16 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:56:37 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 07:53:03 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 08:53:16 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	check_leaks(void)
-{
-	system("leaks --quiet philo");
-}
+// void	check_leaks(void)
+// {
+// 	system("leaks --quiet philo");
+// }
 
 int	main(int ac, char **av)
 {
@@ -23,10 +23,9 @@ int	main(int ac, char **av)
 	t_philo	*philo;
 	int		errno;
 
-	atexit(check_leaks);
+	// atexit(check_leaks);
 	if (ac < 5 || ac > 6)
 		return (error_message("Error: invalid arguments\n"));
-
 	data = malloc(sizeof(t_data));
 	if (data == NULL)
 		return (EXIT_FAILURE);
