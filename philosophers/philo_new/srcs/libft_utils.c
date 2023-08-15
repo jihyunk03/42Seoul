@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:56 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/15 16:09:13 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 08:53:55 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	ft_putstr_fd(char *s, int fd)
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
-int	ft_atoi(const char *str)		// atoi: overflow 처리, 정수값 확인 처리
+int	ft_atoi(const char *str)
 {
 	int		sign;
 	long	res;
