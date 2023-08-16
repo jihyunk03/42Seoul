@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:58:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 15:54:27 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/17 04:24:02 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	_ph_pick_up_forks(t_philo *philo, t_data *data)
 		if (data->forks[philo->left] == USING)
 		{
 			pthread_mutex_unlock(&data->f_state[philo->left]);
-			usleep(100);
+			usleep(200);
 			continue ;
 		}
 		pthread_mutex_lock(&data->f_state[philo->right]);

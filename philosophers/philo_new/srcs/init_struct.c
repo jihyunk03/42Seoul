@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:04:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 15:36:29 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/17 04:14:12 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,13 @@ static int	_check_is_digit(int ac, char **arg)
 	int	i;
 	int	j;
 
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while (++i < ac)
 	{
 		j = 0;
 		while (arg[i][j])
-		{
-			if (ft_isdigit(arg[i][j]) == FALSE)
-			{
+			if (ft_isdigit(arg[i][j++]) == FALSE)
 				return (FALSE);
-			}
-			j++;
-		}
-		i++;
 	}
 	return (TRUE);
 }
