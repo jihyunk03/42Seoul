@@ -6,19 +6,19 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:04:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 08:28:50 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:36:29 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	_check_is_digit(char **arg);
+static int	_check_is_digit(int ac, char **arg);
 static int	_init_mutex(t_data *data);
 
 int	init_data(t_data *data, int ac, char **av)
 {
 	memset(data, 0, sizeof(t_data));
-	if (_check_is_digit(av) == FALSE)
+	if (_check_is_digit(ac, av) == FALSE)
 		return (ARG_ERR);
 	data->philosophers = ft_atoi(av[1]);
 	data->die_t = ft_atoi(av[2]);
@@ -36,18 +36,23 @@ int	init_data(t_data *data, int ac, char **av)
 	return (_init_mutex(data));
 }
 
-static int	_check_is_digit(char **arg)
+static int	_check_is_digit(int ac, char **arg)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	j = 0;
-	while (arg[i])
+	while (i < ac)
 	{
+		j = 0;
 		while (arg[i][j])
-			if (ft_isdigit(arg[i][j++]) == FALSE)
+		{
+			if (ft_isdigit(arg[i][j]) == FALSE)
+			{
 				return (FALSE);
+			}
+			j++;
+		}
 		i++;
 	}
 	return (TRUE);
