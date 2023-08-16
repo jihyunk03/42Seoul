@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 03:32:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 08:17:19 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/16 09:11:55 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	start_philo(t_philo *philo, t_data *data)
 				return (error_exit(philo, data, PHILO_ERR));
 			j += 2;
 		}
-		usleep(data->eat_t * 500);
+		usleep(500);
 		i++;
 	}
 	free_philo(philo, data->philosophers);
@@ -48,7 +48,9 @@ static void	*start_routine(void *ph)
 	data = philo->data;
 	if (data->philosophers == 1)
 		return (_one_philo_routine(philo, data));
-	philo->last_eat = current_time();	// data->start_t; 해야 하나..?
+	philo->last_eat = data->start_t;	// data->start_t; 해야 하나..? -> 이 값에 따라 밑의 내용이 옮겨질수도 있음
+	if (philo->id % 2 == 0)
+		usleep(data->eat_t * 500);
 	while (TRUE)
 	{
 		if (ph_eat(philo, data) == END)
