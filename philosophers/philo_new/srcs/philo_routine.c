@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:58:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/17 04:24:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/17 04:33:31 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ph_sleep_and_think(t_philo *philo, t_data *data)
 	{
 		if (check_dead(philo, data) == TRUE)
 			return (END);
-		usleep(200);
+		usleep(500);
 	}
 	print_message(philo, THINK);
 	return (CONTINUE);

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 03:32:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 16:21:06 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/17 04:36:31 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,26 @@ static void	*_one_philo_routine(t_philo *philo, t_data *data);
 int	start_philo(t_philo *philo, t_data *data)
 {
 	int	i;
-	int	j;
+	// int	j;
 
 	i = 0;
 	data->start_t = current_time();
-	while (i < 2)
+	// while (i < 2)
+	// {
+	// 	j = i;
+	// 	while (j < data->philosophers)
+	// 	{
+	// 		if (pthread_create(&philo[j].tid, NULL, start_routine, &philo[j]))
+	// 			return (error_exit(philo, data, PHILO_ERR));
+	// 		j += 2;
+	// 	}
+	// 	usleep(200);
+	// 	i++;
+	// }
+	while (i < data->philosophers)
 	{
-		j = i;
-		while (j < data->philosophers)
-		{
-			if (pthread_create(&philo[j].tid, NULL, start_routine, &philo[j]))
-				return (error_exit(philo, data, PHILO_ERR));
-			j += 2;
-		}
-		usleep(200);
+		if (pthread_create(&philo[i].tid, NULL, start_routine, &philo[i]))
+			return (error_exit(philo, data, PHILO_ERR));
 		i++;
 	}
 	free_philo(philo, data->philosophers);
@@ -57,7 +63,7 @@ static void	*start_routine(void *ph)
 			break ;
 		if (ph_sleep_and_think(philo, data) == END)
 			break ;
-		usleep(100);
+		usleep(200);
 	}
 	return (NULL);
 }
