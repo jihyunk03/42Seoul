@@ -5,14 +5,15 @@ CFLAGS		= -Wall -Wextra -Werror #-fsanitize=thread -g3
 RM			= rm -f
 
 SRCS_DIR	= ./srcs/
-SRCS		= 0_philo.c \
-			  1_philo_init.c \
-			  2_philo_start.c \
-			  3_philo_routine.c \
+SRCS		= philo_0.c \
+			  philo_1_init.c \
+			  philo_2_start.c \
+			  philo_3_routine.c \
 			  check_dead.c \
-			  print_and_time.c \
-			  libft_utils.c \
+			  current_time.c \
+			  message_print.c \
 			  free_all.c \
+			  libft_utils.c \
 			  error_exit.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
