@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:04:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/17 21:05:41 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/17 21:22:23 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	init_data(t_data *data, int ac, char **av)
 	data->must_eat = -1;
 	if (ac == 6)
 		data->must_eat = ft_atoi(av[5]);
-	if (data->philosophers < 1 || data->die_t < 0 || data->eat_t < 0 \
-	|| data->sleep_t < 0 || (ac == 6 && data->must_eat < 0))
+	if (data->philosophers < 1 || data->die_t < 1 || data->eat_t < 1 \
+	|| data->sleep_t < 1 || (ac == 6 && data->must_eat < 1))
 		return (ARG_ERR);
 	data->forks = ft_calloc(data->philosophers, sizeof(int));
 	if (data->forks == NULL)
