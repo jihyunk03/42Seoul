@@ -1,11 +1,11 @@
 NAME		= philo_bonus
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror #-fsanitize=thread -g3
 RM			= rm -f
 
 SRCS_DIR	= ./srcs/
-SRCS		= philo_bonus.c
+SRCS		= philo_0_bonus.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
 all		: $(NAME)
