@@ -5,12 +5,12 @@ CFLAGS		= -Wall -Wextra -Werror #-fsanitize=thread -g3
 RM			= rm -f
 
 SRCS_DIR	= ./srcs/
-SRCS		= philo.c \
-			  init_struct.c \
-			  philo_start.c \
-			  philo_routine.c \
-			  philo_routine_utils.c \
+SRCS		= 0_philo.c \
+			  1_philo_init.c \
+			  2_philo_start.c \
+			  3_philo_routine.c \
 			  check_dead.c \
+			  print_and_time.c \
 			  libft_utils.c \
 			  free_all.c \
 			  error_exit.c
