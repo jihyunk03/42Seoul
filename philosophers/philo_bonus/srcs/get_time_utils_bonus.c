@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_0_bonus.c                                    :+:      :+:    :+:   */
+/*   get_time_utils_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 20:07:27 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 19:34:58 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/08/08 18:38:10 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/08/18 17:54:17 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo_bonus.h"
 
-int	main(int ac, char **av)
+long long	current_time(void)
 {
-	t_data	*data;
-	t_philo	*philo;
-	int		errno;
+	struct timeval	tv;
 
-	if (ac < 5 || ac > 6)
-		error_exit(NULL, NULL, ARG_ERR);
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
 
-	data = init_data(ac, av);
-	philo = init_philo(data);
-
-	return (start_philo(philo, data));
+int	sleep_even_philo(t_data *data)
+{
+	if (data->die_t < data->eat_t * 2)
+		return (data->die_t * 500);
+	return (data->eat_t * 500);
 }

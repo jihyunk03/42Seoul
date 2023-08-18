@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:07:47 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 15:08:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:36:13 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,18 @@ typedef struct s_data	// [shared memory]
 	int			must_eat;
 	long long	start_t;
 	sem_t		*forks;
-	int			*fork_state;
+	int			fork_count;
 	sem_t		*dead;
 	int			someone_dead;
 	sem_t		*print;
-	int			print_flag;		// for check dead for stop printing
+	int			no_print;		// for check dead for stop printing
 }	t_data;
 
 typedef struct s_philo
 {
 	struct s_data	*data;
-	pthread_t		tid;
+	pid_t			pid;
 	int				id;
-	int				left;
-	int				right;
 	int				eat_cnt;
 	long long		last_eat;
 }	t_philo;
