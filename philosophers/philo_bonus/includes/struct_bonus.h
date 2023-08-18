@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:07:47 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:01:54 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_data	// [shared memory]
 	int				sleep_t;
 	int				must_eat;
 	long long		start_t;
-	int				print_dead_flag;		// for check dead for stop printing
+	int				print_flag;		// for check dead for stop printing
 	pthread_mutex_t	*forks;
 	int				*fork_state;
 	pthread_mutex_t	dead_philo;
