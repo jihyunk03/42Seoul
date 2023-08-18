@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:04:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:08:42 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	_init_mutex(t_data *data)
 	while (i < data->philosophers)
 		if (pthread_mutex_init(&data->forks[i++], NULL) != 0)
 			return (MUTEX_ERR);
-	if (pthread_mutex_init(&data->dead_philo, NULL) != 0 \
+	if (pthread_mutex_init(&data->dead, NULL) != 0 \
 	|| pthread_mutex_init(&data->print, NULL) != 0)
 		return (MUTEX_ERR);
 	return (SUCCESS);

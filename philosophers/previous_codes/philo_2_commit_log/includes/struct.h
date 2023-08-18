@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:43:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:08:42 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_data	// [shared memory]
 	long long		start_t;
 	pthread_mutex_t	*forks;			// fork의 상태를 따로 보호해주어야 함
 	int				*fork_state;
-	pthread_mutex_t	dead_philo;
-	int				dead;
+	pthread_mutex_t	dead;
+	int				someone_dead;
 	pthread_mutex_t	print;
 }	t_data;
 
