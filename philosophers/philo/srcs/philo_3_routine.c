@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:58:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/17 21:05:44 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,26 @@ static int	_ph_pick_up_forks(t_philo *philo, t_data *data)
 {
 	while (check_dead(philo, data) == FALSE)
 	{
-		pthread_mutex_lock(&data->f_state[philo->left]);
-		if (data->forks[philo->left] == USING)
+		pthread_mutex_lock(&data->forks[philo->left]);
+		if (data->fork_state[philo->left] == USING)
 		{
-			pthread_mutex_unlock(&data->f_state[philo->left]);
+			pthread_mutex_unlock(&data->forks[philo->left]);
 			usleep(200);
 			continue ;
 		}
-		pthread_mutex_lock(&data->f_state[philo->right]);
-		if (data->forks[philo->right] == AVAILABLE)
+		pthread_mutex_lock(&data->forks[philo->right]);
+		if (data->fork_state[philo->right] == AVAILABLE)
 		{
-			data->forks[philo->left] = USING;
+			data->fork_state[philo->left] = USING;
 			print_message(philo, FORK);
-			data->forks[philo->right] = USING;
+			data->fork_state[philo->right] = USING;
 			print_message(philo, FORK);
-			pthread_mutex_unlock(&data->f_state[philo->left]);
-			pthread_mutex_unlock(&data->f_state[philo->right]);
+			pthread_mutex_unlock(&data->forks[philo->left]);
+			pthread_mutex_unlock(&data->forks[philo->right]);
 			return (TRUE);
 		}
-		pthread_mutex_unlock(&data->f_state[philo->left]);
-		pthread_mutex_unlock(&data->f_state[philo->right]);
+		pthread_mutex_unlock(&data->forks[philo->left]);
+		pthread_mutex_unlock(&data->forks[philo->right]);
 		usleep(200);
 	}
 	return (FALSE);
@@ -81,12 +81,12 @@ static int	_ph_eating(t_philo *philo, t_data *data)
 
 static void	_ph_put_down_forks(t_philo *philo, t_data *data)
 {
-	pthread_mutex_lock(&data->f_state[philo->right]);
-	data->forks[philo->right] = AVAILABLE;
-	pthread_mutex_unlock(&data->f_state[philo->right]);
-	pthread_mutex_lock(&data->f_state[philo->left]);
-	data->forks[philo->left] = AVAILABLE;
-	pthread_mutex_unlock(&data->f_state[philo->left]);
+	pthread_mutex_lock(&data->forks[philo->right]);
+	data->fork_state[philo->right] = AVAILABLE;
+	pthread_mutex_unlock(&data->forks[philo->right]);
+	pthread_mutex_lock(&data->forks[philo->left]);
+	data->fork_state[philo->left] = AVAILABLE;
+	pthread_mutex_unlock(&data->forks[philo->left]);
 }
 
 int	ph_sleep_and_think(t_philo *philo, t_data *data)

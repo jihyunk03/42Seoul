@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:44:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/12 15:51:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	init_data(t_data *new, int ac, char **av)
 	if (new->philosophers <= 0 || new->die_t <= 0 || new->eat_t <= 0 \
 		|| new->sleep_t <= 0 || (ac == 6 && new->must_eat <= 0))
 		return (ARG_ERR);
-	new->forks = ft_calloc(new->philosophers, sizeof(int));
-	if (new->forks == NULL)
+	new->fork_state = ft_calloc(new->philosophers, sizeof(int));
+	if (new->fork_state == NULL)
 		return (ALLOC_FAIL);
 	return (_init_mutex_data(new));
 }
@@ -37,12 +37,12 @@ static int	_init_mutex_data(t_data *new)
 {
 	int	i;
 
-	new->f_state = malloc(sizeof(pthread_mutex_t) * new->philosophers);
-	if (new->f_state == NULL)
+	new->forks = malloc(sizeof(pthread_mutex_t) * new->philosophers);
+	if (new->forks == NULL)
 		return (ALLOC_FAIL);
 	i = 0;
 	while (i < new->philosophers)
-		if (pthread_mutex_init(&new->f_state[i++], NULL))
+		if (pthread_mutex_init(&new->forks[i++], NULL))
 			return (MUTEX_ERR);
 	if (pthread_mutex_init(&new->dead_philo, NULL) \
 		|| pthread_mutex_init(&new->print, NULL))

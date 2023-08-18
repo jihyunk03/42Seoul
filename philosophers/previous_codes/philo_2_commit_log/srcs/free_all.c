@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 00:38:36 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/12 02:18:23 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ void	free_data(t_data *data)
 
 	if (data == NULL)
 		return ;
+	if (data->fork_state != NULL)
+		free (data->fork_state);
 	if (data->forks != NULL)
-		free (data->forks);
-	if (data->f_state != NULL)
 	{
 		i = 0;
 		while (i < data->philosophers)
-			pthread_mutex_destroy(&data->f_state[i++]);
+			pthread_mutex_destroy(&data->forks[i++]);
 		pthread_mutex_destroy(&data->print);
 		pthread_mutex_destroy(&data->dead_philo);
-		free (data->f_state);
+		free (data->forks);
 	}
 	free (data);
 }

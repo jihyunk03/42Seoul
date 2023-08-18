@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:43:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/11 21:05:01 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_data	// [shared memory]
 	int				sleep_t;			// time to sleep
 	int				must_eat;			// count of must eat -> option! default: -1
 	long long		start_t;
-	pthread_mutex_t	*f_state;			// fork의 상태를 따로 보호해주어야 함
-	int				*forks;
+	pthread_mutex_t	*forks;			// fork의 상태를 따로 보호해주어야 함
+	int				*fork_state;
 	pthread_mutex_t	dead_philo;
 	int				dead;
 	pthread_mutex_t	print;

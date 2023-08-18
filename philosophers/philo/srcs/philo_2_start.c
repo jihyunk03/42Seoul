@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 03:32:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/17 21:05:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ static void	*start_routine(void *ph)
 
 static void	*_one_philo_routine(t_philo *philo, t_data *data)
 {
-	pthread_mutex_lock(&data->f_state[philo->left]);
-	data->forks[philo->left] = USING;
+	pthread_mutex_lock(&data->forks[philo->left]);
+	data->fork_state[philo->left] = USING;
 	print_message(philo, FORK);
-	pthread_mutex_unlock(&data->f_state[philo->left]);
+	pthread_mutex_unlock(&data->forks[philo->left]);
 	while (current_time() - data->start_t < data->die_t)
 		usleep(500);
 	print_dead(philo, data);
-	pthread_mutex_lock(&data->f_state[philo->left]);
-	data->forks[philo->left] = AVAILABLE;
-	pthread_mutex_unlock(&data->f_state[philo->left]);
+	pthread_mutex_lock(&data->forks[philo->left]);
+	data->fork_state[philo->left] = AVAILABLE;
+	pthread_mutex_unlock(&data->forks[philo->left]);
 	return (NULL);
 }

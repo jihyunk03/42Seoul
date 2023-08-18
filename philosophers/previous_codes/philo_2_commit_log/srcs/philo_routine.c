@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:52:17 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/16 08:21:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ static int	_ph_eat(t_philo *philo, t_data *data)
 		return (END);
 	if (_ph_is_eating(philo, data, current_time()) == END)
 		return (END);
-	pthread_mutex_lock(&data->f_state[philo->right]);
-	data->forks[philo->right] = FALSE;
-	pthread_mutex_unlock(&data->f_state[philo->right]);
-	pthread_mutex_lock(&data->f_state[philo->left]);
-	data->forks[philo->left] = FALSE;
-	pthread_mutex_unlock(&data->f_state[philo->left]);
+	pthread_mutex_lock(&data->forks[philo->right]);
+	data->fork_state[philo->right] = FALSE;
+	pthread_mutex_unlock(&data->forks[philo->right]);
+	pthread_mutex_lock(&data->forks[philo->left]);
+	data->fork_state[philo->left] = FALSE;
+	pthread_mutex_unlock(&data->forks[philo->left]);
 	usleep(10);
 	return (CONTINUE);
 }
@@ -66,28 +66,28 @@ static int	_ph_pick_fork(t_philo *philo, t_data *data)
 {
 	while (check_dead(philo, data) == FALSE)
 	{
-		pthread_mutex_lock(&data->f_state[philo->left]);
-		if (data->forks[philo->left] == TRUE)
+		pthread_mutex_lock(&data->forks[philo->left]);
+		if (data->fork_state[philo->left] == TRUE)
 		{
-			pthread_mutex_unlock(&data->f_state[philo->left]);
+			pthread_mutex_unlock(&data->forks[philo->left]);
 			continue ;
 		}
-		data->forks[philo->left] = TRUE;
-		pthread_mutex_unlock(&data->f_state[philo->left]);
+		data->fork_state[philo->left] = TRUE;
+		pthread_mutex_unlock(&data->forks[philo->left]);
 
-		pthread_mutex_lock(&data->f_state[philo->right]);
-		if (data->forks[philo->right] == FALSE)
+		pthread_mutex_lock(&data->forks[philo->right]);
+		if (data->fork_state[philo->right] == FALSE)
 		{
-			data->forks[philo->right] = TRUE;
-			pthread_mutex_unlock(&data->f_state[philo->right]);
+			data->fork_state[philo->right] = TRUE;
+			pthread_mutex_unlock(&data->forks[philo->right]);
 			print_message(philo, FORK);
 			print_message(philo, FORK);
 			return (CONTINUE);
 		}
-		pthread_mutex_unlock(&data->f_state[philo->right]);
-		pthread_mutex_lock(&data->f_state[philo->left]);
-		data->forks[philo->left] = FALSE;
-		pthread_mutex_unlock(&data->f_state[philo->left]);
+		pthread_mutex_unlock(&data->forks[philo->right]);
+		pthread_mutex_lock(&data->forks[philo->left]);
+		data->fork_state[philo->left] = FALSE;
+		pthread_mutex_unlock(&data->forks[philo->left]);
 	}
 	return (END);
 }
@@ -101,12 +101,12 @@ static int	_ph_is_eating(t_philo *philo, t_data *data, long long eat_start)
 	{
 		if (check_dead(philo, data) == TRUE)
 		{
-			pthread_mutex_lock(&data->f_state[philo->left]);
-			data->forks[philo->left] = FALSE;
-			pthread_mutex_unlock(&data->f_state[philo->left]);
-			pthread_mutex_lock(&data->f_state[philo->right]);
-			data->forks[philo->right] = FALSE;
-			pthread_mutex_unlock(&data->f_state[philo->right]);
+			pthread_mutex_lock(&data->forks[philo->left]);
+			data->fork_state[philo->left] = FALSE;
+			pthread_mutex_unlock(&data->forks[philo->left]);
+			pthread_mutex_lock(&data->forks[philo->right]);
+			data->fork_state[philo->right] = FALSE;
+			pthread_mutex_unlock(&data->forks[philo->right]);
 			return (END);
 		}
 		usleep(200);
