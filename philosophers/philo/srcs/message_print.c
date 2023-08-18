@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 21:04:11 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 15:01:54 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:15:33 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_message(t_philo *philo, char *message)
 {
 	pthread_mutex_lock(&philo->data->print);
-	if (philo->data->print_flag == TRUE)
+	if (philo->data->no_print == TRUE)
 	{
 		pthread_mutex_unlock(&philo->data->print);
 		return ;
@@ -28,12 +28,12 @@ void	print_message(t_philo *philo, char *message)
 void	print_dead(t_philo *philo, t_data *data)
 {
 	pthread_mutex_lock(&data->print);
-	if (data->print_flag == TRUE)
+	if (data->no_print == TRUE)
 	{
 		pthread_mutex_unlock(&data->print);
 		return ;
 	}
-	data->print_flag = TRUE;
+	data->no_print = TRUE;
 	printf("%lld %d %s\n", current_time() - data->start_t, \
 	philo->id, DEAD);
 	pthread_mutex_unlock(&data->print);

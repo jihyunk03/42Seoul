@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:43:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 15:08:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:15:33 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_data	// [shared memory]
 	pthread_mutex_t	dead;
 	int				someone_dead;
 	pthread_mutex_t	print;
-	int				print_flag;		// for check dead for stop printing
+	int				no_print;		// for check dead for stop printing
 }	t_data;
 
 typedef struct s_philo
