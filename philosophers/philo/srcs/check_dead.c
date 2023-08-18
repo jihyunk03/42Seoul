@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:20:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 15:08:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:03:26 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_dead(t_philo *philo, t_data *data)
 {
-	if (philo_dead(philo, data) == TRUE || someone_dead(data) == TRUE)
+	if (someone_dead(data) == TRUE || philo_dead(philo, data) == TRUE)
 		return (TRUE);
 	return (FALSE);
 }

@@ -6,16 +6,16 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:56:37 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/17 21:05:40 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:44:06 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-// void	check_leaks(void)
-// {
-// 	system("leaks --quiet philo");
-// }
+void	check_leaks(void)
+{
+	system("leaks --quiet philo");
+}
 
 int	main(int ac, char **av)
 {

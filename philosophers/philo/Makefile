@@ -10,7 +10,7 @@ SRCS		= philo_0.c \
 			  philo_2_start.c \
 			  philo_3_routine.c \
 			  check_dead.c \
-			  current_time.c \
+			  get_time_utils.c \
 			  message_print.c \
 			  free_all.c \
 			  libft_utils.c \

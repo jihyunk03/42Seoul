@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 03:32:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:37:56 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	*start_routine(void *ph)
 	if (data->philosophers == 1)
 		return (_one_philo_routine(philo, data));
 	if (philo->id % 2 == 0)
-		usleep(data->eat_t * 500);
+		usleep(sleep_even_philo(data));
 	while (TRUE)
 	{
 		if (ph_eat(philo, data) == END)

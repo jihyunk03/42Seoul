@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:58:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 14:57:35 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:44:42 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	_ph_pick_up_forks(t_philo *philo, t_data *data)
 		if (data->fork_state[philo->left] == USING)
 		{
 			pthread_mutex_unlock(&data->forks[philo->left]);
-			usleep(200);
+			usleep(300);
 			continue ;
 		}
 		pthread_mutex_lock(&data->forks[philo->right]);
@@ -66,16 +66,15 @@ static int	_ph_eating(t_philo *philo, t_data *data)
 		return (FALSE);
 	print_message(philo, EAT);
 	philo->last_eat = current_time();
-	usleep(data->eat_t * 800);
-	while (current_time() - philo->last_eat < data->eat_t)
-	{
-		if (check_dead(philo, data) == TRUE)
-			return (FALSE);
-		usleep(200);
-	}
-	philo->eat_cnt++;
-	if (check_dead(philo, data) == TRUE)
+	while (current_time() - philo->last_eat <= data->eat_t * 0.8 \
+	&& check_dead(philo, data) == FALSE)
+		usleep(800);
+	while (current_time() - philo->last_eat < data->eat_t \
+	&& check_dead(philo, data) == FALSE)
+		usleep(100);
+	if (someone_dead(data) == TRUE)
 		return (FALSE);
+	philo->eat_cnt++;
 	return (TRUE);
 }
 
@@ -101,7 +100,7 @@ int	ph_sleep_and_think(t_philo *philo, t_data *data)
 	{
 		if (check_dead(philo, data) == TRUE)
 			return (END);
-		usleep(250);
+		usleep(300);
 	}
 	print_message(philo, THINK);
 	return (CONTINUE);
