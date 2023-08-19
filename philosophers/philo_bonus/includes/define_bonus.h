@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 20:10:59 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/17 20:31:31 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/08/19 18:08:59 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/08/19 21:58:35 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@
 # define TRUE		1
 # define FALSE		0
 
-# define USING		1
-# define AVAILABLE	0
-
-# define CONTINUE	1
-# define END		0
+# define EAT_END	0
+# define DEAD_END	1
 
 enum	e_errno
 {
@@ -28,8 +25,12 @@ enum	e_errno
 	ALLOC_FAIL,
 	ARG_ERR,
 	SEM_ERR,
-	PHILO_ERR
+	THREAD_ERR,
+	FORK_ERR
 };
+
+# define FORK_SEM	"./forks"
+# define PRINT_SEM	"./print"
 
 # define FORK	"has taken a fork"
 # define EAT	"is eating"

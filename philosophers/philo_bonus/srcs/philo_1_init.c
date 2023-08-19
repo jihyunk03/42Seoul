@@ -5,40 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 20:51:41 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 19:33:14 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/08/19 18:08:32 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/08/19 21:24:25 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo_bonus.h"
 
-static int		_check_is_digit(int ac, char **arg);
-static t_data	*_init_semaphore(t_data *data);
+static void	_check_is_digit(int ac, char **arg);
+static void	_init_semaphore(t_philo *philo);
 
-t_data	*init_data(int ac, char **av)
+t_philo *init_philo(int ac, char **av)
 {
-	t_data	*data;
+	t_philo	*philo;
 
-	data = malloc(sizeof(t_data));
-	if (data == NULL)
+	_check_is_digit(ac, av);
+	philo = malloc(sizeof(t_philo));
+	if (philo == NULL)
 		exit (EXIT_FAILURE);
-	memset(data, 0, sizeof(t_data));
-	if (_check_is_digit(ac, av) == FALSE)
-		error_exit(NULL, data, ARG_ERR);
-	data->philosophers = ft_atoi(av[1]);
-	data->die_t = ft_atoi(av[2]);
-	data->eat_t = ft_atoi(av[3]);
-	data->sleep_t = ft_atoi(av[4]);
-	data->must_eat = -1;
+	memset(philo, 0, sizeof(t_philo));
+	philo->philosophers = ft_atoi(av[1]);
+	philo->die_t = ft_atoi(av[2]);
+	philo->eat_t = ft_atoi(av[3]);
+	philo->sleep_t = ft_atoi(av[4]);
+	philo->must_eat = -1;
 	if (ac == 6)
-		data->must_eat = ft_atoi(av[5]);
-	if (data->philosophers < 1 || data->die_t < 1 || data->eat_t < 1 \
-	|| data->sleep_t < 1 || (ac == 6 && data->must_eat < 1))
-		return (ARG_ERR);
-	return (_init_semaphore(data));
+		philo->must_eat = ft_atoi(av[5]);
+	if (philo->philosophers < 1 || philo->die_t < 0 || philo->eat_t < 0 \
+	|| philo->sleep_t < 0 || (ac == 6 && philo->must_eat < 1))
+		error_exit(philo, ARG_ERR);
+	philo->child_id = malloc(sizeof(pid_t) * philo->philosophers);
+	if (philo->child_id == NULL)
+		error_exit(philo, ALLOC_FAIL);
+	_init_semaphore(philo);
+	return (philo);
 }
 
-static int	_check_is_digit(int ac, char **arg)
+static void	_check_is_digit(int ac, char **arg)
 {
 	int	i;
 	int	j;
@@ -49,44 +52,20 @@ static int	_check_is_digit(int ac, char **arg)
 		j = 0;
 		while (arg[i][j])
 			if (ft_isdigit(arg[i][j++]) == FALSE)
-				return (FALSE);
+				error_exit(NULL, ARG_ERR);
 	}
 	return (TRUE);
 }
 
-static t_data	*_init_semaphore(t_data *data)
+static void	_init_semaphore(t_philo *philo)
 {
-	sem_unlink("./forks");
-	sem_unlink("./dead");
-	sem_unlink("./print");
-	data->forks = sem_open("./forks", O_CREAT, 0644, data->philosophers);
-	data->fork_count = data->philosophers;
-	data->dead = sem_open("./dead", O_CREAT, 0644, 1);
-	data->someone_dead = FALSE;
-	data->print = sem_open("./print", O_CREAT, 0644, 1);
-	data->no_print = FALSE;
-	if (data->forks == SEM_FAILED \
-	|| data->dead == SEM_FAILED \
-	|| data->print == SEM_FAILED)
-		error_exit(NULL, data, SEM_ERR);
-	return (data);
-}
-
-t_philo	*init_philo(t_data *data)
-{
-	t_philo	*philo;
-	int		i;
-
-	philo = malloc(sizeof(t_philo) * data->philosophers);
-	if (philo == NULL)
-		error_exit(NULL, data, PHILO_ERR);
-	i = 0;
-	while (i < data->philosophers)
-	{
-		philo[i].data = data;
-		philo[i].id = i + 1;
-		philo[i].eat_cnt = 0;
-		i++;
-	}
-	return (philo);
+	sem_unlink(FORK_SEM);
+	sem_unlink(PRINT_SEM);
+	philo->forks = sem_open(FORK_SEM, O_CREAT, 0644, philo->philosophers);
+	philo->fork_count = philo->philosophers;
+	philo->print = sem_open(PRINT_SEM, O_CREAT, 0644, 1);
+	philo->no_print = FALSE;
+	if (philo->forks == SEM_FAILED \
+	|| philo->print == SEM_FAILED)
+		error_exit(philo, SEM_ERR);
 }

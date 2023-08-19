@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:10:13 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/17 20:23:08 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/19 21:32:47 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <semaphore.h>
+# include <signal.h>
 
 #endif

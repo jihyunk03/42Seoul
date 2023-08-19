@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 20:07:27 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 19:34:58 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/08/19 18:09:05 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/08/19 21:35:10 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 int	main(int ac, char **av)
 {
-	t_data	*data;
 	t_philo	*philo;
-	int		errno;
 
 	if (ac < 5 || ac > 6)
-		error_exit(NULL, NULL, ARG_ERR);
+		error_exit(NULL, ARG_ERR);
+	philo = init_philo(ac, av);
 
-	data = init_data(ac, av);
-	philo = init_philo(data);
-
-	return (start_philo(philo, data));
+	create_child_proc(philo);
+	wait_and_check_child(philo);
+	free_philo(philo);
+	return (EXIT_SUCCESS);
 }

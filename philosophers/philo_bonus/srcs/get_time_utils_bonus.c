@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 18:38:10 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 17:54:17 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/08/19 18:09:45 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/08/19 20:44:17 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ long long	current_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-int	sleep_even_philo(t_data *data)
+int	sleep_even_philo(int die_time, int eat_time)
 {
-	if (data->die_t < data->eat_t * 2)
-		return (data->die_t * 500);
-	return (data->eat_t * 500);
+	if (die_time < eat_time * 2)
+		return (die_time * 500);
+	return (eat_time * 500);
 }
