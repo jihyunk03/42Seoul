@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:58:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 17:44:42 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 22:19:55 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static int	_ph_eating(t_philo *philo, t_data *data)
 	philo->last_eat = current_time();
 	while (current_time() - philo->last_eat <= data->eat_t * 0.8 \
 	&& check_dead(philo, data) == FALSE)
-		usleep(800);
-	while (current_time() - philo->last_eat < data->eat_t \
+		usleep(500);
+	while (current_time() - philo->last_eat <= data->eat_t \
 	&& check_dead(philo, data) == FALSE)
 		usleep(100);
 	if (someone_dead(data) == TRUE)

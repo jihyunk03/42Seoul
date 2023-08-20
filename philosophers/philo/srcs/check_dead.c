@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:20:07 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 17:03:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 22:22:42 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_dead(t_philo *philo, t_data *data)
 
 int	philo_dead(t_philo *philo, t_data *data)
 {
-	if (current_time() - philo->last_eat > data->die_t)
+	if (current_time() - philo->last_eat >= data->die_t)
 	{
 		print_dead(philo, data);
 		pthread_mutex_lock(&data->dead);
