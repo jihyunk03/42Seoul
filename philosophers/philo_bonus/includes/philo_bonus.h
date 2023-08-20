@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/19 20:43:56 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 00:28:25 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_philo 	*init_philo(int ac, char **av);
 /* philo_4_monitoring */
 
 /* message_print */
-// void		print_message(t_philo *philo, char *message);
+void		print_message(t_philo *philo, char *message);
 
 /* get_time_utils */
 long long	current_time(void);

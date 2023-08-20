@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:52 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/19 21:57:26 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 00:38:13 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef struct s_philo
 	// in child process: philo's data
 	pthread_t	monitor;
 	int			id;
+	char		*philo_id;		// philo마다 생성된 semaphore의 이름(id)
+	sem_t		*data_lock;
 	int			eat_cnt;
-	sem_t		*philo_time;
-	char		*philo_name;		// philo마다 생성된 semaphore의 이름(id)
 	long long	last_eat;
 }	t_philo;
 
