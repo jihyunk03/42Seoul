@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:32 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 14:56:30 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:33:51 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ static void	_init_semaphore(t_philo *philo)
 {
 	sem_unlink(FORK_SEM);
 	sem_unlink(PRINT_SEM);
-	philo->forks = sem_open(FORK_SEM, O_CREAT, 0644, philo->philosophers);
-	philo->fork_count = philo->philosophers;
-	philo->print = sem_open(PRINT_SEM, O_CREAT, 0644, 1);
-	philo->no_print = FALSE;
+	philo->forks = sem_open(FORK_SEM, O_CREAT, 0, philo->philosophers);
+	philo->print = sem_open(PRINT_SEM, O_CREAT, 0, 1);
 	if (philo->forks == SEM_FAILED \
 	|| philo->print == SEM_FAILED)
 		error_exit(philo, SEM_ERR);

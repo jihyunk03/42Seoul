@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:52 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 00:38:13 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:47:15 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ typedef struct s_philo
 	int			must_eat;
 	long long	start_t;
 	sem_t		*forks;
-	int			fork_count;
 	sem_t		*print;
-	int			no_print;
 	pid_t		*child_id;
 
 	// in child process: philo's data

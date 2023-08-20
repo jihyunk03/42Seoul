@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:59 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/19 21:58:35 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:11:11 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@
 # define FALSE		0
 
 # define EAT_END	0
-# define DEAD_END	1
 
 enum	e_errno
 {
-	SUCCESS,
-	ALLOC_FAIL,
+	ALLOC_FAIL = 300,
 	ARG_ERR,
 	SEM_ERR,
 	THREAD_ERR,
