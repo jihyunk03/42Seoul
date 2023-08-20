@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_1_init.c                                     :+:      :+:    :+:   */
+/*   philo_1_init_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:32 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/19 21:24:25 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:56:30 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	_check_is_digit(int ac, char **arg)
 			if (ft_isdigit(arg[i][j++]) == FALSE)
 				error_exit(NULL, ARG_ERR);
 	}
-	return (TRUE);
 }
 
 static void	_init_semaphore(t_philo *philo)

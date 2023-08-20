@@ -6,12 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:11:01 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 14:35:16 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:56:50 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo_bonus.h"
 
+static void	_ph_pick_up_forks(t_philo *philo);
 static void	_ph_eating(t_philo *philo);
 static void	_ph_put_down_forks(t_philo *philo);
 

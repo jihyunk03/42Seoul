@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 14:39:32 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:56:13 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			ft_atoi(const char *str);
 char		*ft_itoa(int n);
 
 /* free_all */
-
+void		free_philo(t_philo *philo);
 
 /* error_exit */
 int			error_exit(t_philo *philo, int errno);

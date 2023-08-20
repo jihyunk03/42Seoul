@@ -5,7 +5,17 @@ CFLAGS		= -Wall -Wextra -Werror #-fsanitize=thread -g3
 RM			= rm -f
 
 SRCS_DIR	= ./srcs/
-SRCS		= philo_0_bonus.c
+SRCS		= philo_0_bonus.c \
+			  philo_1_init_bonus.c \
+			  philo_2_child_process_bonus.c \
+			  philo_2_parent_process_bonus.c \
+			  philo_3_routine_bonus.c \
+			  get_time_utils_bonus.c \
+			  message_print_bonus.c \
+			  free_all_bonus.c \
+			  exit_bonus.c \
+			  libft_utils_bonus.c \
+			  libft_utils_2_bonus.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
 all		: $(NAME)
@@ -13,7 +23,7 @@ all		: $(NAME)
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME)	: $(OBJ)
+$(NAME)	: $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@echo $(GREEN) "⚡︎	[ philo_bonus ]	Ready to use philo_bonus" $(RESET)
 
