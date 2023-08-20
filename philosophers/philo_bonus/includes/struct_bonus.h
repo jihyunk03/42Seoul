@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:52 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 21:18:36 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:56:01 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ typedef struct s_philo
 	int			eat_cnt;
 	long long	last_eat;
 }	t_philo;
-
 
 #endif

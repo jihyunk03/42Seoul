@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:32 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 16:33:51 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:56:52 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	_check_is_digit(int ac, char **arg);
 static void	_init_semaphore(t_philo *philo);
 
-t_philo *init_philo(int ac, char **av)
+t_philo	*init_philo(int ac, char **av)
 {
 	t_philo	*philo;
 

@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:59 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 20:41:49 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:56:24 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ enum	e_errno
 # define SLEEP	"is sleeping"
 # define THINK	"is thinking"
 # define DEAD	"died"
-
 
 #endif
