@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:52 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 15:47:15 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:18:36 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_philo
 	long long	start_t;
 	sem_t		*forks;
 	sem_t		*print;
-	pid_t		*child_id;
+	pid_t		*child_id;		// 부모에서 판단할 자식 아이디들 -> 자식에서 free
 
 	// in child process: philo's data
 	pthread_t	monitor;

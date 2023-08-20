@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:10:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 20:46:24 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:44:59 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	child_routine(t_philo *philo)
 	while (TRUE)
 	{
 		_ph_eat(philo);
-		_ph_sleep_and_think(philo);
 		if (philo->must_eat > 0 && philo->eat_cnt == philo->must_eat)
 			_exit_child_with_status(philo, FALSE, EAT_END);
+		_ph_sleep_and_think(philo);
 		usleep(500);
 	}
 }
@@ -68,8 +68,9 @@ static void	_ph_eat(t_philo *philo)
 	philo->last_eat = current_time();
 	last_time = philo->last_eat;
 	sem_post(philo->data_lock);
-	while (current_time() - last_time < philo->eat_t)
+	while (current_time() - last_time <= philo->eat_t)
 		usleep(500);
+	// usleep(philo->eat_t * 1000);
 	sem_post(philo->forks);
 	sem_post(philo->forks);
 	philo->eat_cnt++;
@@ -81,8 +82,9 @@ static void	_ph_sleep_and_think(t_philo *philo)
 
 	print_message(philo, SLEEP);
 	start_time = current_time();
-	while (current_time() - start_time < philo->sleep_t)
+	while (current_time() - start_time <= philo->sleep_t)
 		usleep(300);
+	// usleep(philo->sleep_t * 1000);
 	print_message(philo, THINK);
 }
 

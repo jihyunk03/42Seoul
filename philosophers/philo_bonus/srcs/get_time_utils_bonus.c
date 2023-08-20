@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:09:45 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/19 20:44:17 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 21:36:53 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ long long	current_time(void)
 int	sleep_even_philo(int die_time, int eat_time)
 {
 	if (die_time < eat_time * 2)
-		return (die_time * 500);
-	return (eat_time * 500);
+		return (die_time * 300);
+	return (eat_time * 300);
 }
