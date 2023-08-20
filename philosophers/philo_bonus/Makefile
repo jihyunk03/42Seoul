@@ -1,7 +1,7 @@
 NAME		= philo_bonus
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror #-fsanitize=thread -g3
+CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
 SRCS_DIR	= ./srcs/
@@ -9,11 +9,9 @@ SRCS		= philo_0_bonus.c \
 			  philo_1_init_bonus.c \
 			  philo_2_child_process_bonus.c \
 			  philo_2_parent_process_bonus.c \
-			  philo_3_routine_bonus.c \
 			  get_time_utils_bonus.c \
 			  message_print_bonus.c \
-			  free_all_bonus.c \
-			  exit_bonus.c \
+			  free_and_exit_bonus.c \
 			  libft_utils_bonus.c \
 			  libft_utils_2_bonus.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
