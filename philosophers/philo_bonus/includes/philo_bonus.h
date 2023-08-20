@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:08:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 00:28:25 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:39:32 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@
 /* philo_1_init */
 t_philo 	*init_philo(int ac, char **av);
 
-/* philo_2_start */
+/* philo_2_child_process */
+void		create_child_proc(t_philo *philo);
+
+/* philo_2_parent_process */
+void		wait_and_check_child(t_philo *philo);
 
 /* philo_3_routine */
-
-/* philo_4_monitoring */
+void		ph_eat(t_philo *philo);
+void		ph_sleep_and_think(t_philo *philo);
 
 /* message_print */
 void		print_message(t_philo *philo, char *message);
+void		print_dead(t_philo *philo);
 
 /* get_time_utils */
 long long	current_time(void);
@@ -46,5 +51,6 @@ char		*ft_itoa(int n);
 
 /* error_exit */
 int			error_exit(t_philo *philo, int errno);
+int			exit_child_with_status(t_philo *philo, int mode, int exit_code);
 
 #endif

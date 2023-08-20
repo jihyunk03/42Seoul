@@ -1,34 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_2_create_proc_bonus.c                        :+:      :+:    :+:   */
+/*   philo_2_parent_process_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/19 18:10:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 00:12:47 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/08/20 14:30:43 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/08/20 14:31:07 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo_bonus.h"
-
-void	create_child_proc(t_philo *philo)
-{
-	int		i;
-
-	i = 0;
-	philo->start_t = current_time();
-	while (i < philo->philosophers)
-	{
-		philo->id = i + 1;
-		philo->child_id[i] = fork();
-		if (philo->child_id[i] < 0)
-			error_exit(philo, FORK_ERR);
-		else if (philo->child_id[i] == 0)
-			child_routine(philo);
-		i++;
-	}
-}
 
 void	wait_and_check_child(t_philo *philo)
 {

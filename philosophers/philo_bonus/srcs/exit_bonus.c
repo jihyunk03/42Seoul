@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:09:23 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/19 21:59:37 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:39:46 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,15 @@ int	error_exit(t_philo *philo, int errno)
 	else if (errno == FORK_ERR)
 		ft_putstr_fd("Error: failed to create child process\n", STDERR_FILENO);
 	exit (EXIT_FAILURE);
+}
+
+int	exit_child_with_status(t_philo *philo, int mode, int exit_code)
+{
+	if (mode == TRUE)
+		sem_post(philo->data_lock);
+	pthread_detach(philo->monitor);
+	print_dead(philo);
+	sem_close(philo->data_lock);
+	free (philo->philo_id);
+	exit (exit_code);
 }
