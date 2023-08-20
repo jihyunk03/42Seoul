@@ -22,8 +22,7 @@ else
 	OBJ = $(OBJS)
 endif
 
-all		:
-	@$(MAKE) $(NAME)
+all		: $(NAME)
 
 bonus	:
 	@$(MAKE) BONUS=1 $(NAME)
