@@ -16,22 +16,13 @@ SRCS		= philo_0_bonus.c \
 			  libft_utils_2_bonus.c
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
-ifdef BONUS
-	OBJ = $(OBJS)
-else
-	OBJ = $(OBJS)
-endif
-
 all		: $(NAME)
-
-bonus	:
-	@$(MAKE) BONUS=1 $(NAME)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME)	: $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+$(NAME)	: $(OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@echo $(GREEN) "⚡︎	[ philo_bonus ]	Ready to use philo_bonus" $(RESET)
 
 clean	:
