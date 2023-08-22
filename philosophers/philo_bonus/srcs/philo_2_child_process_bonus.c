@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 18:10:50 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 21:44:59 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:17:16 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ static void	_exit_child_with_status(t_philo *philo, int mode, int exit_code);
 
 void	child_routine(t_philo *philo)
 {
+	pthread_t	monitor;
+
 	free (philo->child_id);
 	sem_unlink(philo->philo_id);
 	philo->data_lock = sem_open(philo->philo_id, O_CREAT, 0, 1);
 	if (philo->data_lock == SEM_FAILED)
 		_exit_child_with_status(philo, FALSE, SEM_ERR);
 	philo->last_eat = current_time();
-	if (pthread_create(&philo->monitor, NULL, _child_monitor, philo) != 0)
+	if (pthread_create(&monitor, NULL, _child_monitor, philo) != 0)
 		_exit_child_with_status(philo, FALSE, THREAD_ERR);
-	pthread_detach(philo->monitor);
+	pthread_detach(monitor);
 	if (philo->id % 2 == 0)
 		usleep(sleep_even_philo(philo->die_t, philo->eat_t));
 	while (TRUE)

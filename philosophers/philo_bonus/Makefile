@@ -23,7 +23,7 @@ all		: $(NAME)
 
 $(NAME)	: $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@echo $(GREEN) "⚡︎	[ philo_bonus ]	Ready to use philo_bonus" $(RESET)
+	@echo $(GREEN) "⚡︎	[ philo_bonus ]	Ready to run philo_bonus" $(RESET)
 
 clean	:
 	@$(RM) $(OBJS)
