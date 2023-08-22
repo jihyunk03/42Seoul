@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:42:44 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 13:23:15 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:10:39 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define TRUE		1
 # define FALSE		0
 
-# define AVAILABLE	0		// default value == 0 (ft_calloc)
+# define AVAILABLE	0
 # define USING		1
 
 # define CONTINUE	1

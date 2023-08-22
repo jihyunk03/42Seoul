@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:58:42 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/20 22:19:55 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:50:10 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	_ph_pick_up_forks(t_philo *philo, t_data *data)
 		if (data->fork_state[philo->left] == USING)
 		{
 			pthread_mutex_unlock(&data->forks[philo->left]);
-			usleep(300);
+			usleep(200);	// many philosopher -> bigger
 			continue ;
 		}
 		pthread_mutex_lock(&data->forks[philo->right]);
@@ -96,12 +96,11 @@ int	ph_sleep_and_think(t_philo *philo, t_data *data)
 		return (END);
 	print_message(philo, SLEEP);
 	time = current_time();
-	while (current_time() - time <= data->sleep_t)
-	{
-		if (check_dead(philo, data) == TRUE)
-			return (END);
+	while (current_time() - time <= data->sleep_t \
+	&& check_dead(philo, data) == FALSE)
 		usleep(300);
-	}
+	if (someone_dead(data) == TRUE)
+		return (END);
 	print_message(philo, THINK);
 	return (CONTINUE);
 }

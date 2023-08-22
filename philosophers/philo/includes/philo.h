@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:15:51 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/08/18 17:41:14 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:11:06 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "./struct.h"
 # include "./define.h"
-# include "./header.h"
 
 /* philo_1_init.c */
 int			init_data(t_data *data, int ac, char **av);
