@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 22:29:00 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/28 22:43:32 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:49:24 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes_pipex/pipex.h"
 
 static void	_is_in_string(char **cmd);
 

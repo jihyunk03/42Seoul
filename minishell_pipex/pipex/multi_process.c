@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:35:15 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 21:01:21 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:49:59 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes_pipex/pipex.h"
 
 static void	_begin_child_process(t_pipe *p, char *infile);
 static void	_mid_child_process(t_pipe *p);

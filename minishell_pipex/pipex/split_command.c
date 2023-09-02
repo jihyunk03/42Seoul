@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:43:40 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/30 17:53:02 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:50:07 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes_pipex/pipex.h"
 
 static char	*_make_string(char **cmd, char *string, int space_end);
 static char	*_join_string(char *string, char *_add);

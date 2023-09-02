@@ -6,7 +6,7 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 18:47:57 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/09/02 18:56:41 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:11:56 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,17 @@
 
 typedef struct s_exec_info
 {
-	int		here_doc;		// here_doc 개수
+	// node 마다 값이 reset될 수 있음
+	int		here_doc;		// here_doc flags
+	int		in_fd;
+	int		out_fd;
+	int		pipe[2];
+	char	**cmd_args;		// node 당 type이 cmd인것만 pasing하고 free
 
+	// 일단 받아온 인자 자체로 사용하기 -> pasing 이후엔 해당 값(key-value) 사용
+	// 이 경우, 따로 free 안해도 됨
+	char	**envp;			// t_env_info의 head 주소
+	char	**path_args;	// t_env_info의 key-PATH의 value 값 주소
 }	t_exec_info;
 
 

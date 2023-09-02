@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:07:33 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 20:59:53 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:49:37 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes_pipex/pipex.h"
 
 static char	*_check_command_path(t_pipe *p);
 

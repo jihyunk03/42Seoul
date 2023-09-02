@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   include.h                                          :+:      :+:    :+:   */
+/*   init_exec_info.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 19:45:22 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/09/02 20:03:01 by jihykim2         ###   ########.fr       */
+/*   Created: 2023/09/02 20:40:35 by jihykim2          #+#    #+#             */
+/*   Updated: 2023/09/02 20:50:18 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#include "../includes_exec/execute.h"
 
-# include "../includes/minishell.h"
-# include "./define.h"
-# include "./struct.h"
+t_exec_info	*init_exec_info(t_shell_info *parse)
+{
+	t_exec_info	*exec;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <dirent.h>
-# include <term.h>
-# include <sys/ioctl.h>
-# include <sys/wait.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+	exec = malloc(sizeof(t_exec_info));
+	if (exec == NULL)
+		exit (EXIT_FAILURE);
 
-#endif
+}

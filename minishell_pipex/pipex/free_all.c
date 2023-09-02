@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:54:51 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/29 06:59:29 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:49:45 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes_pipex/pipex.h"
 
 void	free_pipe(t_pipe *p)
 {

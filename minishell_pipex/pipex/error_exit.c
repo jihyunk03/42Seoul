@@ -6,11 +6,11 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 04:53:02 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/06/30 17:50:59 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:49:29 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../incincludes_pipexudes/pipex.h"
 
 void	error_exit(t_pipe *p, char *s)
 {

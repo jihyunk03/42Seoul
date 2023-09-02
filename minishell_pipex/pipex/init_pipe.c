@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../includes_pipex/pipex.h"
 
 static int	_is_here_doc(char *infile);
 static void	_get_file_fds(t_pipe *p, int ac, char **av);
