@@ -6,13 +6,13 @@
 /*   By: jihykim2 <jihykim2@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:44:58 by jihykim2          #+#    #+#             */
-/*   Updated: 2023/09/02 20:43:59 by jihykim2         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:56:50 by jihykim2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes_exec/execute.h"
 
-int	execute(t_shell_info *parse);
+int	execute(t_shell_info *parse, char **env);
 
 int	main(int ac, char **av, char **env)
 {
@@ -25,11 +25,11 @@ int	main(int ac, char **av, char **env)
 	parse->env = init_env(env);
 	parse->cmd_node = init_cmd_node();
 
-	return (execute(parse));
+	return (execute(parse, env));
 }
 
 /* [실행부 함수 시작] */
-int	execute(t_shell_info *parse)
+int	execute(t_shell_info *parse, char **env)	// env 없애기
 {
 	t_exec_info		*exec;
 	pid_t			pid;		// kill을 사용할까...?
@@ -38,7 +38,7 @@ int	execute(t_shell_info *parse)
 	if (parse->pipe_cnt == 0 && parse->cmd_node->cmd_cnt == 1)
 		single_command(parse);		// 부모에서 실행되는 경우 -> flag 만들까(?)
 
-	exec = init_exec_info(parse);
+	exec = init_exec_info(parse, env);
 
 	node = parse->cmd_node;
 	while (node)
@@ -48,7 +48,7 @@ int	execute(t_shell_info *parse)
 		// fork
 		// muilti-processing
 		free_cmd_args(exec->cmd_args);		// 위치 다시 선정
-		node = parse->cmd_node->next;
+		node = node->next;
 	}
 }
 
