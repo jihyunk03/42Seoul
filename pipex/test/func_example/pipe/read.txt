@@ -1,3 +1,0 @@
-=====read.txt=====
-this is read file
-=======END========
