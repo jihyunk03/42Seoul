@@ -1,0 +1,136 @@
+[[ in split_command.c: _is_in_string()의 while 문 두가지 case]]: 둘이 다르다^^ 이멍충아ㅡㅡ
+
+// [case 1]: 응 아니야
+(*cmd)++;
+while (*(*cmd)++ != quote)
+	if (**cmd == 0)
+		exit (EXIT_FAILURE);
+
+// [case 2]: original >> 이게 맞단다!!!!!!!!!!!!!!
+(*cmd)++;
+while (**cmd && **cmd != quote)
+	(*cmd)++;
+if (**cmd == 0)
+	exit (EXIT_FAILURE);	// dquote 상황은 error 처리
+(*cmd)++;
+
+// [case 3]: now (고친것)
+while (*(++(*cmd)) != quote)
+	if (**cmd == 0)
+		exit (EXIT_FAILURE);	// quote 상황은 exit_fail
+(*cmd)++;
+
+/* ************************************************************************** */
+
+[[ split_command.c ]]
+char	**split_command(t_pipe *p, char *cmd)
+{
+	char	**cmd_arr;
+	int		space_end;
+	int		str_len;
+	int		i;
+
+	cmd_arr = malloc(sizeof(char *) * (_cmd_arr_len(cmd) + 1));
+	if (cmd_arr == NULL)
+		exit (EXIT_FAILURE);
+	space_end = TRUE;
+	i = 0;
+	while (*cmd)
+	{
+		if (*cmd != ' ')
+		{
+			if (space_end == TRUE)
+				str_len = _string_length(&cmd);
+			else
+				str_len += _string_length(&cmd);
+			if (*cmd != ' ')	// 해당 경우에만 i++ (string이 끝났기 때문)
+				space_end = FALSE;
+			else
+			{
+				cmd_arr[i] = malloc(sizeof(char) * (str_len + 1));
+				ft_strlcpy(cmd_arr, cmd - str_len, str_len + 1);
+				// 해당 quote 값을 strim으로 뺀다^^
+				// 응 아니 난 strjoin으로 할래~
+			}
+			continue ;
+		}
+		cmd++;
+		str_len = 0;
+		space_end = TRUE;
+	}
+	cmd_arr[i] = NULL;
+	return (cmd_arr);
+}
+
+static int	_string_length(char **cmd)
+{
+	char	quote;
+	int		len;
+
+	quote = 0;
+	len = 1;		// is_quote에서 이미 한번 ++했기 때문
+	if (_is_quote(*(*cmd)++, &quote) == TRUE)
+		while (++len && *(*cmd)++ != quote)
+			if (**cmd == 0)
+				exit (EXIT_FAILURE);
+	else
+		while (**cmd && _is_quote(**cmd, &quote) == FALSE && **cmd != ' ' \
+				&& ++len)
+			(*cmd)++;
+	return (len);
+}
+
+/* ************************************************************************** */
+
+[[ execute_command.c: 이전 코드(애송이시절)]]
+/*
+	if (execve(cmd_arr[0], cmd_arr, p->envp) == 0)	// 절대 경로인 경우
+		exit (EXIT_SUCCESS);
+	i = 0;
+	while (p->path[i])
+	{
+		tmp = ft_strjoin(p->path[i], "/");
+		if (tmp == NULL)
+			exit (EXIT_FAILURE);		// message: strjoin error
+		cmd_path = ft_strjoin(tmp, cmd_arr[0]);
+		free (tmp);
+		if (cmd_path == NULL)
+			exit (EXIT_FAILURE);		// message: strjoin error, [유의]자식 프로세스만 종료됨 >> path_arr 모두 free해야 함
+		if (execve(cmd_path, cmd_arr, p->envp) == 0)
+		{
+			free (cmd_path);		// path_arr도 free해야 함
+			exit (EXIT_SUCCESS);
+		}
+		free (cmd_path);
+		i++;
+	}
+	exit (127);
+*/
+
+/* ************************************************************************** */
+
+[[ init_pipe.c: test path_array of envp ]]
+/*
+void	print_path(char **path)
+{
+	int	i;
+
+	i = 0;
+	while (TRUE)
+	{
+		printf("path[%d]:%s\n", i, path[i]);
+		if (path[i] == NULL)
+			break ;
+		i++;
+	}
+	printf("======[path-end]======\n");
+}
+*/
+
+/* ************************************************************************** */
+
+[[ _multi_process_with_pipe: case of using waitpid function in while-loop ]]
+// if (i < ac - 1)
+// 	waitpid(pid, &status, WNOHANG);
+// else
+// 	waitpid(0, &status, 0);
