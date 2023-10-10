@@ -19,17 +19,15 @@ SRCS		= so_long.c \
 OBJS		= $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
 
-all			: libs $(NAME)
-
-libs		:
-	@$(MAKE) -C $(dir $(LIB_DIR))
-	@$(MAKE) -C $(dir $(MLX_DIR))
-	@echo $(YELLOW) "✭	[ mlx ]		Ready to use MiniLibX" $(RESET)
+all			: $(NAME)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME)	: $(OBJS)
+	@$(MAKE) -C $(LIB_DIR)
+	@$(MAKE) -C $(MLX_DIR)
+	@echo $(YELLOW) "✭	[ mlx ]		Ready to use MiniLibX" $(RESET)
 	@$(CC) -o $(NAME) $(OBJS) -L$(LIB_DIR) -l_jihykim2 $(MLIB)
 	@install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 	@echo $(GREEN) "⚡︎	[ so_long ]	Ready to use so_long" $(RESET)
