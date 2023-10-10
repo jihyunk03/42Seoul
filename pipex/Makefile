@@ -31,15 +31,13 @@ else
 	OBJ = $(OBJS)
 endif
 
-all		: mylib $(NAME)
-
-mylib	:
-	@$(MAKE) -C $(LIB_DIR)
+all		: $(NAME)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ)
+	@$(MAKE) -C $(LIB_DIR)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L$(LIB_DIR) -l_jihykim2
 	@echo $(GREEN) "⚡︎	[ pipex ]	Ready to use pipex" $(RESET)
 

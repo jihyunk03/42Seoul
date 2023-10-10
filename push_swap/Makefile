@@ -6,6 +6,8 @@ CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 AR		= ar -rcs
 
+LIB_DIR	= ./my_libft/
+
 P_DIR	= ./push_swap_files/
 SRCS	= $(P_DIR)push_swap.c \
 		  $(P_DIR)free_all.c \
@@ -39,28 +41,24 @@ B_INCD	= $(B_DIR)checker.h \
 		  $(B_DIR)struct_info.h \
 		  $(B_DIR)define_enum.h
 
-LIB		= my_libft/lib_jihykim2.a
-
 all		: $(LIB) $(NAME)
-
-$(LIB)	:
-	@$(MAKE) -C $(dir $(LIB))
-
-$(NAME)	: $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
-	@echo $(GREEN) "⚡︎ [ push_swap ]	Ready to use push_swap" $(RESET)
 
 %.o		: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+$(NAME)	: $(OBJS)
+	@$(MAKE) -C $(LIB_DIR)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIB_DIR) -l_jihykim2
+	@echo $(GREEN) "⚡︎ [ push_swap ]	Ready to use push_swap" $(RESET)
+
 clean	:
-	@$(MAKE) -C $(dir $(LIB)) clean
+	@$(MAKE) -C $(LIB_DIR) clean
 	@echo $(YELLOW) "✭  [ my_libft ]	Removed Object files" $(RESET)
 	@$(RM) $(OBJS) $(B_OBJS)
 	@echo $(GREEN) "⚡︎ [ push_swap ]	Removed Object files" $(RESET)
 
 fclean	: clean
-	@$(MAKE) -C $(dir $(LIB)) fclean
+	@$(MAKE) -C $(LIB_DIR) fclean
 	@echo $(YELLOW) "✭  [ my_libft ]	Removed lib_jihykim2.a" $(RESET)
 	@$(RM) $(NAME) $(BONUS)
 	@echo $(GREEN) "⚡︎ [ push_swap ]	Removed push_swap" $(RESET)
@@ -73,7 +71,7 @@ re		:
 bonus	: $(BONUS)
 
 $(BONUS): $(B_OBJS)
-	@$(CC) $(CFLAGS) $(B_OBJS) $(LIB) -o $(BONUS)
+	@$(CC) $(CFLAGS) -o $(BONUS) $(B_OBJS) -L$(LIB_DIR) -l_jihykim2
 	@echo $(GREEN) "⚡︎ [ checker ]		Ready to use checker" $(RESET)
 
 RESET	=	"\x1b[0m"
